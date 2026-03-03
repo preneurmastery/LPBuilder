@@ -637,7 +637,7 @@
             }
         });
 
-                        // Live Preview Loader with Screenshot Background
+                // Live Preview Loader dengan Pembersihan Total
         function loadExternalPreview(url, product, angle) {
             // Track ViewContent event
             fbq('track', 'ViewContent', { 
@@ -645,114 +645,107 @@
                 content_category: 'Landing Page Demo'
             });
 
+            // Ambil semua elemen yang diperlukan
             const overlay = document.getElementById('preview-overlay');
             const initial = document.getElementById('preview-initial');
             const loader = document.getElementById('preview-loader');
             const iframe = document.getElementById('preview-iframe');
             const slug = document.getElementById('preview-url-slug');
 
-            // Update slug
-            slug.innerText = product.toLowerCase().replace(/\s+/g, '-');
+            // RESET TOTAL: Hapus semua konten lama di overlay
+            overlay.innerHTML = '';
             
-            // Hide initial, show loader
-            initial.classList.add('hidden');
-            loader.classList.remove('hidden');
-            overlay.style.opacity = '1';
+            // Kembalikan struktur awal overlay (loader + initial)
+            overlay.appendChild(loader);
+            overlay.appendChild(initial);
+            
+            // Pastikan kelas yang benar
             overlay.classList.remove('hidden');
+            loader.classList.remove('hidden');
+            initial.classList.add('hidden');
+            
+            // Update slug
+            slug.innerText = product.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+            
+            // Sembunyikan iframe
             iframe.classList.add('hidden');
-
-            // Scroll to preview
+            iframe.src = ''; // Kosongkan src iframe
+            
+            // Scroll ke preview
             document.getElementById('live-preview').scrollIntoView({ behavior: 'smooth' });
 
-            // Map produk ke screenshot
+            // Mapping screenshot
             const screenshotMap = {
                 'Travel Umroh': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551768/IMG_20260303_222730_oly5ci.jpg',
                 'Perumahan Komersil': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551769/IMG_20260303_222749_pbenek.jpg',
                 'Digital Brave Color': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551767/IMG_20260303_222835_fwwxjy.jpg',
-                'Produk Digital Brave Color': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551767/IMG_20260303_222835_fwwxjy.jpg', // fallback
+                'Produk Digital Brave Color': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551767/IMG_20260303_222835_fwwxjy.jpg',
                 'Digital Dark Mode': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551765/IMG_20260303_222805_hyjl3u.jpg',
-                'Produk Digital Dark Mode': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551765/IMG_20260303_222805_hyjl3u.jpg' // fallback
+                'Produk Digital Dark Mode': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551765/IMG_20260303_222805_hyjl3u.jpg'
             };
 
-            // Ambil screenshot berdasarkan nama produk
-            const screenshotUrl = screenshotMap[product] || screenshotMap['Perumahan Komersil']; // default
+            const screenshotUrl = screenshotMap[product] || 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551769/IMG_20260303_222749_pbenek.jpg';
 
-            setTimeout(() => {
+            // Hapus timeout sebelumnya jika ada (untuk mencegah konflik)
+            if (window.previewTimeout) {
+                clearTimeout(window.previewTimeout);
+            }
+
+            // Set timeout baru
+            window.previewTimeout = setTimeout(() => {
+                // Sembunyikan loader
                 loader.classList.add('hidden');
                 
-                // Preview card dengan background screenshot
-                const previewHtml = `
-                    <div class="relative w-full h-full flex items-end justify-center" 
-                         style="background-image: url('${screenshotUrl}'); 
-                                background-size: cover; 
-                                background-position: center;
-                                background-repeat: no-repeat;">
-                        
-                        <!-- Gradient Overlay dari bawah -->
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent"></div>
-                        
-                        <!-- Konten Informasi -->
-                        <div class="relative z-10 w-full p-6 md:p-8 text-center">
-                            <!-- Badge Niche -->
-                            <div class="inline-block bg-indigo-600/20 backdrop-blur-sm border border-indigo-500/30 px-4 py-1.5 rounded-full mb-4">
-                                <span class="text-[9px] md:text-[10px] font-black text-indigo-400 uppercase tracking-widest">${product}</span>
-                            </div>
-                            
-                            <!-- Judul -->
-                            <h3 class="text-xl md:text-2xl font-black text-white mb-3 drop-shadow-lg">${product}</h3>
-                            
-                            <!-- Deskripsi Angle -->
-                            <p class="text-xs md:text-sm text-slate-300 mb-6 max-w-lg mx-auto drop-shadow">${angle || 'Landing page dengan konversi tinggi, siap pakai untuk campaign Anda'}</p>
-                            
-                            <!-- Tombol Aksi -->
-                            <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-4">
-                                <a href="${url}" target="_blank" 
-                                   onclick="fbq('track', 'Lead');" 
-                                   class="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3.5 rounded-xl font-bold text-sm transition-all transform hover:scale-105 shadow-2xl min-w-[180px]">
-                                    <i class="fas fa-external-link-alt"></i>
-                                    BUKA LIVE DEMO
-                                </a>
-                                <button onclick="loadExternalPreviewAgain('${url}', '${product}', '${angle}')" 
-                                        class="inline-flex items-center justify-center gap-2 bg-slate-800/80 backdrop-blur-sm hover:bg-slate-700 text-white px-6 py-3.5 rounded-xl font-bold text-sm transition-all border border-white/10 min-w-[180px]">
-                                    <i class="fas fa-sync-alt"></i>
-                                    REFRESH
-                                </button>
-                            </div>
-                            
-                            <!-- URL Info -->
-                            <div class="inline-flex items-center gap-2 bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 rounded-full px-4 py-2">
-                                <i class="fas fa-link text-indigo-500 text-[9px]"></i>
-                                <span class="text-[8px] md:text-[9px] text-slate-400 font-mono truncate max-w-[200px] md:max-w-xs">${url}</span>
-                                <button onclick="navigator.clipboard.writeText('${url}')" class="text-slate-500 hover:text-indigo-400 transition-colors" title="Copy link">
-                                    <i class="fas fa-copy text-[9px]"></i>
-                                </button>
-                            </div>
-                            
-                            <!-- Disclaimer kecil -->
-                            <p class="text-[7px] text-slate-600 mt-4">🖱️ Klik tombol untuk membuka halaman asli di tab baru</p>
+                // Buat konten baru FRESH
+                const newContent = document.createElement('div');
+                newContent.className = 'relative w-full h-full flex items-end justify-center';
+                newContent.style.cssText = `
+                    background-image: url('${screenshotUrl}?t=${Date.now()}'); 
+                    background-size: cover; 
+                    background-position: center;
+                    background-repeat: no-repeat;
+                `;
+                
+                // Inner HTML konten
+                newContent.innerHTML = `
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent"></div>
+                    <div class="relative z-10 w-full p-6 md:p-8 text-center">
+                        <span class="inline-block bg-indigo-600/20 backdrop-blur-sm border border-indigo-500/30 px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-4">
+                            ${product}
+                        </span>
+                        <h3 class="text-xl md:text-2xl font-black text-white mb-3 drop-shadow-lg">${product}</h3>
+                        <p class="text-xs md:text-sm text-slate-300 mb-6 max-w-lg mx-auto drop-shadow">${angle || 'Landing page dengan konversi tinggi untuk campaign Anda'}</p>
+                        <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-4">
+                            <a href="${url}" target="_blank" 
+                               onclick="fbq('track', 'Lead');" 
+                               class="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3.5 rounded-xl font-bold text-sm transition-all transform hover:scale-105 shadow-2xl min-w-[180px]">
+                                <i class="fas fa-external-link-alt"></i>
+                                BUKA LIVE DEMO
+                            </a>
+                            <button onclick="loadExternalPreview('${url}', '${product}', '${angle}')" 
+                                    class="inline-flex items-center justify-center gap-2 bg-slate-800/80 backdrop-blur-sm hover:bg-slate-700 text-white px-6 py-3.5 rounded-xl font-bold text-sm transition-all border border-white/10 min-w-[180px]">
+                                <i class="fas fa-sync-alt"></i>
+                                REFRESH
+                            </button>
                         </div>
+                        <div class="inline-flex items-center gap-2 bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 rounded-full px-4 py-2">
+                            <i class="fas fa-link text-indigo-500 text-[9px]"></i>
+                            <span class="text-[8px] md:text-[9px] text-slate-400 font-mono truncate max-w-[200px] md:max-w-xs">${url}</span>
+                            <button onclick="navigator.clipboard.writeText('${url}'); alert('Link copied!')" class="text-slate-500 hover:text-indigo-400 transition-colors" title="Copy link">
+                                <i class="fas fa-copy text-[9px]"></i>
+                            </button>
+                        </div>
+                        <p class="text-[7px] text-slate-600 mt-4">Klik tombol untuk membuka halaman asli di tab baru</p>
                     </div>
                 `;
                 
-                overlay.innerHTML = previewHtml;
+                // Kosongkan overlay dan isi dengan konten baru
+                overlay.innerHTML = '';
+                overlay.appendChild(newContent);
                 overlay.style.opacity = '1';
-                iframe.classList.add('hidden');
-            }, 800); // Loading 0.8 detik
-        }
-
-        // Fungsi untuk refresh
-        function loadExternalPreviewAgain(url, product, angle) {
-            loadExternalPreview(url, product, angle);
-        }
-
-        // Fungsi copy link (fallback jika navigator.clipboard tidak tersedia)
-        function copyToClipboard(text) {
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(text);
-            } else {
-                alert('Link: ' + text);
-            }
-        }
+                
+            }, 800);
+        }                
 
         // Legacy function renamed to avoid conflict (for original niche simulation)
         // We keep it but not used in new cards
