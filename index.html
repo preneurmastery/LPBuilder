@@ -429,7 +429,7 @@
                 </div>
             </div>
 
-                        <!-- Result Dashboard -->
+                                    <!-- Result Dashboard - STRUKTUR DIPERBAIKI -->
             <div class="reveal px-2" style="transition-delay: 200ms;">
                 <div class="glass-card p-1.5 md:p-4 rounded-3xl md:rounded-[2.5rem] relative">
                     <div class="bg-slate-800/50 rounded-t-2xl md:rounded-t-[1.5rem] p-3 md:p-4 flex items-center gap-2 md:gap-3 border-b border-white/5">
@@ -442,15 +442,18 @@
                         </div>
                     </div>
                     <div class="preview-window relative">
+                        <!-- ELEMEN TETAP: overlay, loader, initial, iframe -->
                         <div id="preview-overlay" class="preview-overlay">
-                            <div id="preview-initial" class="flex flex-col items-center p-6 text-center">
-                                <i class="fas fa-mouse-pointer text-3xl md:text-4xl text-slate-700 mb-4 md:mb-6 floating"></i>
-                                <p class="text-slate-500 font-bold text-xs md:text-sm max-w-xs">Klik niche di atas untuk lihat contoh jadi.</p>
-                            </div>
                             <div id="preview-loader" class="hidden flex flex-col items-center p-6 text-center">
                                 <i class="fas fa-cog animate-spin text-3xl md:text-4xl text-indigo-500 mb-4"></i>
                                 <p class="text-white font-bold tracking-widest uppercase text-[10px]">Memuat contoh halaman...</p>
                             </div>
+                            <div id="preview-initial" class="flex flex-col items-center p-6 text-center">
+                                <i class="fas fa-mouse-pointer text-3xl md:text-4xl text-slate-700 mb-4 md:mb-6 floating"></i>
+                                <p class="text-slate-500 font-bold text-xs md:text-sm max-w-xs">Klik niche di atas untuk lihat contoh jadi.</p>
+                            </div>
+                            <!-- KONTEN DINAMIS AKAN DISIMPAN DI SINI -->
+                            <div id="preview-content" class="hidden w-full h-full"></div>
                         </div>
                         <iframe id="preview-iframe" class="w-full h-full border-none hidden" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
                     </div>
@@ -637,115 +640,142 @@
             }
         });
 
-                // Live Preview Loader dengan Pembersihan Total
-        function loadExternalPreview(url, product, angle) {
-            // Track ViewContent event
-            fbq('track', 'ViewContent', { 
-                content_name: product,
-                content_category: 'Landing Page Demo'
-            });
+                // Live Preview dengan pendekatan robust
+function loadExternalPreview(url, product, angle) {
+    // Track event
+    fbq('track', 'ViewContent', { 
+        content_name: product,
+        content_category: 'Landing Page Demo'
+    });
 
-            // Ambil semua elemen yang diperlukan
-            const overlay = document.getElementById('preview-overlay');
-            const initial = document.getElementById('preview-initial');
-            const loader = document.getElementById('preview-loader');
-            const iframe = document.getElementById('preview-iframe');
-            const slug = document.getElementById('preview-url-slug');
+    // Ambil elemen-elemen yang diperlukan
+    const overlay = document.getElementById('preview-overlay');
+    const loader = document.getElementById('preview-loader');
+    const initial = document.getElementById('preview-initial');
+    const contentDiv = document.getElementById('preview-content');
+    const iframe = document.getElementById('preview-iframe');
+    const slug = document.getElementById('preview-url-slug');
 
-            // RESET TOTAL: Hapus semua konten lama di overlay
-            overlay.innerHTML = '';
-            
-            // Kembalikan struktur awal overlay (loader + initial)
-            overlay.appendChild(loader);
-            overlay.appendChild(initial);
-            
-            // Pastikan kelas yang benar
-            overlay.classList.remove('hidden');
-            loader.classList.remove('hidden');
-            initial.classList.add('hidden');
-            
-            // Update slug
-            slug.innerText = product.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-            
-            // Sembunyikan iframe
-            iframe.classList.add('hidden');
-            iframe.src = ''; // Kosongkan src iframe
-            
-            // Scroll ke preview
-            document.getElementById('live-preview').scrollIntoView({ behavior: 'smooth' });
+    // Validasi semua elemen ada
+    if (!overlay || !loader || !initial || !contentDiv || !iframe || !slug) {
+        console.error('Elemen preview tidak ditemukan');
+        return;
+    }
 
-            // Mapping screenshot
-            const screenshotMap = {
-                'Travel Umroh': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551768/IMG_20260303_222730_oly5ci.jpg',
-                'Perumahan Komersil': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551769/IMG_20260303_222749_pbenek.jpg',
-                'Digital Brave Color': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551767/IMG_20260303_222835_fwwxjy.jpg',
-                'Produk Digital Brave Color': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551767/IMG_20260303_222835_fwwxjy.jpg',
-                'Digital Dark Mode': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551765/IMG_20260303_222805_hyjl3u.jpg',
-                'Produk Digital Dark Mode': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551765/IMG_20260303_222805_hyjl3u.jpg'
-            };
+    // Update slug
+    slug.innerText = product.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 
-            const screenshotUrl = screenshotMap[product] || 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551769/IMG_20260303_222749_pbenek.jpg';
+    // Reset state
+    iframe.classList.add('hidden');
+    iframe.src = '';
+    
+    // Sembunyikan semua konten
+    loader.classList.add('hidden');
+    initial.classList.add('hidden');
+    contentDiv.classList.add('hidden');
+    
+    // Tampilkan loader
+    loader.classList.remove('hidden');
+    overlay.classList.remove('hidden');
+    overlay.style.opacity = '1';
 
-            // Hapus timeout sebelumnya jika ada (untuk mencegah konflik)
-            if (window.previewTimeout) {
-                clearTimeout(window.previewTimeout);
-            }
+    // Scroll ke preview
+    document.getElementById('live-preview').scrollIntoView({ behavior: 'smooth' });
 
-            // Set timeout baru
-            window.previewTimeout = setTimeout(() => {
-                // Sembunyikan loader
-                loader.classList.add('hidden');
-                
-                // Buat konten baru FRESH
-                const newContent = document.createElement('div');
-                newContent.className = 'relative w-full h-full flex items-end justify-center';
-                newContent.style.cssText = `
-                    background-image: url('${screenshotUrl}?t=${Date.now()}'); 
-                    background-size: cover; 
-                    background-position: center;
-                    background-repeat: no-repeat;
-                `;
-                
-                // Inner HTML konten
-                newContent.innerHTML = `
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent"></div>
-                    <div class="relative z-10 w-full p-6 md:p-8 text-center">
-                        <span class="inline-block bg-indigo-600/20 backdrop-blur-sm border border-indigo-500/30 px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-4">
-                            ${product}
-                        </span>
-                        <h3 class="text-xl md:text-2xl font-black text-white mb-3 drop-shadow-lg">${product}</h3>
-                        <p class="text-xs md:text-sm text-slate-300 mb-6 max-w-lg mx-auto drop-shadow">${angle || 'Landing page dengan konversi tinggi untuk campaign Anda'}</p>
-                        <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-4">
-                            <a href="${url}" target="_blank" 
-                               onclick="fbq('track', 'Lead');" 
-                               class="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3.5 rounded-xl font-bold text-sm transition-all transform hover:scale-105 shadow-2xl min-w-[180px]">
-                                <i class="fas fa-external-link-alt"></i>
-                                BUKA LIVE DEMO
-                            </a>
-                            <button onclick="loadExternalPreview('${url}', '${product}', '${angle}')" 
-                                    class="inline-flex items-center justify-center gap-2 bg-slate-800/80 backdrop-blur-sm hover:bg-slate-700 text-white px-6 py-3.5 rounded-xl font-bold text-sm transition-all border border-white/10 min-w-[180px]">
-                                <i class="fas fa-sync-alt"></i>
-                                REFRESH
-                            </button>
-                        </div>
-                        <div class="inline-flex items-center gap-2 bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 rounded-full px-4 py-2">
-                            <i class="fas fa-link text-indigo-500 text-[9px]"></i>
-                            <span class="text-[8px] md:text-[9px] text-slate-400 font-mono truncate max-w-[200px] md:max-w-xs">${url}</span>
-                            <button onclick="navigator.clipboard.writeText('${url}'); alert('Link copied!')" class="text-slate-500 hover:text-indigo-400 transition-colors" title="Copy link">
-                                <i class="fas fa-copy text-[9px]"></i>
-                            </button>
-                        </div>
-                        <p class="text-[7px] text-slate-600 mt-4">Klik tombol untuk membuka halaman asli di tab baru</p>
+    // Mapping screenshot
+    const screenshotMap = {
+        'Travel Umroh': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551768/IMG_20260303_222730_oly5ci.jpg',
+        'Perumahan Komersil': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551769/IMG_20260303_222749_pbenek.jpg',
+        'Digital Brave Color': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551767/IMG_20260303_222835_fwwxjy.jpg',
+        'Produk Digital Brave Color': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551767/IMG_20260303_222835_fwwxjy.jpg',
+        'Digital Dark Mode': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551765/IMG_20260303_222805_hyjl3u.jpg',
+        'Produk Digital Dark Mode': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551765/IMG_20260303_222805_hyjl3u.jpg'
+    };
+
+    const screenshotUrl = screenshotMap[product] || 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551769/IMG_20260303_222749_pbenek.jpg';
+
+    // Hapus timeout sebelumnya
+    if (window.previewTimeout) {
+        clearTimeout(window.previewTimeout);
+    }
+
+    // Timeout untuk simulasi loading
+    window.previewTimeout = setTimeout(() => {
+        // Sembunyikan loader
+        loader.classList.add('hidden');
+        
+        // Buat konten HTML
+        const contentHTML = `
+            <div class="relative w-full h-full flex items-end justify-center" 
+                 style="background-image: url('${screenshotUrl}?t=${Date.now()}'); 
+                        background-size: cover; 
+                        background-position: center;
+                        background-repeat: no-repeat;">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent"></div>
+                <div class="relative z-10 w-full p-6 md:p-8 text-center">
+                    <span class="inline-block bg-indigo-600/20 backdrop-blur-sm border border-indigo-500/30 px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-4">
+                        ${product}
+                    </span>
+                    <h3 class="text-xl md:text-2xl font-black text-white mb-3 drop-shadow-lg">${product}</h3>
+                    <p class="text-xs md:text-sm text-slate-300 mb-6 max-w-lg mx-auto drop-shadow">${angle || 'Landing page dengan konversi tinggi untuk campaign Anda'}</p>
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-4">
+                        <a href="${url}" target="_blank" 
+                           onclick="fbq('track', 'Lead');" 
+                           class="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3.5 rounded-xl font-bold text-sm transition-all transform hover:scale-105 shadow-2xl min-w-[180px]">
+                            <i class="fas fa-external-link-alt"></i>
+                            BUKA LIVE DEMO
+                        </a>
+                        <button onclick="loadExternalPreview('${url}', '${product}', '${angle}')" 
+                                class="inline-flex items-center justify-center gap-2 bg-slate-800/80 backdrop-blur-sm hover:bg-slate-700 text-white px-6 py-3.5 rounded-xl font-bold text-sm transition-all border border-white/10 min-w-[180px]">
+                            <i class="fas fa-sync-alt"></i>
+                            REFRESH
+                        </button>
                     </div>
-                `;
-                
-                // Kosongkan overlay dan isi dengan konten baru
-                overlay.innerHTML = '';
-                overlay.appendChild(newContent);
-                overlay.style.opacity = '1';
-                
-            }, 800);
-        }                
+                    <div class="inline-flex items-center gap-2 bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 rounded-full px-4 py-2">
+                        <i class="fas fa-link text-indigo-500 text-[9px]"></i>
+                        <span class="text-[8px] md:text-[9px] text-slate-400 font-mono truncate max-w-[200px] md:max-w-xs">${url}</span>
+                        <button onclick="navigator.clipboard.writeText('${url}'); alert('Link copied!')" class="text-slate-500 hover:text-indigo-400 transition-colors" title="Copy link">
+                            <i class="fas fa-copy text-[9px]"></i>
+                        </button>
+                    </div>
+                    <p class="text-[7px] text-slate-600 mt-4">Klik tombol untuk membuka halaman asli di tab baru</p>
+                </div>
+            </div>
+        `;
+        
+        // Isi contentDiv dengan HTML baru
+        contentDiv.innerHTML = contentHTML;
+        
+        // Sembunyikan loader, tampilkan content
+        loader.classList.add('hidden');
+        initial.classList.add('hidden');
+        contentDiv.classList.remove('hidden');
+        
+    }, 800);
+}
+
+// Fungsi untuk reset preview ke keadaan awal
+function resetPreview() {
+    const overlay = document.getElementById('preview-overlay');
+    const loader = document.getElementById('preview-loader');
+    const initial = document.getElementById('preview-initial');
+    const contentDiv = document.getElementById('preview-content');
+    const iframe = document.getElementById('preview-iframe');
+    const slug = document.getElementById('preview-url-slug');
+    
+    if (overlay) overlay.classList.remove('hidden');
+    if (loader) loader.classList.add('hidden');
+    if (initial) initial.classList.remove('hidden');
+    if (contentDiv) contentDiv.classList.add('hidden');
+    if (iframe) {
+        iframe.classList.add('hidden');
+        iframe.src = '';
+    }
+    if (slug) slug.innerText = 'demo-preview';
+}
+
+// Panggil resetPreview saat halaman dimuat
+document.addEventListener('DOMContentLoaded', resetPreview);                
 
         // Legacy function renamed to avoid conflict (for original niche simulation)
         // We keep it but not used in new cards
