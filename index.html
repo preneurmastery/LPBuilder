@@ -176,17 +176,23 @@
             </div>
         </div>
 
-        <!-- Product Preview Image/UI - YouTube Embed (autoplay 1, mute) -->
+                <!-- Product Preview Image/UI - YouTube Embed (autoplay 1, mute, loop, no recommendations) -->
         <div class="mt-16 md:mt-24 relative max-w-6xl w-full reveal" style="transition-delay: 500ms;">
             <div class="glass-card p-1.5 md:p-4 rounded-2xl md:rounded-[2rem] border-white/10 relative overflow-hidden group">
                 <div class="bg-slate-900 rounded-xl md:rounded-[1.5rem] overflow-hidden aspect-video relative">
-                    <!-- IFRAME YOUTUBE AUTOPLAY 1, MUTE -->
-                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/t6c5WFDAmok?autoplay=1&mute=1&si=qtjEvQMwLuZ7Cfuh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <!-- IFRAME YOUTUBE DENGAN PARAMETER LOOP & NO RECOMMENDATIONS -->
+                    <iframe class="w-full h-full" 
+                            src="https://www.youtube.com/embed/t6c5WFDAmok?autoplay=1&mute=1&loop=1&playlist=t6c5WFDAmok&rel=0&modestbranding=1&controls=1&si=qtjEvQMwLuZ7Cfuh" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen>
+                    </iframe>
                 </div>
             </div>
             <div class="absolute -top-10 -right-10 w-24 h-24 md:w-40 md:h-40 bg-indigo-500/20 blur-2xl md:blur-3xl rounded-full floating"></div>
         </div>
-    </section>
 
     <!-- Section 2: Pain -->
     <section class="py-16 md:py-24 px-4 md:px-6 bg-slate-900/40 relative">
