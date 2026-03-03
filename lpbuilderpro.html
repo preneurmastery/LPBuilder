@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landingpage Builder Pro | Hentikan Boncos Terstruktur</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID_HERE'); // <--- GANTI ID PIXEL KAMU DI SINI
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID_HERE&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #6366f1;
+            --secondary: #10b981;
+            --dark: #020617;
+            --card: #1e293b;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--dark);
+            color: #f8fafc;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #fff 0%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hover-glow:hover {
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* --- PREVIEW ENGINE STYLES --- */
+        .preview-window {
+            height: 600px;
+            border-radius: 2rem;
+            background: #fff;
+            overflow: hidden;
+            position: relative;
+            border: 4px solid #1e293b;
+        }
+
+        .preview-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            transition: opacity 0.5s;
+        }
+
+        .niche-card {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .niche-card:hover {
+            border-color: #6366f1;
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, var(--primary), #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem !important; line-height: 1.2 !important; }
+            h2 { font-size: 1.8rem !important; }
+            .preview-window { height: 400px; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigasi -->
+    <nav class="fixed w-full z-50 py-4 px-4 md:px-12 flex justify-between items-center transition-all duration-500" id="navbar">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 md:w-10 md:h-10 bg-indigo-600 rounded-lg md:rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                <i class="fas fa-bolt text-sm md:text-lg text-white"></i>
+            </div>
+            <span class="text-lg md:text-xl font-extrabold tracking-tight uppercase">LP Builder <span class="text-indigo-500 font-normal">Pro</span></span>
+        </div>
+        <a href="#pricing" onclick="fbq('track', 'Lead');" class="hidden md:block bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg shadow-indigo-500/30">Dapatkan Akses</a>
+    </nav>
+
+    <!-- Section 1: Hero -->
+    <section class="relative pt-32 md:pt-40 pb-20 md:pb-32 px-4 md:px-6 flex flex-col items-center text-center overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-indigo-600/20 blur-[100px] md:blur-[150px] rounded-full -z-10"></div>
+        
+        <div class="max-w-5xl">
+            <div class="reveal mb-6 flex justify-center">
+                <span class="bg-slate-800/80 border border-slate-700 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-[9px] md:text-xs font-bold text-indigo-400 uppercase tracking-widest md:tracking-[0.2em]">
+                    🚀 KHUSUS UNTUK ADVERTISER & UMKM INDONESIA
+                </span>
+            </div>
+            
+            <h1 class="text-4xl md:text-7xl font-extrabold mb-6 md:mb-8 leading-tight md:leading-[1.1] reveal">
+                Dashboard Hijau di Meta Ads, Tapi <span class="text-indigo-500 italic">Rekening Tetap Kering?</span>
+            </h1>
+            
+            <p class="text-base md:text-xl text-slate-400 mb-8 md:mb-12 max-w-3xl mx-auto reveal" style="transition-delay: 150ms;">
+                Berhenti membuang budget pada Landing Page "basi" yang hanya bikin customer kabur. Saatnya gunakan <span class="text-white font-bold underline decoration-indigo-500">Angle-Driven Engine</span> yang mengunci audiens dari headline sampai checkout.
+            </p>
+
+            <div class="flex flex-col md:flex-row gap-4 md:gap-5 justify-center items-center reveal" style="transition-delay: 300ms;">
+                <a href="#live-preview" onclick="fbq('track', 'Lead');" class="w-full md:w-auto bg-white text-slate-900 px-8 md:px-10 py-4 md:py-5 rounded-xl md:rounded-2xl font-black text-lg md:text-xl hover:bg-indigo-600 hover:text-white transition-all transform hover:scale-105 shadow-2xl flex items-center justify-center gap-3 group">
+                    SIAP SCALING SEKARANG <i class="fas fa-arrow-right text-sm group-hover:translate-x-2 transition-transform"></i>
+                </a>
+                <div class="flex flex-col items-center md:items-start gap-1">
+                    <div class="flex -space-x-2">
+                        <img src="https://i.pravatar.cc/100?u=1" class="w-7 h-7 md:w-8 md:h-8 rounded-full border-2 border-slate-900" alt="user">
+                        <img src="https://i.pravatar.cc/100?u=2" class="w-7 h-7 md:w-8 md:h-8 rounded-full border-2 border-slate-900" alt="user">
+                        <img src="https://i.pravatar.cc/100?u=3" class="w-7 h-7 md:w-8 md:h-8 rounded-full border-2 border-slate-900" alt="user">
+                    </div>
+                    <p class="text-[9px] md:text-[10px] text-slate-500 font-bold uppercase tracking-wider">Bergabung dengan 1.240+ Advertiser Pro</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Preview Image/UI -->
+        <div class="mt-16 md:mt-24 relative max-w-6xl w-full reveal" style="transition-delay: 500ms;">
+            <div class="glass-card p-1.5 md:p-4 rounded-2xl md:rounded-[2rem] border-white/10 relative overflow-hidden group">
+                <div class="bg-slate-900 rounded-xl md:rounded-[1.5rem] overflow-hidden aspect-video relative">
+                    <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-tr from-indigo-900/20 to-transparent">
+                        <div class="text-center">
+                            <div class="w-16 h-16 md:w-20 md:h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 cursor-pointer hover:bg-indigo-600 transition-colors">
+                                <i class="fas fa-play text-xl md:text-2xl ml-1"></i>
+                            </div>
+                            <p class="text-slate-500 text-xs md:text-sm font-medium">Lihat bagaimana AI kami bekerja dalam 60 detik</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute -top-10 -right-10 w-24 h-24 md:w-40 md:h-40 bg-indigo-500/20 blur-2xl md:blur-3xl rounded-full floating"></div>
+        </div>
+    </section>
+
+    <!-- Section 2: Pain -->
+    <section class="py-16 md:py-24 px-4 md:px-6 bg-slate-900/40 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12 md:mb-20 reveal">
+                <h2 class="text-2xl md:text-5xl font-extrabold mb-4 md:mb-6">Fenomena <span class="text-red-500">"Boncos Terstruktur"</span></h2>
+                <p class="text-sm md:text-xl text-slate-400 max-w-2xl mx-auto">Anda sudah habis jutaan buat video cinematic, pusing riset target audience, tapi pas di-scale budgetnya, profitnya malah terjun bebas.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 md:gap-10">
+                <div class="p-6 md:p-8 rounded-3xl bg-slate-800/30 border border-white/5 hover-glow transition-all reveal">
+                    <i class="fas fa-ghost text-red-500 text-2xl md:text-3xl mb-4 md:mb-6"></i>
+                    <h3 class="text-lg md:text-xl font-extrabold mb-3 md:mb-4 italic">Message Gap</h3>
+                    <p class="text-slate-400 text-xs md:text-sm leading-relaxed">Iklan bahas "Solusi Jerawat", tapi Landing Page isinya katalog jualan umum. Budget Anda hangus dalam hitungan detik.</p>
+                </div>
+                <div class="p-6 md:p-8 rounded-3xl bg-slate-800/30 border border-white/5 hover-glow transition-all reveal" style="transition-delay: 100ms;">
+                    <i class="fas fa-clock text-orange-500 text-2xl md:text-3xl mb-4 md:mb-6"></i>
+                    <h3 class="text-lg md:text-xl font-extrabold mb-3 md:mb-4 italic">Testing Fatigue</h3>
+                    <p class="text-slate-400 text-xs md:text-sm leading-relaxed">Mau coba 5 angle berbeda tapi malas edit Elementor seharian? Akhirnya cuma pakai 1 LP. Hasilnya? Boncos masal.</p>
+                </div>
+                <div class="p-6 md:p-8 rounded-3xl bg-slate-800/30 border border-white/5 hover-glow transition-all reveal" style="transition-delay: 200ms;">
+                    <i class="fas fa-tachometer-alt text-yellow-500 text-2xl md:text-3xl mb-4 md:mb-6"></i>
+                    <h3 class="text-lg md:text-xl font-extrabold mb-3 md:mb-4 italic">Loading Lemot</h3>
+                    <p class="text-slate-400 text-xs md:text-sm leading-relaxed">LP yang berat bikin pembeli kabur sebelum tau produk hebat Anda. Anda membayar untuk "bounce rate".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Mechanism -->
+    <section class="py-20 md:py-32 px-4 md:px-6">
+        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 md:gap-20">
+            <div class="lg:w-1/2 reveal order-2 lg:order-1 text-center lg:text-left">
+                <span class="text-indigo-500 font-black tracking-widest text-[10px] md:text-xs uppercase mb-4 block">BUKAN SEKADAR BUILDER</span>
+                <h2 class="text-3xl md:text-6xl font-black mb-6 md:mb-8 leading-tight italic">Satu Klik, <br><span class="gradient-text">Ratusan Konversi.</span></h2>
+                <p class="text-slate-400 text-sm md:text-lg mb-8 md:mb-10 leading-relaxed">
+                    AI kami menganalisis psikologi emak-emak Indonesia hingga anak muda FOMO untuk merangkai kata yang bikin mereka gak tahan buat klik tombol beli.
+                </p>
+                
+                <div class="space-y-4 md:space-y-6 text-left">
+                    <div class="flex gap-4 md:gap-5 items-start">
+                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-indigo-600/20 flex items-center justify-center shrink-0 border border-indigo-500/30">
+                            <i class="fas fa-fingerprint text-indigo-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white mb-1 text-sm md:text-base tracking-tight">Angle-Match Technology™</h4>
+                            <p class="text-[10px] md:text-sm text-slate-500">Sinkronisasi otomatis antara isi iklan dan isi halaman.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 md:gap-5 items-start">
+                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-emerald-600/20 flex items-center justify-center shrink-0 border border-emerald-500/30">
+                            <i class="fas fa-brain text-emerald-500"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white mb-1 text-sm md:text-base tracking-tight">Psychology-Awareness Flow</h4>
+                            <p class="text-[10px] md:text-sm text-slate-500">Narasi berubah otomatis sesuai fase kesadaran audiens.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:w-1/2 relative reveal order-1 lg:order-2" style="transition-delay: 200ms;">
+                <div class="glass-card p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] border-indigo-500/30 bg-indigo-500/5">
+                    <div class="mb-6 md:mb-8">
+                        <p class="text-[9px] md:text-xs font-bold text-slate-500 mb-4 uppercase tracking-widest">Live Generation Demo</p>
+                        <div class="space-y-3">
+                            <div class="h-10 bg-slate-800 rounded-lg flex items-center px-4 border border-slate-700">
+                                <span class="text-[10px] md:text-xs text-indigo-400 font-bold">PRODUK:</span> <span class="ml-2 text-[10px] md:text-xs text-slate-200">Pembersih Sepatu Instan</span>
+                            </div>
+                            <div class="h-10 bg-slate-800 rounded-lg flex items-center px-4 border border-indigo-500/50">
+                                <span class="text-[10px] md:text-xs text-indigo-400 font-bold">ANGLE:</span> <span class="ml-2 text-[10px] md:text-xs text-slate-200">"Hemat Waktu buat Bapak Sibuk"</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 md:p-6 bg-slate-900 rounded-xl md:rounded-2xl border border-slate-800 text-center">
+                        <p class="text-xs md:text-sm italic text-slate-400 mb-4 animate-pulse">AI sedang merangkai headline emosional...</p>
+                        <div class="h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-indigo-500 w-[70%] rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -bottom-6 -right-2 md:-bottom-10 md:-right-5 bg-emerald-500 text-slate-900 p-3 md:p-4 rounded-xl md:rounded-2xl font-black text-[10px] md:text-xs rotate-3 shadow-2xl floating">
+                    ROAS NAIK 40% <br><span class="font-normal text-[9px] md:text-[10px]">dalam 24 Jam!</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: 5 Steps Workflow -->
+    <section class="py-16 md:py-24 px-4 md:px-6 bg-slate-900/20 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12 md:mb-16 reveal">
+                <h2 class="text-2xl md:text-5xl font-black mb-4 md:mb-6 italic text-white">5 Tahap Menuju <span class="text-indigo-500">Dashboard Hijau.</span></h2>
+                <p class="text-xs md:text-base text-slate-400 max-w-xl mx-auto px-4">Proses otomatis yang mengubah ide produk Anda menjadi mesin konversi dalam hitungan menit.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
+                <!-- Step 1 -->
+                <div class="glass-card p-6 rounded-[2rem] reveal flex flex-col items-center text-center group" style="transition-delay: 100ms;">
+                    <div class="text-3xl md:text-4xl font-black step-number mb-4 opacity-50 group-hover:opacity-100 transition-opacity">01</div>
+                    <div class="w-24 h-24 md:w-full md:aspect-square bg-slate-800 rounded-2xl mb-4 md:mb-6 overflow-hidden border border-white/5">
+                        <img src="https://placehold.co/400x400/1e293b/6366f1?text=Input+Produk" alt="[Gambar Input Produk]" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-sm md:text-base mb-2 tracking-tight">Input Detail Produk</h4>
+                    <p class="text-[10px] md:text-xs text-slate-500">Masukkan nama produk & USP andalan Anda.</p>
+                </div>
+                <!-- Step 2-5 repeat with same responsive logic -->
+                <div class="glass-card p-6 rounded-[2rem] reveal flex flex-col items-center text-center group" style="transition-delay: 200ms;">
+                    <div class="text-3xl md:text-4xl font-black step-number mb-4 opacity-50 group-hover:opacity-100 transition-opacity">02</div>
+                    <div class="w-24 h-24 md:w-full md:aspect-square bg-slate-800 rounded-2xl mb-4 md:mb-6 overflow-hidden border border-white/5">
+                        <img src="https://placehold.co/400x400/1e293b/6366f1?text=Pilih+Angle" alt="[Gambar Pilih Angle]" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-sm md:text-base mb-2 tracking-tight">Pilih Angle Iklan</h4>
+                    <p class="text-[10px] md:text-xs text-slate-500">Gunakan puluhan angle psikologi teruji.</p>
+                </div>
+                <div class="glass-card p-6 rounded-[2rem] reveal flex flex-col items-center text-center group" style="transition-delay: 300ms;">
+                    <div class="text-3xl md:text-4xl font-black step-number mb-4 opacity-50 group-hover:opacity-100 transition-opacity">03</div>
+                    <div class="w-24 h-24 md:w-full md:aspect-square bg-slate-800 rounded-2xl mb-4 md:mb-6 overflow-hidden border border-white/5">
+                        <img src="https://placehold.co/400x400/1e293b/6366f1?text=AI+Magic" alt="[Gambar AI Magic]" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-sm md:text-base mb-2 tracking-tight">AI Generation</h4>
+                    <p class="text-[10px] md:text-xs text-slate-500">AI merangkai copywriting konversi tinggi.</p>
+                </div>
+                <div class="glass-card p-6 rounded-[2rem] reveal flex flex-col items-center text-center group" style="transition-delay: 400ms;">
+                    <div class="text-3xl md:text-4xl font-black step-number mb-4 opacity-50 group-hover:opacity-100 transition-opacity">04</div>
+                    <div class="w-24 h-24 md:w-full md:aspect-square bg-slate-800 rounded-2xl mb-4 md:mb-6 overflow-hidden border border-white/5">
+                        <img src="https://placehold.co/400x400/1e293b/6366f1?text=Publish" alt="[Gambar Publish]" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-sm md:text-base mb-2 tracking-tight">One-Click Publish</h4>
+                    <p class="text-[10px] md:text-xs text-slate-500">Hosting super cepat & ringan sekali klik.</p>
+                </div>
+                <div class="glass-card p-6 rounded-[2rem] reveal flex flex-col items-center text-center group" style="transition-delay: 500ms;">
+                    <div class="text-3xl md:text-4xl font-black step-number mb-4 opacity-50 group-hover:opacity-100 transition-opacity">05</div>
+                    <div class="w-24 h-24 md:w-full md:aspect-square bg-slate-800 rounded-2xl mb-4 md:mb-6 overflow-hidden border border-white/5">
+                        <img src="https://placehold.co/400x400/1e293b/6366f1?text=Profit" alt="[Gambar Profit]" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-sm md:text-base mb-2 tracking-tight">Scale & Profit</h4>
+                    <p class="text-[10px] md:text-xs text-slate-500">Pantau profit & scale budget tanpa takut.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Mega Bonus CS WhatsApp AI -->
+    <section class="py-16 md:py-24 px-4 md:px-6 relative overflow-hidden">
+        <div class="absolute top-1/2 left-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-emerald-500/10 blur-[100px] md:blur-[150px] rounded-full -z-10"></div>
+        <div class="max-w-6xl mx-auto">
+            <div class="glass-card p-6 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] border-emerald-500/20 bg-emerald-500/5 relative overflow-hidden reveal">
+                <div class="absolute top-0 right-0 p-8 opacity-5 md:opacity-10">
+                    <i class="fab fa-whatsapp text-[10rem] md:text-[15rem]"></i>
+                </div>
+                
+                <div class="flex flex-col lg:flex-row items-center gap-8 md:gap-16 relative z-10">
+                    <div class="lg:w-1/2 text-center lg:text-left">
+                        <span class="bg-emerald-500 text-slate-950 px-3 md:px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest mb-6 inline-block">BONUS TERGILA ABAD INI</span>
+                        <h2 class="text-3xl md:text-5xl font-black mb-6 md:mb-8 leading-tight italic text-white">Gratis: CS WhatsApp AI <br><span class="text-emerald-500">Auto-Closing 24 Jam.</span></h2>
+                        <p class="text-sm md:text-lg text-slate-400 mb-8 leading-relaxed">
+                            Landing Page sudah convert, tapi CS Anda lama balas chat? Kami berikan <strong>Akses Gratis</strong> asisten AI yang stand-by 24/7 di WhatsApp Anda.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-3 md:gap-4 mb-8">
+                            <div class="bg-slate-900/50 p-4 rounded-xl md:rounded-2xl border border-white/5 text-left">
+                                <i class="fas fa-bolt text-emerald-500 mb-2 md:mb-3 text-sm"></i>
+                                <h5 class="font-bold text-[11px] md:text-sm mb-1">Respon Instan</h5>
+                                <p class="text-[9px] md:text-[10px] text-slate-500">Balas chat di bawah 3 detik.</p>
+                            </div>
+                            <div class="bg-slate-900/50 p-4 rounded-xl md:rounded-2xl border border-white/5 text-left">
+                                <i class="fas fa-robot text-emerald-500 mb-2 md:mb-3 text-sm"></i>
+                                <h5 class="font-bold text-[11px] md:text-sm mb-1">Human-Like AI</h5>
+                                <p class="text-[9px] md:text-[10px] text-slate-500">Bahasa ngobrol natural.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:w-1/2 w-full">
+                        <div class="glass-card p-4 md:p-6 rounded-[2rem] bg-slate-900 border-white/10 relative">
+                            <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6 border-b border-white/5 pb-4">
+                                <div class="w-10 h-10 md:w-12 md:h-12 bg-emerald-500 rounded-full flex items-center justify-center">
+                                    <i class="fab fa-whatsapp text-xl md:text-2xl text-slate-950"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm md:text-base text-white">CS AI Assistant</p>
+                                    <p class="text-[9px] md:text-[10px] text-emerald-500 flex items-center gap-1">Online 24/7</p>
+                                </div>
+                            </div>
+                            <div class="space-y-4 mb-6">
+                                <div class="bg-slate-800 p-3 rounded-2xl rounded-tl-none max-w-[85%] text-[10px] md:text-[11px] text-slate-300">
+                                    Halo! Apakah produknya aman untuk kulit sensitif?
+                                </div>
+                                <div class="bg-emerald-600 p-3 rounded-2xl rounded-tr-none max-w-[90%] ml-auto text-[10px] md:text-[11px] text-white">
+                                    Tentu Kak! 😊 Produk kami 100% alami dan BPOM. Mau kami bantu buatkan pesanannya?
+                                </div>
+                            </div>
+                            <div class="bg-indigo-600/10 border border-indigo-500/30 p-3 md:p-4 rounded-xl text-center">
+                                <p class="text-[10px] md:text-xs font-bold text-indigo-400 italic">"Closing rate naik saat Anda tertidur!"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Live Preview Gallery -->
+    <section id="live-preview" class="py-16 md:py-24 px-4 md:px-6 bg-slate-950/50 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-2xl md:text-5xl font-black mb-4 md:mb-6 italic text-white">Klik Niche Anda, <span class="text-indigo-500">Lihat Magic-nya.</span></h2>
+                <p class="text-xs md:text-base text-slate-400 max-w-xl mx-auto px-4">Kami sudah siapkan ribuan pola konversi. Pilih satu untuk simulasi pembuatan instan.</p>
+            </div>
+
+            <!-- Niche Cards Grid (2 cols mobile) -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-12 reveal px-2">
+                <div onclick="generateFromNiche('Skincare Pemutih Wajah', 'Transformasi Glowing dalam 7 Hari')" class="niche-card glass-card p-4 md:p-6 rounded-2xl md:rounded-3xl border border-white/5 hover-glow text-center group">
+                    <div class="w-8 h-8 md:w-12 md:h-12 bg-pink-500/20 rounded-xl flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-sparkles text-pink-500 text-xs md:text-base"></i>
+                    </div>
+                    <p class="text-[10px] md:text-sm font-bold">Skincare</p>
+                </div>
+                <div onclick="generateFromNiche('Sambal Bawang Pedas Ngaco', 'Pedasnya Bikin Nagih, Gak Pakai Pengawet')" class="niche-card glass-card p-4 md:p-6 rounded-2xl md:rounded-3xl border border-white/5 hover-glow text-center group">
+                    <div class="w-8 h-8 md:w-12 md:h-12 bg-red-500/20 rounded-xl flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-fire text-red-500 text-xs md:text-base"></i>
+                    </div>
+                    <p class="text-[10px] md:text-sm font-bold">F&B</p>
+                </div>
+                <div onclick="generateFromNiche('Pembersih Kerak Kamar Mandi', 'Sekali Semprot, Kerak Bertahun-tahun Langsung Rontok')" class="niche-card glass-card p-4 md:p-6 rounded-2xl md:rounded-3xl border border-white/5 hover-glow text-center group">
+                    <div class="w-8 h-8 md:w-12 md:h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-spray-can text-blue-500 text-xs md:text-base"></i>
+                    </div>
+                    <p class="text-[10px] md:text-sm font-bold">Home Care</p>
+                </div>
+                <div onclick="generateFromNiche('E-Book Strategi Meta Ads 2024', 'Cara Scale Iklan dari Jutaan ke Milyaran')" class="niche-card glass-card p-4 md:p-6 rounded-2xl md:rounded-3xl border border-white/5 hover-glow text-center group">
+                    <div class="w-8 h-8 md:w-12 md:h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-book-open text-emerald-500 text-xs md:text-base"></i>
+                    </div>
+                    <p class="text-[10px] md:text-sm font-bold">Digital</p>
+                </div>
+            </div>
+
+            <!-- Result Dashboard -->
+            <div class="reveal px-2" style="transition-delay: 200ms;">
+                <div class="glass-card p-1.5 md:p-4 rounded-3xl md:rounded-[2.5rem] relative">
+                    <div class="bg-slate-800/50 rounded-t-2xl md:rounded-t-[1.5rem] p-3 md:p-4 flex items-center gap-2 md:gap-3 border-b border-white/5">
+                        <div class="flex gap-1.5">
+                            <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                            <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                        </div>
+                        <div class="flex-1 bg-slate-900 rounded-lg py-1 px-3 text-[9px] md:text-[10px] text-slate-500 font-mono truncate">
+                            https://preview.lpbuilderpro.ai/<span id="preview-url-slug" class="text-indigo-400">demo-preview</span>
+                        </div>
+                    </div>
+                    <div class="preview-window">
+                        <div id="preview-overlay" class="preview-overlay">
+                            <div id="preview-loader" class="hidden flex flex-col items-center p-6 text-center">
+                                <i class="fas fa-cog animate-spin text-3xl md:text-4xl text-indigo-500 mb-4"></i>
+                                <p class="text-white font-bold tracking-widest uppercase text-[10px]">AI Merangkai Landing Page...</p>
+                            </div>
+                            <div id="preview-initial" class="flex flex-col items-center p-6 text-center">
+                                <i class="fas fa-mouse-pointer text-3xl md:text-4xl text-slate-700 mb-4 md:mb-6 floating"></i>
+                                <p class="text-slate-500 font-bold text-xs md:text-sm max-w-xs">Klik niche di atas untuk simulasi real-time.</p>
+                            </div>
+                        </div>
+                        <iframe id="preview-iframe" class="w-full h-full border-none hidden"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Benefit -->
+    <section class="py-16 md:py-24 px-4 md:px-6 bg-slate-950">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-2xl md:text-5xl font-black mb-12 md:mb-16 italic px-4">Dirancang Khusus Untuk <span class="text-indigo-500 italic">Jualan</span> Indonesia.</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <div class="p-4 md:p-6 glass-card rounded-2xl md:rounded-3xl reveal">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-indigo-600/10 rounded-xl flex items-center justify-center mx-auto mb-4 md:mb-6">
+                        <i class="fab fa-whatsapp text-xl md:text-2xl text-emerald-500"></i>
+                    </div>
+                    <h4 class="font-bold text-xs md:text-sm mb-2">Integrasi WA</h4>
+                    <p class="text-[9px] md:text-[10px] text-slate-500 italic">Rotasi CS otomatis.</p>
+                </div>
+                <div class="p-4 md:p-6 glass-card rounded-2xl md:rounded-3xl reveal" style="transition-delay: 100ms;">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-indigo-600/10 rounded-xl flex items-center justify-center mx-auto mb-4 md:mb-6">
+                        <i class="fas fa-shipping-fast text-xl md:text-2xl text-orange-500"></i>
+                    </div>
+                    <h4 class="font-bold text-xs md:text-sm mb-2">Super Ringan</h4>
+                    <p class="text-[9px] md:text-[10px] text-slate-500 italic">Aman untuk sinyal E.</p>
+                </div>
+                <div class="p-4 md:p-6 glass-card rounded-2xl md:rounded-3xl reveal" style="transition-delay: 200ms;">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-indigo-600/10 rounded-xl flex items-center justify-center mx-auto mb-4 md:mb-6">
+                        <i class="fas fa-mobile-alt text-xl md:text-2xl text-indigo-400"></i>
+                    </div>
+                    <h4 class="font-bold text-xs md:text-sm mb-2">Mobile-First</h4>
+                    <p class="text-[9px] md:text-[10px] text-slate-500 italic">Fokus jempol pengguna.</p>
+                </div>
+                <div class="p-4 md:p-6 glass-card rounded-2xl md:rounded-3xl reveal" style="transition-delay: 300ms;">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-indigo-600/10 rounded-xl flex items-center justify-center mx-auto mb-4 md:mb-6">
+                        <i class="fas fa-shield-alt text-xl md:text-2xl text-emerald-400"></i>
+                    </div>
+                    <h4 class="font-bold text-xs md:text-sm mb-2">Anti-Boncos</h4>
+                    <p class="text-[9px] md:text-[10px] text-slate-500 italic">AI deteksi headline lemah.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Comparison -->
+    <section class="py-20 md:py-32 px-4 md:px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-center text-2xl md:text-5xl font-black mb-12 md:mb-16 italic">Pilihan <span class="text-indigo-500">Logis</span> Pengusaha.</h2>
+            <div class="rounded-3xl md:rounded-[2.5rem] overflow-x-auto border border-slate-800 glass-card">
+                <table class="w-full text-left min-w-[500px]">
+                    <thead>
+                        <tr class="bg-indigo-600/10">
+                            <th class="p-6 md:p-8 font-black uppercase tracking-widest text-[10px]">Metode</th>
+                            <th class="p-6 md:p-8 font-black uppercase tracking-widest text-[10px] text-slate-500">Cara Manual</th>
+                            <th class="p-6 md:p-8 font-black uppercase tracking-widest text-[10px] text-indigo-400 italic font-bold">LP Builder Pro</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-xs md:text-sm">
+                        <tr class="border-b border-slate-800">
+                            <td class="p-6 md:p-8 font-bold">Biaya</td>
+                            <td class="p-6 md:p-8 text-slate-500">Rp 1.5jt+ / Hal</td>
+                            <td class="p-6 md:p-8 font-black text-white">Rp 145rb (Lifetime)</td>
+                        </tr>
+                        <tr class="border-b border-slate-800">
+                            <td class="p-6 md:p-8 font-bold">Waktu</td>
+                            <td class="p-6 md:p-8 text-slate-500">3 - 7 Hari</td>
+                            <td class="p-6 md:p-8 font-black text-white">3 Menit</td>
+                        </tr>
+                        <tr>
+                            <td class="p-6 md:p-8 font-bold text-indigo-400">Power</td>
+                            <td class="p-6 md:p-8 text-slate-500">Kaku / Statis</td>
+                            <td class="p-6 md:p-8 font-black text-indigo-400 uppercase italic italic">Conv. Engine</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Pricing -->
+    <section id="pricing" class="py-20 md:py-32 px-4 md:px-6 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[800px] h-[300px] md:h-[800px] bg-indigo-600/10 blur-[100px] md:blur-[200px] rounded-full"></div>
+        
+        <div class="max-w-2xl mx-auto text-center relative z-10">
+            <h2 class="text-3xl md:text-6xl font-black mb-4 md:mb-6 leading-none italic px-4">Ambil Kendali Atas <span class="text-indigo-500 italic">Profit Anda.</span></h2>
+            <p class="text-xs md:text-lg text-slate-400 mb-8 md:mb-12 px-6">Harga promo khusus slot terbatas.</p>
+            
+            <div class="glass-card p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] border-2 border-indigo-500 shadow-[0_0_80px_rgba(99,102,241,0.2)] relative reveal mx-2">
+                <div class="absolute top-8 md:top-12 -right-10 bg-red-600 text-white font-black py-1 md:py-2 px-10 md:px-14 rotate-45 text-[8px] md:text-[10px] tracking-widest uppercase shadow-xl">PROMO TERBATAS</div>
+                
+                <h3 class="text-sm md:text-xl font-bold mb-2 uppercase tracking-widest text-slate-400">Lifetime Access</h3>
+                <div class="flex items-center justify-center gap-2 md:gap-3 mb-8 md:mb-10">
+                    <span class="text-slate-600 line-through text-lg md:text-2xl font-bold italic">Rp 1.499rb</span>
+                    <span class="text-5xl md:text-7xl font-black text-white italic">Rp 145rb</span>
+                </div>
+
+                <div class="space-y-4 text-left mb-8 md:mb-12 border-t border-slate-800 pt-8 md:pt-10">
+                    <div class="flex gap-3 md:gap-4 items-center">
+                        <div class="w-5 h-5 bg-emerald-500 rounded-full flex items-center justify-center shrink-0">
+                            <i class="fas fa-check text-[8px] text-white"></i>
+                        </div>
+                        <span class="text-[11px] md:text-sm font-bold text-slate-200 uppercase">Unlimited LP Generation</span>
+                    </div>
+                    <div class="flex gap-3 md:gap-4 items-center">
+                        <div class="w-5 h-5 bg-emerald-500 rounded-full flex items-center justify-center shrink-0">
+                            <i class="fas fa-check text-[8px] text-white"></i>
+                        </div>
+                        <span class="text-[11px] md:text-sm font-bold text-slate-200 uppercase">AI Angle-Detection System</span>
+                    </div>
+                    <div class="p-3 md:p-4 bg-indigo-500/10 border border-indigo-500/30 rounded-xl md:rounded-2xl flex gap-3 md:gap-4 items-center">
+                        <div class="w-8 h-8 md:w-10 md:h-10 bg-indigo-600 rounded-lg md:rounded-xl flex items-center justify-center shrink-0 animate-bounce">
+                            <i class="fas fa-gift text-white text-xs"></i>
+                        </div>
+                        <div>
+                            <p class="text-[9px] md:text-[10px] font-black text-indigo-400 uppercase tracking-widest">MEGA BONUS:</p>
+                            <p class="text-[8px] md:text-[10px] text-white">Gratis Akses CS WhatsApp AI</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#" onclick="fbq('track', 'InitiateCheckout', { value: 145000, currency: 'IDR' });" class="block w-full bg-white text-slate-950 hover:bg-indigo-600 hover:text-white py-5 md:py-6 rounded-2xl md:rounded-3xl font-black text-lg md:text-2xl transition-all transform hover:scale-[1.02] shadow-2xl">
+                    MAU AKSES LIFETIME!
+                </a>
+                <p class="mt-4 md:mt-6 text-slate-500 text-[8px] md:text-[10px] font-bold uppercase tracking-widest">⚠️ Amankan slot 145rb Anda sebelum harga naik.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Final Push -->
+    <section class="py-16 md:py-24 px-4 md:px-6 text-center bg-slate-900/20">
+        <div class="max-w-3xl mx-auto reveal">
+            <h2 class="text-2xl md:text-3xl font-black mb-6 md:mb-8 italic italic">Budget Iklan Ludes Tanpa Profit? <br><span class="text-red-500">Cukup Sampai Di Sini.</span></h2>
+            <div class="flex flex-wrap justify-center gap-3 md:gap-4">
+                <div class="flex items-center gap-2 text-[9px] md:text-xs font-bold bg-slate-800 px-4 py-2 rounded-full"><i class="fas fa-lock text-emerald-500"></i> Aman & Terenkripsi</div>
+                <div class="flex items-center gap-2 text-[9px] md:text-xs font-bold bg-slate-800 px-4 py-2 rounded-full"><i class="fas fa-history text-indigo-500"></i> Lifetime Access</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-slate-800 px-4 text-center">
+        <div class="flex items-center justify-center gap-2 mb-4 md:mb-6">
+            <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+                <i class="fas fa-bolt text-sm text-white"></i>
+            </div>
+            <span class="text-base md:text-lg font-black tracking-tight uppercase">LP Builder <span class="text-indigo-500">Pro</span></span>
+        </div>
+        <p class="text-[9px] md:text-[10px] text-slate-600 uppercase tracking-widest font-bold">&copy; 2024 ConversionEngine Group. Semua Hak Dilindungi.</p>
+    </footer>
+
+    <!-- Mobile CTA Floating -->
+    <div class="fixed bottom-6 left-4 right-4 z-50 md:hidden">
+        <a href="#pricing" onclick="fbq('track', 'Lead');" class="flex items-center justify-between bg-indigo-600 text-white p-4 rounded-2xl shadow-[0_20px_40px_rgba(99,102,241,0.4)] border border-white/20">
+            <div class="text-left">
+                <p class="text-[8px] font-black uppercase tracking-widest opacity-70 italic">Akses Pro Selamanya</p>
+                <p class="font-black text-lg italic">Rp 145.000</p>
+            </div>
+            <div class="bg-white text-indigo-600 w-10 h-10 rounded-xl flex items-center justify-center font-black">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </a>
+    </div>
+
+    <script>
+        // Scroll Reveal Logic with improved thresholds for mobile
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => observer.observe(el));
+
+        // Navbar Transition
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-slate-950/90', 'backdrop-blur-xl', 'py-3', 'shadow-2xl');
+            } else {
+                nav.classList.remove('bg-slate-950/90', 'backdrop-blur-xl', 'py-3', 'shadow-2xl');
+            }
+        });
+
+        // Interactive Preview Engine
+        async function generateFromNiche(product, angle) {
+            // Track ViewContent event
+            fbq('track', 'ViewContent', { 
+                content_name: product,
+                content_category: 'Landing Page Demo'
+            });
+
+            const overlay = document.getElementById('preview-overlay');
+            const initial = document.getElementById('preview-initial');
+            const loader = document.getElementById('preview-loader');
+            const iframe = document.getElementById('preview-iframe');
+            const slug = document.getElementById('preview-url-slug');
+
+            slug.innerText = product.toLowerCase().replace(/\s+/g, '-');
+            initial.classList.add('hidden');
+            loader.classList.remove('hidden');
+            overlay.style.opacity = '1';
+            iframe.classList.add('hidden');
+
+            document.getElementById('live-preview').scrollIntoView({ behavior: 'smooth' });
+
+            const apiKey = ""; // API Key provided automatically
+            const prompt = `Hasilkan Landing Page HTML tunggal (Tailwind CSS) yang sangat persuasif untuk produk "${product}" dengan angle "${angle}". Fokus pada konversi tinggi, headline provokatif ala advertiser Indonesia. Output HANYA KODE HTML murni tanpa teks pengantar.`;
+
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }]
+                    })
+                });
+                
+                const data = await response.json();
+                let htmlCode = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                
+                if (htmlCode) {
+                    htmlCode = htmlCode.replace(/```html|```/g, '').trim();
+                    iframe.srcdoc = htmlCode;
+                    
+                    setTimeout(() => {
+                        loader.classList.add('hidden');
+                        overlay.style.opacity = '0';
+                        setTimeout(() => overlay.classList.add('hidden'), 500);
+                        iframe.classList.remove('hidden');
+                    }, 1200);
+                }
+            } catch (err) {
+                console.error(err);
+                loader.innerHTML = '<i class="fas fa-exclamation-triangle text-red-500 text-2xl mb-4"></i><p class="text-xs text-red-400">Gagal memuat demo.</p>';
+            }
+        }
+    </script>
+</body>
+</html>
+
