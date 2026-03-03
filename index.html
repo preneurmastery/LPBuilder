@@ -429,7 +429,7 @@
                 </div>
             </div>
 
-            <!-- Result Dashboard -->
+                        <!-- Result Dashboard -->
             <div class="reveal px-2" style="transition-delay: 200ms;">
                 <div class="glass-card p-1.5 md:p-4 rounded-3xl md:rounded-[2.5rem] relative">
                     <div class="bg-slate-800/50 rounded-t-2xl md:rounded-t-[1.5rem] p-3 md:p-4 flex items-center gap-2 md:gap-3 border-b border-white/5">
@@ -441,23 +441,21 @@
                             https://preview.lpbuilderpro.ai/<span id="preview-url-slug" class="text-indigo-400">demo-preview</span>
                         </div>
                     </div>
-                    <div class="preview-window">
+                    <div class="preview-window relative">
                         <div id="preview-overlay" class="preview-overlay">
-                            <div id="preview-loader" class="hidden flex flex-col items-center p-6 text-center">
-                                <i class="fas fa-cog animate-spin text-3xl md:text-4xl text-indigo-500 mb-4"></i>
-                                <p class="text-white font-bold tracking-widest uppercase text-[10px]">Memuat contoh halaman...</p>
-                            </div>
                             <div id="preview-initial" class="flex flex-col items-center p-6 text-center">
                                 <i class="fas fa-mouse-pointer text-3xl md:text-4xl text-slate-700 mb-4 md:mb-6 floating"></i>
                                 <p class="text-slate-500 font-bold text-xs md:text-sm max-w-xs">Klik niche di atas untuk lihat contoh jadi.</p>
+                            </div>
+                            <div id="preview-loader" class="hidden flex flex-col items-center p-6 text-center">
+                                <i class="fas fa-cog animate-spin text-3xl md:text-4xl text-indigo-500 mb-4"></i>
+                                <p class="text-white font-bold tracking-widest uppercase text-[10px]">Memuat contoh halaman...</p>
                             </div>
                         </div>
                         <iframe id="preview-iframe" class="w-full h-full border-none hidden" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
     <!-- Section 4: Benefit -->
     <section class="py-16 md:py-24 px-4 md:px-6 bg-slate-950">
@@ -639,8 +637,8 @@
             }
         });
 
-        // Live Preview Loader for external links (updated)
-        async function loadExternalPreview(url, product, angle) {
+                // Live Preview Loader for external links with fallback
+        function loadExternalPreview(url, product, angle) {
             // Track ViewContent event
             fbq('track', 'ViewContent', { 
                 content_name: product,
@@ -653,26 +651,49 @@
             const iframe = document.getElementById('preview-iframe');
             const slug = document.getElementById('preview-url-slug');
 
+            // Update slug
             slug.innerText = product.toLowerCase().replace(/\s+/g, '-');
+            
+            // Show overlay with loader
             initial.classList.add('hidden');
             loader.classList.remove('hidden');
             overlay.style.opacity = '1';
+            overlay.classList.remove('hidden');
             iframe.classList.add('hidden');
 
+            // Scroll to preview
             document.getElementById('live-preview').scrollIntoView({ behavior: 'smooth' });
 
-            // Simulate loading delay, then load external URL
+            // Karena CORS akan memblokir iframe, kita buat preview card sebagai alternatif
             setTimeout(() => {
-                iframe.srcdoc = ''; // Clear previous
-                iframe.src = url;    // Set the external URL
-                
+                // Sembunyikan loader
                 loader.classList.add('hidden');
-                overlay.style.opacity = '0';
-                setTimeout(() => {
-                    overlay.classList.add('hidden');
-                }, 500);
-                iframe.classList.remove('hidden');
-            }, 800);
+                
+                // Buat preview card dengan informasi produk
+                const previewHtml = `
+                    <div class="flex flex-col items-center justify-center h-full bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-center">
+                        <div class="w-20 h-20 bg-indigo-600/20 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-eye text-4xl text-indigo-500"></i>
+                        </div>
+                        <h3 class="text-2xl font-black text-white mb-3">${product}</h3>
+                        <p class="text-sm text-slate-400 mb-6 max-w-md">${angle || 'Landing page dengan konversi tinggi'}</p>
+                        <div class="bg-indigo-600/10 border border-indigo-500/30 rounded-xl p-4 mb-6 max-w-sm">
+                            <p class="text-xs text-indigo-400 mb-2 font-mono break-all">${url}</p>
+                            <p class="text-[10px] text-slate-500">🔒 Preview tidak bisa ditampilkan langsung karena kebijakan keamanan browser</p>
+                        </div>
+                        <a href="${url}" target="_blank" onclick="fbq('track', 'Lead');" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-bold text-sm transition-all">
+                            <i class="fas fa-external-link-alt"></i>
+                            Buka di Tab Baru
+                        </a>
+                        <p class="text-[9px] text-slate-600 mt-4">Atau copy link di atas untuk lihat demo</p>
+                    </div>
+                `;
+                
+                // Inject ke dalam overlay
+                overlay.innerHTML = previewHtml;
+                overlay.style.opacity = '1';
+                iframe.classList.add('hidden');
+            }, 1000);
         }
 
         // Legacy function renamed to avoid conflict (for original niche simulation)
