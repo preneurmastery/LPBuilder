@@ -34,18 +34,25 @@
     <script src="https://preneurmastery.com/chatbot/widget.js" data-project-id="69cf7f9835617a87c8eff4bb"></script>
 
     
-<script>
-  (function(){
-    window.__TRACKER_CONFIG__ = window.__TRACKER_CONFIG__ || {};
-    window.__TRACKER_CONFIG__.projectKey = '9th6g4suxigbpi7sg6j31';
-    window.__TRACKER_CONFIG__.apiBase = 'https://preneurmastery.com/tracker/api';
-
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://preneurmastery.com/tracker/tracker.js';
-    document.head.appendChild(s);
-  })();
-</script>
+      <script>
+       (function(){
+         window.__TRACKER_CONFIG__ = window.__TRACKER_CONFIG__ || {};
+         window.__TRACKER_CONFIG__.projectKey = '9th6g4suxigbpi7sg6j31';
+         window.__TRACKER_CONFIG__.apiBase = 'https://preneurmastery.com/tracker/api';
+    
+         // TAMBAHKAN KODE JEMBATAN INI:
+         window.trackEvent = function(type, name) {
+             if(window.tracker && window.tracker.track) {
+                window.tracker.track(type, { text: name });
+            }
+        };
+   
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://preneurmastery.com/tracker/tracker.js';
+        document.head.appendChild(s);
+      })();
+   </script>
   
 
     <style>
