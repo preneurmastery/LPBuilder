@@ -3,57 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landingpage Builder Pro | Hentikan Boncos Terstruktur</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>LCC Intelligence - Solusi Landing Page Anti-Boncos</title>
     
-    <!-- Meta Pixel Code -->
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '612806087911246'); // <--- ID PIXEL TELAH DIUPDATE
-    fbq('track', 'PageView');
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#10b981',
+                        dark: '#020617',
+                        card: '#1e293b',
+                    }
+                }
+            }
+        }
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=612806087911246&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        
-        :root {
-            --primary: #6366f1;
-            --secondary: #10b981;
-            --dark: #020617;
-            --card: #1e293b;
-        }
-
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--dark);
+            background-color: #020617;
             color: #f8fafc;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
         .gradient-text {
             background: linear-gradient(135deg, #fff 0%, #6366f1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .glass-card {
             background: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
         .reveal {
@@ -61,1082 +53,373 @@
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
         }
-
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
         .hover-glow:hover {
-            box-shadow: 0 0 30px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 0 30px rgba(99,102,241,0.4);
             transform: translateY(-5px);
         }
 
-        .floating {
-            animation: floating 3s ease-in-out infinite;
-        }
-
+        .floating { animation: floating 3s ease-in-out infinite; }
         @keyframes floating {
-            0% { transform: translateY(0px); }
+            0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
         }
 
-        /* --- PREVIEW ENGINE STYLES --- */
-        .preview-window {
-            height: 600px;
-            border-radius: 2rem;
-            background: #fff;
-            overflow: hidden;
+        .cta-shine {
             position: relative;
-            border: 4px solid #1e293b;
+            overflow: hidden;
         }
-
-        .preview-overlay {
+        .cta-shine::after {
+            content: '';
             position: absolute;
             inset: 0;
-            background: rgba(2, 6, 23, 0.95);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 20;
-            transition: opacity 0.5s;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
+            transform: translateX(-100%);
+            transition: transform 1s;
         }
+        .cta-shine:hover::after { transform: translateX(100%); }
 
-        .niche-card {
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .niche-card:hover {
-            border-color: #6366f1;
-            background: rgba(99, 102, 241, 0.1);
-        }
-
-        .step-number {
-            background: linear-gradient(135deg, var(--primary), #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2rem !important; line-height: 1.2 !important; }
-            h2 { font-size: 1.8rem !important; }
-            .preview-window { height: 400px; }
-            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
-        }
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
+        .custom-scroll::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.2); border-radius: 10px; }
     </style>
 </head>
-<body>
+<body class="selection:bg-indigo-500 selection:text-white">
 
-    <!-- Navigasi -->
-    <nav class="fixed w-full z-50 py-4 px-4 md:px-12 flex justify-between items-center transition-all duration-500" id="navbar">
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 md:w-10 md:h-10 bg-indigo-600 rounded-lg md:rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
-                <i class="fas fa-bolt text-sm md:text-lg text-white"></i>
+    <!-- 🚩 TOP BANNER -->
+    <div id="top-banner" class="bg-red-600 py-3 text-center text-white text-[9px] md:text-[10px] font-black z-[100] relative px-4 uppercase tracking-wider">
+        🔥 DISKON 90% BERAKHIR DALAM: <span id="countdown">00:00:00</span>
+    </div>
+
+    <!-- 🚩 NAVBAR -->
+    <nav class="sticky top-0 z-[90] bg-[#020617]/80 backdrop-blur-xl border-b border-white/5 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/30">
+                <i class="fas fa-bolt text-white text-xl"></i>
             </div>
-            <span class="text-lg md:text-xl font-extrabold tracking-tight uppercase">LP Builder <span class="text-indigo-500 font-normal">Pro</span></span>
+            <span class="text-xl font-extrabold tracking-tighter uppercase italic text-white">
+                LCC <span class="text-indigo-500 font-normal not-italic">Intelligence</span>
+            </span>
         </div>
-        <a href="#pricing" onclick="fbq('track', 'Lead');" class="hidden md:block bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg shadow-indigo-500/30">Dapatkan Akses</a>
+        <button onclick="location.href='/login'" class="px-6 py-2 text-[10px] font-black uppercase text-slate-300 border border-white/10 rounded-xl hover:bg-white/5 transition-all">Login</button>
     </nav>
 
-    <!-- Section 1: Hero -->
-    <section class="relative pt-32 md:pt-40 pb-20 md:pb-32 px-4 md:px-6 flex flex-col items-center text-center overflow-hidden">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-indigo-600/20 blur-[100px] md:blur-[150px] rounded-full -z-10"></div>
+    <!-- 🚩 SECTION 1: HERO -->
+    <header class="relative pt-20 pb-20 px-6 text-center overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-indigo-600/10 blur-[120px] -z-10 rounded-full"></div>
         
-        <div class="max-w-5xl">
-            <div class="reveal mb-6 flex justify-center">
-                <span class="bg-slate-800/80 border border-slate-700 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-[9px] md:text-xs font-bold text-indigo-400 uppercase tracking-widest md:tracking-[0.2em]">
-                    🚀 KHUSUS UNTUK ADVERTISER & UMKM INDONESIA
-                </span>
-            </div>
-            
-            <h1 class="text-4xl md:text-5xl font-extrabold mb-6 md:mb-8 leading-tight md:leading-[1.1] reveal">
-                Landing Page Siap Pakai yang Dibuat untuk Menaikan Conversion Iklan Anda - <span class="text-indigo-500 italic">Tanpa Ngoding, Tanpa Ribet</span>
-            </h1>
-            
-            <p class="text-base md:text-xl text-slate-400 mb-8 md:mb-12 max-w-3xl mx-auto reveal" style="transition-delay: 150ms;">
-                Berhenti membuang budget pada Landing Page "basi" yang hanya bikin customer kabur. Saatnya gunakan <span class="text-white font-bold underline decoration-indigo-500">Angle-Driven Engine</span> yang mengunci audiens dari headline sampai checkout.
-            </p>
-
-            <div class="flex flex-col md:flex-row gap-4 md:gap-5 justify-center items-center reveal" style="transition-delay: 300ms;">
-                <a href="#live-preview" onclick="fbq('track', 'Lead');" class="w-full md:w-auto bg-white text-slate-900 px-8 md:px-10 py-4 md:py-5 rounded-xl md:rounded-2xl font-black text-lg md:text-xl hover:bg-indigo-600 hover:text-white transition-all transform hover:scale-105 shadow-2xl flex items-center justify-center gap-3 group">
-                    SIAP SCALING SEKARANG <i class="fas fa-arrow-right text-sm group-hover:translate-x-2 transition-transform"></i>
-                </a>
-                <div class="flex flex-col items-center md:items-start gap-1">
-                    <div class="flex -space-x-2">
-                        <img src="https://i.pravatar.cc/100?u=1" class="w-7 h-7 md:w-8 md:h-8 rounded-full border-2 border-slate-900" alt="user">
-                        <img src="https://i.pravatar.cc/100?u=2" class="w-7 h-7 md:w-8 md:h-8 rounded-full border-2 border-slate-900" alt="user">
-                        <img src="https://i.pravatar.cc/100?u=3" class="w-7 h-7 md:w-8 md:h-8 rounded-full border-2 border-slate-900" alt="user">
-                    </div>
-                    <p class="text-[9px] md:text-[10px] text-slate-500 font-bold uppercase tracking-wider">Bergabung dengan 1.240+ Advertiser Pro</p>
-                </div>
-            </div>
-        </div>
-
-                <!-- Product Preview Image/UI - YouTube Embed (autoplay 1, mute, loop, no recommendations) -->
-        <div class="mt-16 md:mt-24 relative max-w-6xl w-full reveal" style="transition-delay: 500ms;">
-            <div class="glass-card p-1.5 md:p-4 rounded-2xl md:rounded-[2rem] border-white/10 relative overflow-hidden group">
-                <div class="bg-slate-900 rounded-xl md:rounded-[1.5rem] overflow-hidden aspect-video relative">
-                    <!-- IFRAME YOUTUBE DENGAN PARAMETER LOOP & NO RECOMMENDATIONS -->
-                    <iframe class="w-full h-full" 
-                            src="https://www.youtube.com/embed/t6c5WFDAmok?autoplay=1&mute=1&loop=1&playlist=t6c5WFDAmok&rel=0&modestbranding=1&controls=1&si=qtjEvQMwLuZ7Cfuh" 
-                            title="YouTube video player" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                            referrerpolicy="strict-origin-when-cross-origin" 
-                            allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-            <div class="absolute -top-10 -right-10 w-24 h-24 md:w-40 md:h-40 bg-indigo-500/20 blur-2xl md:blur-3xl rounded-full floating"></div>
-        </div>
-
-    <!-- Section 2: Pain -->
-    <section class="py-16 md:py-24 px-4 md:px-6 bg-slate-900/40 relative">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-12 md:mb-20 reveal">
-                <h2 class="text-2xl md:text-5xl font-extrabold mb-4 md:mb-6">Fenomena <span class="text-red-500">"Boncos Terstruktur"</span></h2>
-                <p class="text-sm md:text-xl text-slate-400 max-w-2xl mx-auto">Anda sudah habis jutaan buat video cinematic, pusing riset target audience, tapi pas di-scale budgetnya, profitnya malah terjun bebas.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-6 md:gap-10">
-                <div class="p-6 md:p-8 rounded-3xl bg-slate-800/30 border border-white/5 hover-glow transition-all reveal">
-                    <i class="fas fa-ghost text-red-500 text-2xl md:text-3xl mb-4 md:mb-6"></i>
-                    <h3 class="text-lg md:text-xl font-extrabold mb-3 md:mb-4 italic">Message Gap</h3>
-                    <p class="text-slate-400 text-xs md:text-sm leading-relaxed">Iklan bahas "Solusi Jerawat", tapi Landing Page isinya katalog jualan umum. Budget Anda hangus dalam hitungan detik.</p>
-                </div>
-                <div class="p-6 md:p-8 rounded-3xl bg-slate-800/30 border border-white/5 hover-glow transition-all reveal" style="transition-delay: 100ms;">
-                    <i class="fas fa-clock text-orange-500 text-2xl md:text-3xl mb-4 md:mb-6"></i>
-                    <h3 class="text-lg md:text-xl font-extrabold mb-3 md:mb-4 italic">Testing Fatigue</h3>
-                    <p class="text-slate-400 text-xs md:text-sm leading-relaxed">Mau coba 5 angle berbeda tapi malas edit Elementor seharian? Akhirnya cuma pakai 1 LP. Hasilnya? Boncos masal.</p>
-                </div>
-                <div class="p-6 md:p-8 rounded-3xl bg-slate-800/30 border border-white/5 hover-glow transition-all reveal" style="transition-delay: 200ms;">
-                    <i class="fas fa-tachometer-alt text-yellow-500 text-2xl md:text-3xl mb-4 md:mb-6"></i>
-                    <h3 class="text-lg md:text-xl font-extrabold mb-3 md:mb-4 italic">Loading Lemot</h3>
-                    <p class="text-slate-400 text-xs md:text-sm leading-relaxed">LP yang berat bikin pembeli kabur sebelum tau produk hebat Anda. Anda membayar untuk "bounce rate".</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 3: Mechanism -->
-    <section class="py-20 md:py-32 px-4 md:px-6">
-        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 md:gap-20">
-            <div class="lg:w-1/2 reveal order-2 lg:order-1 text-center lg:text-left">
-                <span class="text-indigo-500 font-black tracking-widest text-[10px] md:text-xs uppercase mb-4 block">BUKAN SEKADAR BUILDER</span>
-                <h2 class="text-3xl md:text-6xl font-black mb-6 md:mb-8 leading-tight italic">Satu Klik, <br><span class="gradient-text">Ratusan Konversi.</span></h2>
-                <p class="text-slate-400 text-sm md:text-lg mb-8 md:mb-10 leading-relaxed">
-                    AI kami menganalisis psikologi emak-emak Indonesia hingga anak muda FOMO untuk merangkai kata yang bikin mereka gak tahan buat klik tombol beli.
-                </p>
-                
-                <div class="space-y-4 md:space-y-6 text-left">
-                    <div class="flex gap-4 md:gap-5 items-start">
-                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-indigo-600/20 flex items-center justify-center shrink-0 border border-indigo-500/30">
-                            <i class="fas fa-fingerprint text-indigo-500"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-white mb-1 text-sm md:text-base tracking-tight">Angle-Match Technology™</h4>
-                            <p class="text-[10px] md:text-sm text-slate-500">Sinkronisasi otomatis antara isi iklan dan isi halaman.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4 md:gap-5 items-start">
-                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-emerald-600/20 flex items-center justify-center shrink-0 border border-emerald-500/30">
-                            <i class="fas fa-brain text-emerald-500"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-white mb-1 text-sm md:text-base tracking-tight">Psychology-Awareness Flow</h4>
-                            <p class="text-[10px] md:text-sm text-slate-500">Narasi berubah otomatis sesuai fase kesadaran audiens.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="lg:w-1/2 relative reveal order-1 lg:order-2" style="transition-delay: 200ms;">
-                <div class="glass-card p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] border-indigo-500/30 bg-indigo-500/5">
-                    <div class="mb-6 md:mb-8">
-                        <p class="text-[9px] md:text-xs font-bold text-slate-500 mb-4 uppercase tracking-widest">Live Generation Demo</p>
-                        <div class="space-y-3">
-                            <div class="h-10 bg-slate-800 rounded-lg flex items-center px-4 border border-slate-700">
-                                <span class="text-[10px] md:text-xs text-indigo-400 font-bold">PRODUK:</span> <span class="ml-2 text-[10px] md:text-xs text-slate-200">Pembersih Sepatu Instan</span>
-                            </div>
-                            <div class="h-10 bg-slate-800 rounded-lg flex items-center px-4 border border-indigo-500/50">
-                                <span class="text-[10px] md:text-xs text-indigo-400 font-bold">ANGLE:</span> <span class="ml-2 text-[10px] md:text-xs text-slate-200">"Hemat Waktu buat Bapak Sibuk"</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-4 md:p-6 bg-slate-900 rounded-xl md:rounded-2xl border border-slate-800 text-center">
-                        <p class="text-xs md:text-sm italic text-slate-400 mb-4 animate-pulse">AI sedang merangkai headline emosional...</p>
-                        <div class="h-1.5 bg-slate-800 rounded-full overflow-hidden">
-                            <div class="h-full bg-indigo-500 w-[70%] rounded-full"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="absolute -bottom-6 -right-2 md:-bottom-10 md:-right-5 bg-emerald-500 text-slate-900 p-3 md:p-4 rounded-xl md:rounded-2xl font-black text-[10px] md:text-xs rotate-3 shadow-2xl floating">
-                    ROAS NAIK 40% <br><span class="font-normal text-[9px] md:text-[10px]">dalam 24 Jam!</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-        <!-- Section: 5 Steps Workflow (Updated) - GAMBAR DIPERBESAR -->
-    <section class="py-16 md:py-24 px-4 md:px-6 bg-slate-900/20 relative">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12 md:mb-16 reveal">
-                <h2 class="text-2xl md:text-5xl font-black mb-4 md:mb-6 italic text-white">5 Tahap Menuju <span class="text-indigo-500">Dashboard Hijau.</span></h2>
-                <p class="text-xs md:text-base text-slate-400 max-w-xl mx-auto px-4">Proses otomatis yang mengubah ide produk Anda menjadi mesin konversi dalam hitungan menit.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
-                <!-- Step 1: Input Produk - GAMBAR DIPERBESAR -->
-                <div class="glass-card p-4 md:p-6 rounded-[1.5rem] md:rounded-[2rem] reveal flex flex-col items-center text-center group">
-                    <div class="text-2xl md:text-4xl font-black step-number mb-2 md:mb-4 opacity-50 group-hover:opacity-100 transition-opacity">01</div>
-                    <div class="w-32 h-32 md:w-48 md:h-48 bg-slate-800 rounded-xl md:rounded-2xl mb-3 md:mb-6 overflow-hidden border border-white/5 shadow-xl">
-                        <img src="https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772546312/Screenshot_2026-03-03-20-51-26-226_com.kiwibrowser.browser_yukrdx.png" alt="Input Produk" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300">
-                    </div>
-                    <h4 class="font-bold text-sm md:text-base mb-1 md:mb-2 tracking-tight">Input Produk</h4>
-                    <p class="text-[10px] md:text-xs text-slate-500 px-2">Detail produk & USP langsung dari HP-mu.</p>
-                </div>
-                
-                <!-- Step 2: Target Audience - GAMBAR DIPERBESAR -->
-                <div class="glass-card p-4 md:p-6 rounded-[1.5rem] md:rounded-[2rem] reveal flex flex-col items-center text-center group" style="transition-delay: 100ms;">
-                    <div class="text-2xl md:text-4xl font-black step-number mb-2 md:mb-4 opacity-50 group-hover:opacity-100 transition-opacity">02</div>
-                    <div class="w-32 h-32 md:w-48 md:h-48 bg-slate-800 rounded-xl md:rounded-2xl mb-3 md:mb-6 overflow-hidden border border-white/5 shadow-xl">
-                        <img src="https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772546313/Screenshot_2026-03-03-20-51-59-304_com.kiwibrowser.browser_vxtfxj.png" alt="Target Audience" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300">
-                    </div>
-                    <h4 class="font-bold text-sm md:text-base mb-1 md:mb-2 tracking-tight">Target Audience</h4>
-                    <p class="text-[10px] md:text-xs text-slate-500 px-2">Tentukan siapa yang mau kamu sapa.</p>
-                </div>
-                
-                <!-- Step 3: Pilih Framework - GAMBAR DIPERBESAR -->
-                <div class="glass-card p-4 md:p-6 rounded-[1.5rem] md:rounded-[2rem] reveal flex flex-col items-center text-center group" style="transition-delay: 200ms;">
-                    <div class="text-2xl md:text-4xl font-black step-number mb-2 md:mb-4 opacity-50 group-hover:opacity-100 transition-opacity">03</div>
-                    <div class="w-32 h-32 md:w-48 md:h-48 bg-slate-800 rounded-xl md:rounded-2xl mb-3 md:mb-6 overflow-hidden border border-white/5 shadow-xl">
-                        <img src="https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772546312/Screenshot_2026-03-03-20-52-32-722_com.kiwibrowser.browser_z7apmd.png" alt="Pilih Framework" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300">
-                    </div>
-                    <h4 class="font-bold text-sm md:text-base mb-1 md:mb-2 tracking-tight">Pilih Framework</h4>
-                    <p class="text-[10px] md:text-xs text-slate-500 px-2">PAS, AIDA, atau BAB—AI akan meramu.</p>
-                </div>
-                
-                <!-- Step 4: Pilih Style - GAMBAR DIPERBESAR -->
-                <div class="glass-card p-4 md:p-6 rounded-[1.5rem] md:rounded-[2rem] reveal flex flex-col items-center text-center group" style="transition-delay: 300ms;">
-                    <div class="text-2xl md:text-4xl font-black step-number mb-2 md:mb-4 opacity-50 group-hover:opacity-100 transition-opacity">04</div>
-                    <div class="w-32 h-32 md:w-48 md:h-48 bg-slate-800 rounded-xl md:rounded-2xl mb-3 md:mb-6 overflow-hidden border border-white/5 shadow-xl">
-                        <img src="https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772546312/Screenshot_2026-03-03-20-52-59-568_com.kiwibrowser.browser_li3v8k.png" alt="Pilih Style" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300">
-                    </div>
-                    <h4 class="font-bold text-sm md:text-base mb-1 md:mb-2 tracking-tight">Pilih Style</h4>
-                    <p class="text-[10px] md:text-xs text-slate-500 px-2">Dark, clean, atau brave? Warna otomatis nyala.</p>
-                </div>
-                
-                <!-- Step 5: Pilih Trust Elemen - GAMBAR DIPERBESAR -->
-                <div class="glass-card p-4 md:p-6 rounded-[1.5rem] md:rounded-[2rem] reveal flex flex-col items-center text-center group" style="transition-delay: 400ms;">
-                    <div class="text-2xl md:text-4xl font-black step-number mb-2 md:mb-4 opacity-50 group-hover:opacity-100 transition-opacity">05</div>
-                    <div class="w-32 h-32 md:w-48 md:h-48 bg-slate-800 rounded-xl md:rounded-2xl mb-3 md:mb-6 overflow-hidden border border-white/5 shadow-xl">
-                        <img src="https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772546313/Screenshot_2026-03-03-20-53-27-479_com.kiwibrowser.browser_zpxrag.png" alt="Pilih Trust Elemen" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300">
-                    </div>
-                    <h4 class="font-bold text-sm md:text-base mb-1 md:mb-2 tracking-tight">Trust Elemen</h4>
-                    <p class="text-[10px] md:text-xs text-slate-500 px-2">Testimoni, garansi, badge—AI pasang otomatis.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section: Mega Bonus CS WhatsApp AI -->
-    <section class="py-16 md:py-24 px-4 md:px-6 relative overflow-hidden">
-        <div class="absolute top-1/2 left-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-emerald-500/10 blur-[100px] md:blur-[150px] rounded-full -z-10"></div>
-        <div class="max-w-6xl mx-auto">
-            <div class="glass-card p-6 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] border-emerald-500/20 bg-emerald-500/5 relative overflow-hidden reveal">
-                <div class="absolute top-0 right-0 p-8 opacity-5 md:opacity-10">
-                    <i class="fab fa-whatsapp text-[10rem] md:text-[15rem]"></i>
-                </div>
-                
-                <div class="flex flex-col lg:flex-row items-center gap-8 md:gap-16 relative z-10">
-                    <div class="lg:w-1/2 text-center lg:text-left">
-                        <span class="bg-emerald-500 text-slate-950 px-3 md:px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest mb-6 inline-block">BONUS TERGILA ABAD INI</span>
-                        <h2 class="text-3xl md:text-5xl font-black mb-6 md:mb-8 leading-tight italic text-white">Gratis: CS WhatsApp AI <br><span class="text-emerald-500">Auto-Closing 24 Jam.</span></h2>
-                        <p class="text-sm md:text-lg text-slate-400 mb-8 leading-relaxed">
-                            Landing Page sudah convert, tapi CS Anda lama balas chat? Kami berikan <strong>Akses Gratis</strong> asisten AI yang stand-by 24/7 di WhatsApp Anda.
-                        </p>
-                        
-                        <div class="grid grid-cols-2 gap-3 md:gap-4 mb-8">
-                            <div class="bg-slate-900/50 p-4 rounded-xl md:rounded-2xl border border-white/5 text-left">
-                                <i class="fas fa-bolt text-emerald-500 mb-2 md:mb-3 text-sm"></i>
-                                <h5 class="font-bold text-[11px] md:text-sm mb-1">Respon Instan</h5>
-                                <p class="text-[9px] md:text-[10px] text-slate-500">Balas chat di bawah 3 detik.</p>
-                            </div>
-                            <div class="bg-slate-900/50 p-4 rounded-xl md:rounded-2xl border border-white/5 text-left">
-                                <i class="fas fa-robot text-emerald-500 mb-2 md:mb-3 text-sm"></i>
-                                <h5 class="font-bold text-[11px] md:text-sm mb-1">Human-Like AI</h5>
-                                <p class="text-[9px] md:text-[10px] text-slate-500">Bahasa ngobrol natural.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lg:w-1/2 w-full">
-                        <div class="glass-card p-4 md:p-6 rounded-[2rem] bg-slate-900 border-white/10 relative">
-                            <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6 border-b border-white/5 pb-4">
-                                <div class="w-10 h-10 md:w-12 md:h-12 bg-emerald-500 rounded-full flex items-center justify-center">
-                                    <i class="fab fa-whatsapp text-xl md:text-2xl text-slate-950"></i>
-                                </div>
-                                <div>
-                                    <p class="font-bold text-sm md:text-base text-white">CS AI Assistant</p>
-                                    <p class="text-[9px] md:text-[10px] text-emerald-500 flex items-center gap-1">Online 24/7</p>
-                                </div>
-                            </div>
-                            <div class="space-y-4 mb-6">
-                                <div class="bg-slate-800 p-3 rounded-2xl rounded-tl-none max-w-[85%] text-[10px] md:text-[11px] text-slate-300">
-                                    Halo! Apakah produknya aman untuk kulit sensitif?
-                                </div>
-                                <div class="bg-emerald-600 p-3 rounded-2xl rounded-tr-none max-w-[90%] ml-auto text-[10px] md:text-[11px] text-white">
-                                    Tentu Kak! 😊 Produk kami 100% alami dan BPOM. Mau kami bantu buatkan pesanannya?
-                                </div>
-                            </div>
-                            <div class="bg-indigo-600/10 border border-indigo-500/30 p-3 md:p-4 rounded-xl text-center">
-                                <p class="text-[10px] md:text-xs font-bold text-indigo-400 italic">"Closing rate naik saat Anda tertidur!"</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-            <!-- Section: Live Preview Gallery (with updated niches & links) - DIPERBAIKI TOTAL -->
-    <section id="live-preview" class="py-16 md:py-24 px-4 md:px-6 bg-slate-950/50 relative overflow-hidden">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-8 md:mb-12 reveal">
-                <h2 class="text-2xl md:text-5xl font-black mb-4 md:mb-6 italic text-white">Klik Niche Anda, <span class="text-indigo-500">Lihat Magic-nya.</span></h2>
-                <p class="text-xs md:text-base text-slate-400 max-w-xl mx-auto">Kami sudah siapkan ribuan pola konversi. Pilih satu untuk simulasi pembuatan instan.</p>
-            </div>
-
-            <!-- Niche Cards Grid - TANPA PADDING BERLEBIH -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-8 md:mb-12 reveal">
-                <div onclick="loadExternalPreview('https://preneurmastery.github.io/perum/', 'Perumahan Komersil', 'Tipe 36/60 Subsidi')" class="niche-card glass-card p-4 md:p-6 rounded-2xl md:rounded-3xl border border-white/5 hover-glow text-center group">
-                    <div class="w-8 h-8 md:w-12 md:h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mx-auto mb-2 md:mb-4 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-home text-emerald-500 text-xs md:text-base"></i>
-                    </div>
-                    <p class="text-[10px] md:text-sm font-bold">Perumahan Komersil</p>
-                </div>
-                <div onclick="loadExternalPreview('https://preneurmastery.github.io/umroh/', 'Travel Umroh', 'Paket Umroh 2025')" class="niche-card glass-card p-4 md:p-6 rounded-2xl md:rounded-3xl border border-white/5 hover-glow text-center group">
-                    <div class="w-8 h-8 md:w-12 md:h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mx-auto mb-2 md:mb-4 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-kaaba text-blue-500 text-xs md:text-base"></i>
-                    </div>
-                    <p class="text-[10px] md:text-sm font-bold">Travel Umroh</p>
-                </div>
-                <div onclick="loadExternalPreview('https://preneurmastery.github.io/builder/', 'Produk Digital Dark Mode', 'Theme Notion / Template')" class="niche-card glass-card p-4 md:p-6 rounded-2xl md:rounded-3xl border border-white/5 hover-glow text-center group">
-                    <div class="w-8 h-8 md:w-12 md:h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mx-auto mb-2 md:mb-4 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-moon text-purple-500 text-xs md:text-base"></i>
-                    </div>
-                    <p class="text-[10px] md:text-sm font-bold">Digital Dark Mode</p>
-                </div>
-                <div onclick="loadExternalPreview('https://preneurmastery.github.io/builder2/', 'Produk Digital Brave Color', 'E-book / Workshop')" class="niche-card glass-card p-4 md:p-6 rounded-2xl md:rounded-3xl border border-white/5 hover-glow text-center group">
-                    <div class="w-8 h-8 md:w-12 md:h-12 bg-pink-500/20 rounded-xl flex items-center justify-center mx-auto mb-2 md:mb-4 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-palette text-pink-500 text-xs md:text-base"></i>
-                    </div>
-                    <p class="text-[10px] md:text-sm font-bold">Digital Brave Color</p>
-                </div>
-            </div>
-
-            <!-- Result Dashboard - TANPA PADDING KIRI KANAN -->
-            <div class="reveal">
-                <div class="glass-card p-1.5 md:p-4 rounded-3xl md:rounded-[2.5rem] relative">
-                    <div class="bg-slate-800/50 rounded-t-2xl md:rounded-t-[1.5rem] p-3 md:p-4 flex items-center gap-2 md:gap-3 border-b border-white/5">
-                        <div class="flex gap-1.5">
-                            <div class="w-2 h-2 bg-red-500 rounded-full"></div>
-                            <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                        </div>
-                        <div class="flex-1 bg-slate-900 rounded-lg py-1 px-3 text-[9px] md:text-[10px] text-slate-500 font-mono truncate">
-                            https://preview.lpbuilderpro.ai/<span id="preview-url-slug" class="text-indigo-400">demo-preview</span>
-                        </div>
-                    </div>
-                    <div class="preview-window relative">
-                        <div id="preview-overlay" class="preview-overlay">
-                            <div id="preview-loader" class="hidden flex flex-col items-center p-6 text-center">
-                                <i class="fas fa-cog animate-spin text-3xl md:text-4xl text-indigo-500 mb-4"></i>
-                                <p class="text-white font-bold tracking-widest uppercase text-[10px]">Memuat contoh halaman...</p>
-                            </div>
-                            <div id="preview-initial" class="flex flex-col items-center p-6 text-center">
-                                <i class="fas fa-mouse-pointer text-3xl md:text-4xl text-slate-700 mb-4 md:mb-6 floating"></i>
-                                <p class="text-slate-500 font-bold text-xs md:text-sm max-w-xs">Klik niche di atas untuk lihat contoh jadi.</p>
-                            </div>
-                            <div id="preview-content" class="hidden w-full h-full"></div>
-                        </div>
-                        <iframe id="preview-iframe" class="w-full h-full border-none hidden" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 4: Benefit - SUDAH BAGUS, TAPI PASTIKAN KONSISTEN -->
-    <section class="py-16 md:py-24 px-4 md:px-6 bg-slate-950">
-        <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-2xl md:text-5xl font-black mb-10 md:mb-16 italic">Dirancang Khusus Untuk <span class="text-indigo-500 italic">Jualan</span> Indonesia.</h2>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                <div class="p-4 md:p-6 glass-card rounded-2xl md:rounded-3xl reveal">
-                    <div class="w-10 h-10 md:w-12 md:h-12 bg-indigo-600/10 rounded-xl flex items-center justify-center mx-auto mb-4 md:mb-6">
-                        <i class="fab fa-whatsapp text-xl md:text-2xl text-emerald-500"></i>
-                    </div>
-                    <h4 class="font-bold text-xs md:text-sm mb-2">Integrasi WA</h4>
-                    <p class="text-[9px] md:text-[10px] text-slate-500 italic">Rotasi CS otomatis.</p>
-                </div>
-                <div class="p-4 md:p-6 glass-card rounded-2xl md:rounded-3xl reveal" style="transition-delay: 100ms;">
-                    <div class="w-10 h-10 md:w-12 md:h-12 bg-indigo-600/10 rounded-xl flex items-center justify-center mx-auto mb-4 md:mb-6">
-                        <i class="fas fa-shipping-fast text-xl md:text-2xl text-orange-500"></i>
-                    </div>
-                    <h4 class="font-bold text-xs md:text-sm mb-2">Super Ringan</h4>
-                    <p class="text-[9px] md:text-[10px] text-slate-500 italic">Aman untuk sinyal E.</p>
-                </div>
-                <div class="p-4 md:p-6 glass-card rounded-2xl md:rounded-3xl reveal" style="transition-delay: 200ms;">
-                    <div class="w-10 h-10 md:w-12 md:h-12 bg-indigo-600/10 rounded-xl flex items-center justify-center mx-auto mb-4 md:mb-6">
-                        <i class="fas fa-mobile-alt text-xl md:text-2xl text-indigo-400"></i>
-                    </div>
-                    <h4 class="font-bold text-xs md:text-sm mb-2">Mobile-First</h4>
-                    <p class="text-[9px] md:text-[10px] text-slate-500 italic">Fokus jempol pengguna.</p>
-                </div>
-                <div class="p-4 md:p-6 glass-card rounded-2xl md:rounded-3xl reveal" style="transition-delay: 300ms;">
-                    <div class="w-10 h-10 md:w-12 md:h-12 bg-indigo-600/10 rounded-xl flex items-center justify-center mx-auto mb-4 md:mb-6">
-                        <i class="fas fa-shield-alt text-xl md:text-2xl text-emerald-400"></i>
-                    </div>
-                    <h4 class="font-bold text-xs md:text-sm mb-2">Anti-Boncos</h4>
-                    <p class="text-[9px] md:text-[10px] text-slate-500 italic">AI deteksi headline lemah.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 5: Comparison - PERBAIKI TABEL UNTUK MOBILE -->
-    <section class="py-16 md:py-32 px-4 md:px-6">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-center text-2xl md:text-5xl font-black mb-10 md:mb-16 italic">Pilihan <span class="text-indigo-500">Logis</span> Pengusaha.</h2>
-            <div class="rounded-2xl md:rounded-[2.5rem] overflow-x-auto border border-slate-800 glass-card">
-                <table class="w-full text-left">
-                    <thead>
-                        <tr class="bg-indigo-600/10">
-                            <th class="p-4 md:p-8 font-black uppercase tracking-widest text-[9px] md:text-[10px]">Metode</th>
-                            <th class="p-4 md:p-8 font-black uppercase tracking-widest text-[9px] md:text-[10px] text-slate-500">Cara Manual</th>
-                            <th class="p-4 md:p-8 font-black uppercase tracking-widest text-[9px] md:text-[10px] text-indigo-400">LP Builder Pro</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-[11px] md:text-sm">
-                        <tr class="border-b border-slate-800">
-                            <td class="p-4 md:p-8 font-bold">Biaya</td>
-                            <td class="p-4 md:p-8 text-slate-500">Rp 1.5jt+ / Hal</td>
-                            <td class="p-4 md:p-8 font-black text-white">Rp 145rb (Lifetime)</td>
-                        </tr>
-                        <tr class="border-b border-slate-800">
-                            <td class="p-4 md:p-8 font-bold">Waktu</td>
-                            <td class="p-4 md:p-8 text-slate-500">3 - 7 Hari</td>
-                            <td class="p-4 md:p-8 font-black text-white">3 Menit</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4 md:p-8 font-bold text-indigo-400">Power</td>
-                            <td class="p-4 md:p-8 text-slate-500">Kaku / Statis</td>
-                            <td class="p-4 md:p-8 font-black text-indigo-400 italic">Conv. Engine</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-        
-    <!-- SECTION TESTIMONI - 3 TESTIMONI RELATE (TANPA GAMBAR AVATAR) -->
-    <section class="py-16 md:py-24 px-4 md:px-6 bg-slate-900/40">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-12 md:mb-16 reveal">
-                <h2 class="text-2xl md:text-5xl font-black mb-4 md:mb-6 italic text-white">Hasil Nyata dari <span class="text-indigo-500">Pengguna</span></h2>
-                <p class="text-xs md:text-base text-slate-400 max-w-xl mx-auto">Mereka sudah buktikan, sekarang giliran Anda.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-6 md:gap-8">
-                <!-- Testimoni 1 -->
-                <div class="glass-card p-6 md:p-8 rounded-2xl md:rounded-3xl border border-white/5 hover-glow transition-all reveal">
-                    <div class="flex items-center gap-1 mb-4">
-                        <i class="fas fa-star text-yellow-500 text-xs md:text-sm"></i>
-                        <i class="fas fa-star text-yellow-500 text-xs md:text-sm"></i>
-                        <i class="fas fa-star text-yellow-500 text-xs md:text-sm"></i>
-                        <i class="fas fa-star text-yellow-500 text-xs md:text-sm"></i>
-                        <i class="fas fa-star text-yellow-500 text-xs md:text-sm"></i>
-                    </div>
-                    <p class="text-sm md:text-base text-slate-300 italic mb-4">"Dulu ganti-ganti angle landing page pake Elementor bisa seminggu. Sekarang 3 menit jadi. Framework PAS-nya ngenak banget, ROAS naik 40% cuma dalam 3 hari."</p>
-                    <div>
-                        <p class="font-bold text-white text-sm md:text-base">— Rudi Hartono</p>
-                        <p class="text-[10px] md:text-xs text-indigo-400">Agency Owner, Surabaya</p>
-                    </div>
-                </div>
-
-                <!-- Testimoni 2 -->
-                <div class="glass-card p-6 md:p-8 rounded-2xl md:rounded-3xl border border-white/5 hover-glow transition-all reveal" style="transition-delay: 100ms;">
-                    <div class="flex items-center gap-1 mb-4">
-                        <i class="fas fa-star text-yellow-500 text-xs md:text-sm"></i>
-                        <i class="fas fa-star text-yellow-500 text-xs md:text-sm"></i>
-                        <i class="fas fa-star text-yellow-500 text-xs md:text-sm"></i>
-                        <i class="fas fa-star text-yellow-500 text-xs md:text-sm"></i>
-                        <i class="fas fa-star text-yellow-500 text-xs md:text-sm"></i>
-                    </div>
-                    <p class="text-sm md:text-base text-slate-300 italic mb-4">"Aku jualan produk digital, dulu coba 3 angle aja pusing. Sekarang tinggal klik, AI langsung bikin 5 versi beda framework. Yang AIDA paling jitu buat niche aku."</p>
-                    <div>
-                        <p class="font-bold text-white text-sm md:text-base">— Dewi Lestari</p>
-                        <p class="text-[10px] md:text-xs text-indigo-400">Digital Product Creator, Bandung</p>
-                    </div>
-                </div>
-
-                <!-- Testimoni 3 -->
-                <div class="glass-card p-6 md:p-8 rounded-2xl md:rounded-3xl border border-white/5 hover-glow transition-all reveal" style="transition-delay: 200ms;">
-                    <div class="flex items-center gap-1 mb-4">
-                        <i class="fas fa-star text-yellow-500 text-xs md:text-sm"></i>
-                        <i class="fas fa-star text-yellow-500 text-xs md:text-sm"></i>
-                        <i class="fas fa-star text-yellow-500 text-xs md:text-sm"></i>
-                        <i class="fas fa-star text-yellow-500 text-xs md:text-sm"></i>
-                        <i class="fas fa-star text-yellow-500 text-xs md:text-sm"></i>
-                    </div>
-                    <p class="text-sm md:text-base text-slate-300 italic mb-4">"Yang paling gila itu AI CRO Engine-nya. Hasil generate langsung include elemen urgensi, testimoni, garansi. Gak perlu mikir struktur lagi, tinggal isi produk."</p>
-                    <div>
-                        <p class="font-bold text-white text-sm md:text-base">— Andi Pratama</p>
-                        <p class="text-[10px] md:text-xs text-indigo-400">Property Marketer, Jakarta</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-            <!-- Section 6: Pricing - DENGAN OPTIMASI CRO LENGKAP (ICON CEKLIS SAJA) -->
-    <section id="pricing" class="py-16 md:py-32 px-4 md:px-6 relative overflow-hidden">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[800px] h-[300px] md:h-[800px] bg-indigo-600/10 blur-[100px] md:blur-[200px] rounded-full"></div>
-        
-        <div class="max-w-2xl mx-auto text-center relative z-10">
-            <!-- CRO: Social Proof Header (HAPUS GAMBAR AVATAR, GUNAKAN TEKS SAJA) -->
-            <div class="flex items-center justify-center gap-2 mb-4 reveal">
-                <div class="flex items-center gap-1">
-                    <i class="fas fa-star text-yellow-500 text-xs"></i>
-                    <i class="fas fa-star text-yellow-500 text-xs"></i>
-                    <i class="fas fa-star text-yellow-500 text-xs"></i>
-                    <i class="fas fa-star text-yellow-500 text-xs"></i>
-                    <i class="fas fa-star text-yellow-500 text-xs"></i>
-                </div>
-                <p class="text-[9px] text-slate-400">4.9/5 dari 1.240+ Advertiser</p>
-            </div>
-
-            <h2 class="text-3xl md:text-6xl font-black mb-4 md:mb-6 leading-none italic">Ambil Kendali Atas <span class="text-indigo-500 italic">Profit Anda.</span></h2>
-            <p class="text-sm md:text-lg text-slate-400 mb-8 md:mb-12">Harga promo khusus slot terbatas.</p>
-            
-            <div class="glass-card p-6 md:p-12 rounded-[2rem] md:rounded-[3.5rem] border-2 border-indigo-500 shadow-[0_0_80px_rgba(99,102,241,0.2)] relative reveal">
-                <div class="absolute top-6 md:top-12 -right-8 md:-right-10 bg-red-600 text-white font-black py-1 md:py-2 px-8 md:px-14 rotate-45 text-[7px] md:text-[10px] tracking-widest uppercase shadow-xl">PROMO TERBATAS</div>
-                
-                <h3 class="text-sm md:text-xl font-bold mb-2 uppercase tracking-widest text-slate-400">Lifetime Access</h3>
-                
-                <!-- CRO: Price Anchoring dengan visual lebih kuat -->
-                <div class="flex items-center justify-center gap-2 md:gap-3 mb-6 md:mb-8">
-                    <span class="text-slate-600 line-through text-lg md:text-2xl font-bold italic relative">
-                        Rp 1.499rb
-                        <span class="absolute -top-3 -right-3 bg-red-500 text-white text-[6px] font-black px-1 py-0.5 rounded-full">HEMAT 90%</span>
-                    </span>
-                    <span class="text-4xl md:text-7xl font-black text-white italic">Rp 145rb</span>
-                </div>
-
-                <!-- CRO: Live Visitor Counter (FOMO) -->
-                <div class="flex items-center justify-center gap-3 mb-6 bg-slate-800/50 py-2 px-4 rounded-full border border-slate-700 max-w-fit mx-auto">
-                    <div class="flex items-center gap-1">
-                        <span class="relative flex h-2 w-2">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                        </span>
-                        <span class="text-[8px] md:text-[10px] font-bold text-emerald-400">112 ORANG</span>
-                    </div>
-                    <span class="text-[8px] md:text-[10px] text-slate-400">sedang lihat halaman ini</span>
-                </div>
-
-                <!-- FITUR-FITUR - MENGGUNAKAN ICON CEKLIS SAJA (TANPA EMOTICON) -->
-                <div class="text-left mb-6 md:mb-8">
-                    <p class="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-3 flex items-center gap-2">
-                        <i class="fas fa-check-circle"></i> YANG AKAN ANDA DAPATKAN:
-                    </p>
-                    
-                    <!-- 3 Framework Copywriting dengan ceklis -->
-                    <div class="flex items-start gap-2 mb-3">
-                        <i class="fas fa-check-circle text-emerald-500 text-xs mt-0.5"></i>
-                        <div>
-                            <span class="text-[10px] md:text-xs text-slate-300">
-                                <span class="text-white font-bold">Framework Copywriting:</span> (otomatis atau Bisa pilih sesuai target)
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- 5 Conversion Boosters dengan ceklis -->
-                    <div class="flex items-start gap-2 mb-3">
-                        <i class="fas fa-check-circle text-emerald-500 text-xs mt-0.5"></i>
-                        <div>
-                            <span class="text-[10px] md:text-xs text-slate-300">
-                                <span class="text-white font-bold">5 Conversion Boosters:</span> FAQ, Testimonial, Social Proof, Garansi, Scarcity (Toggle Aktif/Nonaktif)
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- AI CRO Engine dengan ceklis -->
-                    <div class="flex items-start gap-2 mb-3">
-                        <i class="fas fa-check-circle text-emerald-500 text-xs mt-0.5"></i>
-                        <div>
-                            <span class="text-[10px] md:text-xs text-slate-300">
-                                <span class="text-white font-bold">AI CRO Engine™:</span> Setiap LP hasil generate sudah teroptimasi 15+ prinsip konversi
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- 7 Gaya Visual dengan ceklis -->
-                    <div class="flex items-start gap-2 mb-3">
-                        <i class="fas fa-check-circle text-emerald-500 text-xs mt-0.5"></i>
-                        <div>
-                            <span class="text-[10px] md:text-xs text-slate-300">
-                                <span class="text-white font-bold">7 Gaya Visual:</span> (1 Klik Berubah)
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Auto-FOMO Engine dengan ceklis -->
-                    <div class="flex items-start gap-2 mb-3">
-                        <i class="fas fa-check-circle text-emerald-500 text-xs mt-0.5"></i>
-                        <div>
-                            <span class="text-[10px] md:text-xs text-slate-300">
-                                <span class="text-white font-bold">Auto-FOMO Engine:</span> Timer, Stok Terbatas, Batas Waktu (3 Mode Urgensi)
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Unlimited LP Generation dengan ceklis -->
-                    <div class="flex items-start gap-2 mb-3">
-                        <i class="fas fa-check-circle text-emerald-500 text-xs mt-0.5"></i>
-                        <div>
-                            <span class="text-[10px] md:text-xs text-slate-300">
-                                <span class="text-white font-bold">Unlimited</span> Landing Page Generation
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- AI Angle-Detection dengan ceklis -->
-                    <div class="flex items-start gap-2 mb-4">
-                        <i class="fas fa-check-circle text-emerald-500 text-xs mt-0.5"></i>
-                        <div>
-                            <span class="text-[10px] md:text-xs text-slate-300">
-                                <span class="text-white font-bold">AI Angle-Detection</span> System
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CRO: Risk Reversal (Garansi) -->
-                <div class="flex items-center justify-center gap-3 mb-6 text-[9px] md:text-xs text-slate-400 bg-slate-800/30 py-2 px-4 rounded-xl">
-                    <i class="fas fa-shield-alt text-indigo-400"></i>
-                    <span>Garansi Uang Kembali 30 Hari • No Questions Asked</span>
-                </div>
-
-                <!-- CRO: Urgency Timer -->
-                <div class="mb-6">
-                    <div class="flex justify-between text-[8px] md:text-[10px] font-bold mb-1">
-                        <span class="text-orange-400">⚠️ PROMO BERAKHIR DALAM:</span>
-                        <span class="text-white" id="countdown-timer">02:15:30</span>
-                    </div>
-                    <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                        <div class="bg-gradient-to-r from-orange-500 to-red-500 h-full rounded-full" style="width: 65%"></div>
-                    </div>
-                </div>
-
-                                <!-- BONUS - TETAP ADA DENGAN COPY LEBIH MENARIK -->
-                <div class="p-3 md:p-4 bg-gradient-to-r from-emerald-500/10 to-indigo-500/10 border border-emerald-500/30 rounded-xl md:rounded-2xl flex gap-3 md:gap-4 items-center mb-6 hover:scale-[1.02] transition-transform duration-300 group">
-                    <div class="w-8 h-8 md:w-10 md:h-10 bg-emerald-600 rounded-lg md:rounded-xl flex items-center justify-center shrink-0 animate-bounce group-hover:animate-pulse">
-                        <i class="fas fa-gift text-white text-xs"></i>
-                    </div>
-                    <div class="text-left">
-                        <p class="text-[8px] md:text-[10px] font-black text-emerald-400 uppercase tracking-widest">BONUS INSTANT:</p>
-                        <p class="text-[8px] md:text-[10px] text-white">CS WhatsApp AI Auto-Closing (Nilai Rp 497rb)</p>
-                        <p class="text-[7px] text-emerald-500">Gratis untuk 50 pendaftar pertama hari ini</p>
-                    </div>
-                </div>
-
-                <!-- CRO: Primary CTA dengan Micro-commitments -->
-                <div class="space-y-3">
-                    <a href="https://app.midtrans.com/payment-links/a9b6cbde-7a9f-4633-a6af-bdadec08400e" 
-                       target="_blank" 
-                       onclick="fbq('track', 'InitiateCheckout', { value: 145000, currency: 'IDR' });" 
-                       class="block w-full bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-600 text-white py-5 md:py-7 rounded-xl md:rounded-2xl font-black text-base md:text-2xl transition-all transform hover:scale-[1.02] shadow-2xl shadow-indigo-600/30 relative overflow-hidden group">
-                        <span class="relative z-10 flex items-center justify-center gap-3">
-                            MAU AKSES LIFETIME!
-                            <i class="fas fa-arrow-right text-sm group-hover:translate-x-2 transition-transform"></i>
-                        </span>
-                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                    </a>
-                    
-                    <!-- CRO: Micro-text untuk mengurangi keberatan -->
-                    <p class="text-[7px] md:text-[8px] text-slate-600 flex items-center justify-center gap-2">
-                        <i class="fas fa-lock text-emerald-500"></i>
-                        <span>Secure Checkout • Aktifasi Instant • Akses Langsung via Email</span>
-                    </p>
-                </div>
-
-                <!-- CRO: Trust Badges -->
-                <div class="mt-6 pt-4 border-t border-slate-800">
-                    <div class="flex flex-wrap items-center justify-center gap-3 md:gap-4">
-                        <img src="https://img.icons8.com/color/48/000000/visa.png" class="h-4 md:h-6 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all" alt="visa">
-                        <img src="https://img.icons8.com/color/48/000000/mastercard.png" class="h-4 md:h-6 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all" alt="mastercard">
-                        <img src="https://img.icons8.com/color/48/000000/verified-account.png" class="h-4 md:h-6 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all" alt="secure">
-                        <span class="text-[6px] md:text-[8px] text-slate-700 font-black uppercase tracking-widest">SSL Enkripsi 256-bit</span>
-                    </div>
-                </div>
-
-                <p class="mt-4 text-slate-500 text-[7px] md:text-[10px] font-bold uppercase tracking-widest flex items-center justify-center gap-2">
-                    <i class="fas fa-bolt text-yellow-500"></i>
-                    ⚠️ Hanya 8 slot tersisa dengan harga 145rb
-                    <i class="fas fa-bolt text-yellow-500"></i>
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- HAPUS MOBILE CTA FLOATING - Bagian ini dihapus seluruhnya -->
-    <!-- 
-    <div class="fixed bottom-4 left-4 right-4 z-50 md:hidden">
-        ...
-    </div>
-    -->
-
-    <!-- SECTION FAQ - DENGAN OBJECTION HANDLING -->
-    <section class="py-16 md:py-24 px-4 md:px-6 relative">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-indigo-600/5 blur-[100px] rounded-full -z-10"></div>
-        
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-12 md:mb-16 reveal">
-                <h2 class="text-2xl md:text-5xl font-black mb-4 md:mb-6 italic text-white">Pertanyaan <span class="text-indigo-500">Sebelum Beli</span></h2>
-                <p class="text-xs md:text-base text-slate-400 max-w-xl mx-auto">Jawaban untuk keraguan terbesar Anda.</p>
-            </div>
-
-            <div class="space-y-4 md:space-y-6">
-                <!-- FAQ 1 -->
-                <div class="glass-card p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/5 reveal" x-data="{ open: true }">
-                    <div class="flex justify-between items-center cursor-pointer" onclick="this.parentElement.classList.toggle('active')">
-                        <h3 class="font-bold text-sm md:text-lg text-white">Apakah benar hasil generate langsung bisa dipakai?</h3>
-                        <i class="fas fa-chevron-down text-indigo-400 transition-transform duration-300" :class="{'rotate-180': open}"></i>
-                    </div>
-                    <div class="mt-4 text-slate-400 text-xs md:text-sm leading-relaxed active:block">
-                        <span class="text-emerald-500 font-bold">✓ 100% siap pakai.</span> Setiap landing page yang di-generate sudah include HTML lengkap dengan Tailwind CSS. Tinggal upload ke hosting atau copy paste ke builder favorit Anda. Sudah teroptimasi mobile dan CRO.
-                    </div>
-                </div>
-
-                <!-- FAQ 2 -->
-                <div class="glass-card p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/5 reveal">
-                    <div class="flex justify-between items-center cursor-pointer" onclick="this.parentElement.classList.toggle('active')">
-                        <h3 class="font-bold text-sm md:text-lg text-white">Saya bukan programmer, bisa pakai?</h3>
-                        <i class="fas fa-chevron-down text-indigo-400"></i>
-                    </div>
-                    <div class="mt-4 text-slate-400 text-xs md:text-sm leading-relaxed hidden">
-                        <span class="text-emerald-500 font-bold">✓ Sangat bisa.</span> Anda cukup isi form produk, target audience, dan pilih framework. Sisanya AI yang kerja. Hasil generate bisa langsung di-copy ke Instagram, website, atau bahkan jadi materi iklan.
-                    </div>
-                </div>
-
-                <!-- FAQ 3 -->
-                <div class="glass-card p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/5 reveal">
-                    <div class="flex justify-between items-center cursor-pointer" onclick="this.parentElement.classList.toggle('active')">
-                        <h3 class="font-bold text-sm md:text-lg text-white">Apa bedanya dengan builder lain?</h3>
-                        <i class="fas fa-chevron-down text-indigo-400"></i>
-                    </div>
-                    <div class="mt-4 text-slate-400 text-xs md:text-sm leading-relaxed hidden">
-                        <span class="text-emerald-500 font-bold">✓ Bukan sekedar builder.</span> Kami adalah AI Copywriter + CRO Expert + Frontend Developer dalam satu platform. Builder lain cuma kasih template kosong, kami kasih landing page yang sudah terstruktur dengan framework copywriting dan psikologi konversi.
-                    </div>
-                </div>
-
-                <!-- FAQ 4 -->
-                <div class="glass-card p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/5 reveal">
-                    <div class="flex justify-between items-center cursor-pointer" onclick="this.parentElement.classList.toggle('active')">
-                        <h3 class="font-bold text-sm md:text-lg text-white">Apakah ada garansi uang kembali?</h3>
-                        <i class="fas fa-chevron-down text-indigo-400"></i>
-                    </div>
-                    <div class="mt-4 text-slate-400 text-xs md:text-sm leading-relaxed hidden">
-                        <span class="text-emerald-500 font-bold">✓ 30 Hari Garansi.</span> Jika dalam 30 hari Anda merasa tidak puas dengan hasilnya, kami kembalikan 100% uang Anda. Tanpa tanya-tanya. No risk buat Anda.
-                    </div>
-                </div>
-
-                <!-- FAQ 5 -->
-                <div class="glass-card p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/5 reveal">
-                    <div class="flex justify-between items-center cursor-pointer" onclick="this.parentElement.classList.toggle('active')">
-                        <h3 class="font-bold text-sm md:text-lg text-white">Apakah bonus CS AI benar-benar gratis?</h3>
-                        <i class="fas fa-chevron-down text-indigo-400"></i>
-                    </div>
-                    <div class="mt-4 text-slate-400 text-xs md:text-sm leading-relaxed hidden">
-                        <span class="text-emerald-500 font-bold">✓ Gratis selamanya.</span> Untuk 50 pendaftar pertama, Anda mendapatkan akses lifetime ke CS WhatsApp AI yang bisa closing 24/7. Nilai bonus Rp 497rb, tapi GRATIS untuk Anda hari ini.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 7: Final Push - DIPERTAJAM UNTUK KONVERSI -->
-    <section class="py-16 md:py-28 px-4 md:px-6 text-center bg-gradient-to-b from-slate-900/20 to-slate-950 relative overflow-hidden">
-        <!-- Background effect -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[700px] h-[300px] md:h-[700px] bg-indigo-600/20 blur-[100px] md:blur-[150px] rounded-full"></div>
-        
-        <div class="max-w-4xl mx-auto relative z-10 reveal">
-            <!-- Badge -->
-            <span class="bg-indigo-600/20 border border-indigo-500/30 px-4 py-1.5 rounded-full text-[9px] md:text-xs font-bold text-indigo-400 uppercase tracking-widest mb-6 inline-block">
-                ⚡ KEPUTUSAN 5 MENIT KE DEPAN
+        <div class="reveal mb-6 inline-block">
+            <span class="bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 px-4 py-2 rounded-full text-[10px] font-black tracking-widest uppercase">
+                🚀 KHUSUS UNTUK ADVERTISER & UMKM INDONESIA
             </span>
+        </div>
+
+        <h1 class="reveal font-extrabold text-4xl md:text-7xl mb-8 uppercase text-white leading-[1.1]">
+            <span class="gradient-text">Iklan Rame Klik</span> <br/>
+            <span class="text-white opacity-40">Tapi Chat WA</span> <br/>
+            <span class="text-red-500 italic underline decoration-wavy decoration-red-500/30 underline-offset-8">Sepi Kuburan?</span>
+        </h1>
+
+        <p class="reveal text-base md:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-12">
+            Gini lho bos, percuma iklanmu murah kalau Landing Page-mu "Bocor". LCC bantu kamu bikin Landing Page yang gak cuma cantik, tapi beneran <strong>nge-hook</strong> orang buat beli.
+        </p>
+
+        <div class="reveal flex flex-col items-center gap-6">
+            <button onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="cta-shine px-12 py-6 bg-indigo-600 text-white rounded-2xl font-black text-xl uppercase shadow-[0_20px_50px_rgba(99,102,241,0.4)] hover:-translate-y-1 transition-transform">
+                STOP BONCOS SEKARANG
+            </button>
             
-            <h2 class="text-3xl md:text-5xl font-black mb-6 md:mb-8 leading-tight">
-                Anda Sudah Habiskan Jutaan Untuk Iklan, <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-indigo-600">Sekarang Giliran Landing Page yang Bekerja.</span>
+            <div class="flex flex-col items-center gap-3">
+                <div class="flex -space-x-2">
+                    <img src="https://i.pravatar.cc/100?u=1" class="w-8 h-8 rounded-full border-2 border-[#020617]" alt="user">
+                    <img src="https://i.pravatar.cc/100?u=2" class="w-8 h-8 rounded-full border-2 border-[#020617]" alt="user">
+                    <img src="https://i.pravatar.cc/100?u=3" class="w-8 h-8 rounded-full border-2 border-[#020617]" alt="user">
+                    <img src="https://i.pravatar.cc/100?u=4" class="w-8 h-8 rounded-full border-2 border-[#020617]" alt="user">
+                </div>
+                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Bergabung dengan 1.240+ Advertiser Pro</p>
+            </div>
+        </div>
+
+        <div class="reveal mt-20 max-w-5xl mx-auto glass-card p-3 rounded-[32px] border-white/5 shadow-2xl">
+            <div class="aspect-video rounded-[24px] overflow-hidden bg-[#0f172a]">
+                <iframe class="w-full h-full border-none" src="https://www.youtube.com/embed/gYClkN0HHDU?rel=0&modestbranding=1" title="LCC Demo" allowFullScreen></iframe>
+            </div>
+        </div>
+    </header>
+
+    <!-- 🚩 SECTION 2: PROBLEMS -->
+    <section class="py-24 px-6 bg-[#020617] border-y border-white/5">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="reveal text-3xl md:text-6xl font-black uppercase text-white mb-16 italic">
+                Masalah <span class="text-red-500">Klasik</span> Advertiser.
             </h2>
             
-            <p class="text-base md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
-                Harga promo <span class="line-through text-slate-600">Rp 1.499.000</span> ini <span class="text-white font-bold">hanya Rp 145rb</span> untuk 8 orang berikutnya. 
-                Setelah itu kembali ke harga normal.
-            </p>
-
-            <!-- Stack of benefits -->
-            <div class="flex flex-wrap justify-center gap-3 md:gap-5 mb-10">
-                <div class="flex items-center gap-2 text-[9px] md:text-xs font-bold bg-slate-800/80 px-4 py-2 rounded-full border border-slate-700">
-                    <i class="fas fa-infinity text-emerald-500"></i> Unlimited LP
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="reveal glass-card p-10 rounded-[40px] text-left hover-glow transition-all">
+                    <i class="fas fa-ghost text-red-500 text-3xl mb-6"></i>
+                    <h3 class="text-xl font-black text-white mb-4 uppercase italic">Gak Nyambung</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Iklannya bahas 'Solusi Jerawat', tapi pas diklik malah masuk ke halaman umum. Buyer bingung, terus kabur. Saldo iklan ludes gitu aja.</p>
                 </div>
-                <div class="flex items-center gap-2 text-[9px] md:text-xs font-bold bg-slate-800/80 px-4 py-2 rounded-full border border-slate-700">
-                    <i class="fas fa-brain text-indigo-400"></i> 3 Framework
+                <div class="reveal glass-card p-10 rounded-[40px] text-left hover-glow transition-all">
+                    <i class="fas fa-tachometer-alt text-orange-500 text-3xl mb-6"></i>
+                    <h3 class="text-xl font-black text-white mb-4 uppercase italic">Loading Lemot</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Baru dibuka udah buffering. Di Indonesia sinyal gak selalu 5G bos. LP yang berat itu 'pembunuh' konversi nomor satu.</p>
                 </div>
-                <div class="flex items-center gap-2 text-[9px] md:text-xs font-bold bg-slate-800/80 px-4 py-2 rounded-full border border-slate-700">
-                    <i class="fas fa-magic text-purple-400"></i> AI CRO Engine
+                <div class="reveal glass-card p-10 rounded-[40px] text-left hover-glow transition-all">
+                    <i class="fas fa-clock text-yellow-500 text-3xl mb-6"></i>
+                    <h3 class="text-xl font-black text-white mb-4 uppercase italic">Admin Slow Respon</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Buyer chat jam 9 malam, baru dibalas besok pagi. Udah keburu dingin, atau malah udah beli di lapak sebelah.</p>
                 </div>
-                <div class="flex items-center gap-2 text-[9px] md:text-xs font-bold bg-slate-800/80 px-4 py-2 rounded-full border border-slate-700">
-                    <i class="fab fa-whatsapp text-emerald-500"></i> CS AI Bonus
-                </div>
-                <div class="flex items-center gap-2 text-[9px] md:text-xs font-bold bg-slate-800/80 px-4 py-2 rounded-full border border-slate-700">
-                    <i class="fas fa-shield-alt text-indigo-400"></i> Garansi 30 Hari
-                </div>
-            </div>
-
-            <!-- Dual CTAs -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-                <a href="#pricing" 
-                   onclick="fbq('track', 'Lead');"
-                   class="bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-600 text-white px-10 py-5 rounded-xl md:rounded-2xl font-black text-lg md:text-xl transition-all transform hover:scale-105 shadow-2xl shadow-indigo-600/30 min-w-[250px]">
-                    🚀 AMBIL AKSES LIFETIME
-                </a>
-                <a href="#live-preview" 
-                   class="bg-slate-800 hover:bg-slate-700 text-white px-10 py-5 rounded-xl md:rounded-2xl font-bold text-lg md:text-xl transition-all border border-slate-600 min-w-[250px] flex items-center justify-center gap-2">
-                    <i class="fas fa-play-circle text-indigo-400"></i> LIHAT DEMO DULU
-                </a>
-            </div>
-
-            <!-- Final micro-text -->
-            <div class="flex items-center justify-center gap-4 text-[8px] md:text-[10px] text-slate-600">
-                <span class="flex items-center gap-1"><i class="fas fa-lock text-emerald-500"></i> Pembayaran Aman</span>
-                <span>•</span>
-                <span class="flex items-center gap-1"><i class="fas fa-bolt text-yellow-500"></i> Aktivasi Instant</span>
-                <span>•</span>
-                <span class="flex items-center gap-1"><i class="fas fa-envelope text-indigo-400"></i> Akses Via Email</span>
-            </div>
-
-            <!-- Limited warning -->
-            <div class="mt-10 p-4 bg-red-600/10 border border-red-500/30 rounded-xl inline-block mx-auto">
-                <p class="text-[9px] md:text-xs text-red-400 font-bold flex items-center gap-2">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    HANYA 8 SLOT Rp 145rb TERSISA. HARGA NAIK SETELAHNYA!
-                    <i class="fas fa-exclamation-triangle"></i>
-                </p>
             </div>
         </div>
     </section>
 
-    <!-- Footer - PADDING RESPONSIF (TETAP SAMA) -->
-    <footer class="py-8 md:py-12 border-t border-slate-800 px-4 text-center">
-        <div class="flex items-center justify-center gap-2 mb-3 md:mb-6">
-            <div class="w-6 h-6 md:w-8 md:h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
-                <i class="fas fa-bolt text-xs md:text-sm text-white"></i>
+    <!-- 🚩 SECTION 3: ECOSYSTEM -->
+    <section class="py-24 px-6 bg-indigo-600/[0.02] relative overflow-hidden">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-20">
+                <span class="text-indigo-500 font-black tracking-[0.3em] uppercase text-[10px] mb-4 block">Solusi Lengkap Hulu ke Hilir</span>
+                <h2 class="reveal text-3xl md:text-7xl font-black uppercase text-white leading-none">
+                    EKOSISTEM <br />
+                    <span class="text-indigo-600 italic">ANTI-BONCOS.</span>
+                </h2>
             </div>
-            <span class="text-sm md:text-lg font-black tracking-tight uppercase">LP Builder <span class="text-indigo-500">Pro</span></span>
-        </div>
-        <p class="text-[8px] md:text-[10px] text-slate-600 uppercase tracking-widest font-bold">&copy; 2024 ConversionEngine Group. Semua Hak Dilindungi.</p>
-    </footer>
-    
-    <!-- Script untuk FAQ Toggle (sederhana) -->
-    <script>
-        // FAQ Toggle functionality
-        document.querySelectorAll('.glass-card .cursor-pointer').forEach(button => {
-            button.addEventListener('click', function() {
-                const answer = this.nextElementSibling;
-                const icon = this.querySelector('.fa-chevron-down');
-                
-                // Toggle answer visibility
-                answer.classList.toggle('hidden');
-                
-                // Rotate icon
-                icon.classList.toggle('rotate-180');
-            });
-        });
-    </script>
-    
-    <script>
-        // Scroll Reveal Logic
-        const revealElements = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
 
-        revealElements.forEach(el => observer.observe(el));
-
-        // Navbar Transition
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('bg-slate-950/90', 'backdrop-blur-xl', 'py-3', 'shadow-2xl');
-            } else {
-                nav.classList.remove('bg-slate-950/90', 'backdrop-blur-xl', 'py-3', 'shadow-2xl');
-            }
-        });
-
-                // Live Preview dengan pendekatan robust
-function loadExternalPreview(url, product, angle) {
-    // Track event
-    fbq('track', 'ViewContent', { 
-        content_name: product,
-        content_category: 'Landing Page Demo'
-    });
-
-    // Ambil elemen-elemen yang diperlukan
-    const overlay = document.getElementById('preview-overlay');
-    const loader = document.getElementById('preview-loader');
-    const initial = document.getElementById('preview-initial');
-    const contentDiv = document.getElementById('preview-content');
-    const iframe = document.getElementById('preview-iframe');
-    const slug = document.getElementById('preview-url-slug');
-
-    // Validasi semua elemen ada
-    if (!overlay || !loader || !initial || !contentDiv || !iframe || !slug) {
-        console.error('Elemen preview tidak ditemukan');
-        return;
-    }
-
-    // Update slug
-    slug.innerText = product.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-
-    // Reset state
-    iframe.classList.add('hidden');
-    iframe.src = '';
-    
-    // Sembunyikan semua konten
-    loader.classList.add('hidden');
-    initial.classList.add('hidden');
-    contentDiv.classList.add('hidden');
-    
-    // Tampilkan loader
-    loader.classList.remove('hidden');
-    overlay.classList.remove('hidden');
-    overlay.style.opacity = '1';
-
-    // Scroll ke preview
-    document.getElementById('live-preview').scrollIntoView({ behavior: 'smooth' });
-
-    // Mapping screenshot
-    const screenshotMap = {
-        'Travel Umroh': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551768/IMG_20260303_222730_oly5ci.jpg',
-        'Perumahan Komersil': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551769/IMG_20260303_222749_pbenek.jpg',
-        'Digital Brave Color': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551767/IMG_20260303_222835_fwwxjy.jpg',
-        'Produk Digital Brave Color': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551767/IMG_20260303_222835_fwwxjy.jpg',
-        'Digital Dark Mode': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551765/IMG_20260303_222805_hyjl3u.jpg',
-        'Produk Digital Dark Mode': 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551765/IMG_20260303_222805_hyjl3u.jpg'
-    };
-
-    const screenshotUrl = screenshotMap[product] || 'https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551769/IMG_20260303_222749_pbenek.jpg';
-
-    // Hapus timeout sebelumnya
-    if (window.previewTimeout) {
-        clearTimeout(window.previewTimeout);
-    }
-
-    // Timeout untuk simulasi loading
-    window.previewTimeout = setTimeout(() => {
-        // Sembunyikan loader
-        loader.classList.add('hidden');
-        
-        // Buat konten HTML
-        const contentHTML = `
-            <div class="relative w-full h-full flex items-end justify-center" 
-                 style="background-image: url('${screenshotUrl}?t=${Date.now()}'); 
-                        background-size: cover; 
-                        background-position: center;
-                        background-repeat: no-repeat;">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent"></div>
-                <div class="relative z-10 w-full p-6 md:p-8 text-center">
-                    <span class="inline-block bg-indigo-600/20 backdrop-blur-sm border border-indigo-500/30 px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-4">
-                        ${product}
-                    </span>
-                    <h3 class="text-xl md:text-2xl font-black text-white mb-3 drop-shadow-lg">${product}</h3>
-                    <p class="text-xs md:text-sm text-slate-300 mb-6 max-w-lg mx-auto drop-shadow">${angle || 'Landing page dengan konversi tinggi untuk campaign Anda'}</p>
-                    <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-4">
-                        <a href="${url}" target="_blank" 
-                           onclick="fbq('track', 'Lead');" 
-                           class="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3.5 rounded-xl font-bold text-sm transition-all transform hover:scale-105 shadow-2xl min-w-[180px]">
-                            <i class="fas fa-external-link-alt"></i>
-                            BUKA LIVE DEMO
-                        </a>
-                        <button onclick="loadExternalPreview('${url}', '${product}', '${angle}')" 
-                                class="inline-flex items-center justify-center gap-2 bg-slate-800/80 backdrop-blur-sm hover:bg-slate-700 text-white px-6 py-3.5 rounded-xl font-bold text-sm transition-all border border-white/10 min-w-[180px]">
-                            <i class="fas fa-sync-alt"></i>
-                            REFRESH
-                        </button>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="reveal glass-card p-12 rounded-[48px] flex gap-8 group hover:bg-indigo-600/5 transition-all">
+                    <div class="w-16 h-16 bg-indigo-600/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-indigo-600 transition-colors">
+                        <i class="fas fa-brain text-indigo-500 group-hover:text-white text-2xl"></i>
                     </div>
-                    <div class="inline-flex items-center gap-2 bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 rounded-full px-4 py-2">
-                        <i class="fas fa-link text-indigo-500 text-[9px]"></i>
-                        <span class="text-[8px] md:text-[9px] text-slate-400 font-mono truncate max-w-[200px] md:max-w-xs">${url}</span>
-                        <button onclick="navigator.clipboard.writeText('${url}'); alert('Link copied!')" class="text-slate-500 hover:text-indigo-400 transition-colors" title="Copy link">
-                            <i class="fas fa-copy text-[9px]"></i>
-                        </button>
+                    <div>
+                        <h3 class="text-xl font-black italic text-white mb-3 uppercase tracking-tight">01. Riset & Strategy AI</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">AI kita bakal riset kompetitor & buatin headline persuasif yang bikin orang 'gatel' mau beli.</p>
                     </div>
-                    <p class="text-[7px] text-slate-600 mt-4">Klik tombol untuk membuka halaman asli di tab baru</p>
+                </div>
+                <div class="reveal glass-card p-12 rounded-[48px] flex gap-8 group hover:bg-indigo-600/5 transition-all">
+                    <div class="w-16 h-16 bg-indigo-600/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-indigo-600 transition-colors">
+                        <i class="fas fa-video text-indigo-500 group-hover:text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-black italic text-white mb-3 uppercase tracking-tight">02. CCTV Monitor</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Kamu bisa liat rekaman pengunjungmu. Mereka beneran baca gak? Semua keliatan jelas.</p>
+                    </div>
                 </div>
             </div>
-        `;
-        
-        // Isi contentDiv dengan HTML baru
-        contentDiv.innerHTML = contentHTML;
-        
-        // Sembunyikan loader, tampilkan content
-        loader.classList.add('hidden');
-        initial.classList.add('hidden');
-        contentDiv.classList.remove('hidden');
-        
-    }, 800);
-}
+        </div>
+    </section>
 
-// Fungsi untuk reset preview ke keadaan awal
-function resetPreview() {
-    const overlay = document.getElementById('preview-overlay');
-    const loader = document.getElementById('preview-loader');
-    const initial = document.getElementById('preview-initial');
-    const contentDiv = document.getElementById('preview-content');
-    const iframe = document.getElementById('preview-iframe');
-    const slug = document.getElementById('preview-url-slug');
-    
-    if (overlay) overlay.classList.remove('hidden');
-    if (loader) loader.classList.add('hidden');
-    if (initial) initial.classList.remove('hidden');
-    if (contentDiv) contentDiv.classList.add('hidden');
-    if (iframe) {
-        iframe.classList.add('hidden');
-        iframe.src = '';
-    }
-    if (slug) slug.innerText = 'demo-preview';
-}
+    <!-- 🚩 SECTION 5: DEMO -->
+    <section id="demo" class="py-24 px-6 bg-[#020617]">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="reveal text-3xl md:text-6xl font-black uppercase text-white mb-16 italic leading-none">
+                KLIK NICHE ANDA, <br />
+                <span class="text-indigo-600">LIHAT MAGIC-NYA.</span>
+            </h2>
 
-// Panggil resetPreview saat halaman dimuat
-document.addEventListener('DOMContentLoaded', resetPreview);                
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12" id="niche-selectors">
+                <!-- Niche buttons akan di-render via JS -->
+            </div>
 
-        // Legacy function renamed to avoid conflict (for original niche simulation)
-        // We keep it but not used in new cards
-        window.generateFromNiche = function(product, angle) {
-            loadExternalPreview('https://preneurmastery.github.io/builder2/', product, angle);
+            <div class="reveal glass-card rounded-[48px] overflow-hidden border-white/10 p-2 relative h-[450px] md:h-[600px] shadow-2xl" id="preview-container">
+                <div id="preview-placeholder" class="absolute inset-0 flex flex-col items-center justify-center text-slate-600 p-8 text-center bg-[#0f172a]/30">
+                    <i class="fas fa-mouse-pointer text-5xl mb-6 floating text-indigo-600/30"></i>
+                    <p class="font-black uppercase text-xs tracking-[0.4em] opacity-40">Klik salah satu niche buat liat contoh landing page-nya</p>
+                </div>
+                <div id="preview-loading" class="hidden absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#020617]/95 text-white font-black uppercase tracking-[0.3em]">
+                    <i class="fas fa-cog fa-spin text-5xl mb-6 text-indigo-500"></i>
+                    AI SEDANG BEKERJA...
+                </div>
+                <div id="preview-content" class="hidden h-full w-full relative group">
+                    <div class="h-full w-full overflow-y-auto custom-scroll">
+                        <img id="preview-img" src="" alt="Preview" class="w-full block">
+                    </div>
+                    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 transition-transform group-hover:scale-110">
+                        <a id="preview-link" href="#" target="_blank" class="px-10 py-5 bg-indigo-600 text-white rounded-full font-black text-xs uppercase shadow-xl whitespace-nowrap tracking-wider">BUKA PREVIEW LIVE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🚩 SECTION 9: PRICING -->
+    <section id="pricing" class="py-24 px-6 bg-indigo-600/5">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="reveal text-4xl md:text-8xl font-black uppercase text-white mb-16 italic leading-none">INVESTASI <br/><span class="text-indigo-600">ANTI-BONCOS.</span></h2>
+            <div class="reveal glass-card p-12 md:p-20 rounded-[64px] border-2 border-indigo-500/50 bg-indigo-950/20 max-w-2xl mx-auto relative overflow-hidden shadow-[0_0_100px_rgba(99,102,241,0.3)] transition-all hover:scale-[1.02]">
+                <div class="absolute top-10 right-[-50px] bg-red-600 text-white px-12 py-2 transform rotate-45 font-black text-[10px] uppercase tracking-widest shadow-xl">PROMO LAUNCH</div>
+                <div class="text-[11px] font-black text-indigo-400 uppercase tracking-[0.5em] mb-8 italic">LIFETIME ACCESS • SEKALI BAYAR</div>
+                <div class="flex items-center justify-center gap-4 mb-10">
+                    <span class="text-slate-600 text-2xl font-bold line-through">Rp 1.499rb</span>
+                    <div class="flex items-start gap-2">
+                        <span class="text-2xl font-black mt-3 text-white">Rp</span>
+                        <span class="text-6xl md:text-9xl font-black italic text-white leading-none">149rb</span>
+                    </div>
+                </div>
+                <div class="space-y-4 mb-14 text-left max-w-sm mx-auto">
+                    <div class="flex items-start gap-4 text-slate-300 text-sm font-medium"><i class="fas fa-check-circle text-green-500 mt-1"></i><span class="text-white font-bold">Unlimited AI Landing Pages</span></div>
+                    <div class="flex items-start gap-4 text-slate-300 text-sm font-medium"><i class="fas fa-check-circle text-green-500 mt-1"></i><span class="text-white font-bold">Full Session Replay & CCTV Monitor</span></div>
+                    <div class="flex items-start gap-4 text-slate-300 text-sm font-medium"><i class="fas fa-check-circle text-green-500 mt-1"></i><span class="text-white font-bold">Meta & TikTok Ads ROI Control</span></div>
+                    <div class="flex items-start gap-4 text-slate-300 text-sm font-medium"><i class="fas fa-check-circle text-green-500 mt-1"></i><span class="text-white font-bold">Hosting Super Cepat (Lifetime)</span></div>
+                </div>
+                <button onclick="handleJoin()" class="cta-shine w-full py-8 bg-indigo-600 text-white rounded-[32px] font-black text-2xl italic uppercase shadow-xl hover:-translate-y-1 transition-all">GABUNG SEKARANG</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🚩 FOOTER -->
+    <footer class="py-16 px-6 border-t border-white/5 text-center bg-[#020617]">
+        <div class="mb-8 flex justify-center items-center gap-3">
+            <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center"><i class="fas fa-bolt text-white text-sm"></i></div>
+            <span class="text-lg font-black uppercase italic text-white tracking-tighter">LCC <span class="text-indigo-600">Intelligence</span></span>
+        </div>
+        <p class="text-slate-600 text-[10px] uppercase font-black tracking-[0.4em]">© 2026 PRENEUR MASTERY • THE 1% ELITE HULU-HILIR ECOSYSTEM</p>
+    </footer>
+
+    <script>
+        /**
+         * 🛡️ PERBAIKAN SCRIPT ERROR & LOAD FAILED
+         * Menambahkan wrapper pengaman untuk semua fungsi pihak ketiga dan inisialisasi aman.
+         */
+
+        // 1. Inisialisasi Mock/Wrapper untuk FB Pixel guna mencegah "Script Error" jika file tidak terjangkau (CORS/AdBlock)
+        window.fbq = window.fbq || function() { (window.fbq.q = window.fbq.q || []).push(arguments); };
+        window.fbq.l = +new Date();
+        
+        // ─── Countdown Logic ─────────────────────────────────────────────────
+        let secs = 8130;
+        const countdownEl = document.getElementById('countdown');
+        if (countdownEl) {
+            const timerInterval = setInterval(() => {
+                if (secs > 0) {
+                    secs--;
+                    const h = String(Math.floor(secs / 3600)).padStart(2, "0");
+                    const m = String(Math.floor((secs % 3600) / 60)).padStart(2, "0");
+                    const s = String(secs % 60).padStart(2, "0");
+                    countdownEl.innerText = `${h}:${m}:${s}`;
+                } else {
+                    clearInterval(timerInterval);
+                }
+            }, 1000);
+        }
+
+        // ─── Scroll Reveal Logic ─────────────────────────────────────────────
+        const setupReveal = () => {
+            if (!('IntersectionObserver' in window)) return;
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) e.target.classList.add('active');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
         };
+
+        // ─── Niche Preview Logic ─────────────────────────────────────────────
+        const niches = [
+            { icon: "fa-home", color: "#10b981", bg: "rgba(16,185,129,0.2)", label: "Properti", url: "https://preneurmastery.github.io/perum/", screenshot: "https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551769/IMG_20260303_222749_pbenek.jpg" },
+            { icon: "fa-kaaba", color: "#3b82f6", bg: "rgba(59,130,246,0.2)", label: "Travel", url: "https://preneurmastery.github.io/umroh/", screenshot: "https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551768/IMG_20260303_222730_oly5ci.jpg" },
+            { icon: "fa-moon", color: "#a855f7", bg: "rgba(168,85,247,0.2)", label: "Digital", url: "https://preneurmastery.github.io/builder/", screenshot: "https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551765/IMG_20260303_222805_hyjl3u.jpg" },
+            { icon: "fa-palette", color: "#ec4899", bg: "rgba(236,72,153,0.2)", label: "Workshop", url: "https://preneurmastery.github.io/builder2/", screenshot: "https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551767/IMG_20260303_222835_fwwxjy.jpg" },
+        ];
+
+        const setupNiches = () => {
+            const selectorsContainer = document.getElementById('niche-selectors');
+            if (!selectorsContainer) return;
+            
+            selectorsContainer.innerHTML = ''; 
+            niches.forEach((n) => {
+                const div = document.createElement('div');
+                div.className = `reveal cursor-pointer glass-card p-6 rounded-3xl border border-white/5 transition-all hover:border-indigo-600`;
+                div.innerHTML = `
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style="background-color: ${n.bg}">
+                        <i class="fas ${n.icon}" style="color: ${n.color}; font-size: 1.2rem;"></i>
+                    </div>
+                    <span class="text-[10px] font-black uppercase text-white tracking-widest">${n.label}</span>
+                `;
+                div.onclick = () => selectNiche(n, div);
+                selectorsContainer.appendChild(div);
+            });
+        };
+
+        function selectNiche(n, element) {
+            document.querySelectorAll('#niche-selectors > div').forEach(el => el.classList.remove('border-indigo-600', 'bg-indigo-600/20'));
+            element.classList.add('border-indigo-600', 'bg-indigo-600/20');
+            
+            const placeholder = document.getElementById('preview-placeholder');
+            const loader = document.getElementById('preview-loading');
+            const content = document.getElementById('preview-content');
+            const img = document.getElementById('preview-img');
+            const link = document.getElementById('preview-link');
+
+            if (placeholder) placeholder.classList.add('hidden');
+            if (content) content.classList.add('hidden');
+            if (loader) loader.classList.remove('hidden');
+
+            // Tracking aman dengan try-catch
+            try {
+                if (typeof window.fbq === 'function') {
+                    window.fbq("track", "ViewContent", { content_name: n.label });
+                }
+            } catch(e) { console.warn("FB Tracking failed", e); }
+
+            setTimeout(() => {
+                if (loader) loader.classList.add('hidden');
+                if (content) content.classList.remove('hidden');
+                if (img) img.src = n.screenshot;
+                if (link) link.href = n.url;
+            }, 800);
+        }
+
+        function handleJoin() {
+            try {
+                if (typeof window.fbq === 'function') {
+                    window.fbq("track", "InitiateCheckout", { value: 149000, currency: "IDR" });
+                }
+            } catch(e) { console.warn("FB Tracking failed", e); }
+            window.location.href = "https://app.midtrans.com/payment-links/18a1d04f-5a9d-426b-a1f2-706318f0cf22";
+        }
+
+        // ─── External Scripts Loading with Protection ───────────────────────
+        const loadExternalScripts = () => {
+            // FB Pixel Script Tag
+            const fbScript = document.createElement('script');
+            fbScript.async = true;
+            fbScript.src = 'https://connect.facebook.net/en_US/fbevents.js';
+            fbScript.onerror = () => console.warn("Meta Pixel failed to load (blocked or network error). Page functionality is preserved.");
+            document.head.appendChild(fbScript);
+            
+            // Inisialisasi awal
+            window.fbq('init', '612806087911246');
+            window.fbq('track', 'PageView');
+
+            // Chatbot dengan try-catch & error handling eksplisit
+            const chatbotScript = document.createElement('script');
+            chatbotScript.async = true;
+            chatbotScript.src = 'https://preneurmastery.com/chatbot/widget.js';
+            chatbotScript.setAttribute('data-project-id', '69cebe31315e9463e702d1ed');
+            chatbotScript.onload = () => console.log("Chatbot loaded.");
+            chatbotScript.onerror = () => {
+                // Menangani error "Load failed" agar tidak membocorkan error ke global scope
+                console.warn("Chatbot widget failed to load. This may be due to browser security settings or domain restrictions.");
+            };
+            
+            // Memasukkan skrip ke body
+            try {
+                document.body.appendChild(chatbotScript);
+            } catch (e) {
+                console.error("Failed to append chatbot script", e);
+            }
+        };
+
+        // Inisialisasi Utama
+        window.addEventListener('load', () => {
+            setupNiches();
+            setupReveal();
+            loadExternalScripts();
+        });
     </script>
 </body>
 </html>
