@@ -2,35 +2,50 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LCC Intelligence - Solusi Landing Page Anti-Boncos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>LCC Intelligence | Solusi Landing Page & Tracking Anti-Boncos</title>
     
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS for Layout -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
+    <!-- Meta Pixel Code -->
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#6366f1',
-                        secondary: '#10b981',
-                        dark: '#020617',
-                        card: '#1e293b',
-                    }
-                }
-            }
-        }
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '612806087911246');
+        fbq('track', 'PageView');
     </script>
+    <noscript>
+        <img height="1" width="1" style="display:none" 
+             src="https://www.facebook.com/tr?id=612806087911246&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- End Meta Pixel Code -->
 
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --primary: #6366f1;
+            --secondary: #10b981;
+            --dark: #020617;
+            --card: #1e293b;
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #020617;
+            background-color: var(--dark);
             color: #f8fafc;
             overflow-x: hidden;
         }
@@ -69,6 +84,13 @@
             50% { transform: translateY(-10px); }
         }
 
+        .step-number {
+            background: linear-gradient(135deg, #6366f1, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         .cta-shine {
             position: relative;
             overflow: hidden;
@@ -86,18 +108,52 @@
         .custom-scroll::-webkit-scrollbar { width: 4px; }
         .custom-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
         .custom-scroll::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.2); border-radius: 10px; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem !important; line-height: 1.2 !important; }
+            h2 { font-size: 1.8rem !important; }
+        }
+        
+        .faq-content {
+            max-height: 0;
+            opacity: 0;
+            transition: all 0.5s ease-in-out;
+            overflow: hidden;
+        }
+        .faq-content.open {
+            max-height: 500px;
+            opacity: 1;
+            padding-bottom: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 1.5rem;
+        }
+        .chevron-icon {
+            transition: transform 0.5s;
+        }
+        .chevron-icon.rotate {
+            transform: rotate(180deg);
+        }
+        
+        /* Highlight untuk tracking */
+        .trackable {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .trackable:active {
+            transform: scale(0.98);
+        }
     </style>
 </head>
 <body class="selection:bg-indigo-500 selection:text-white">
 
     <!-- 🚩 TOP BANNER -->
-    <div id="top-banner" class="bg-red-600 py-3 text-center text-white text-[9px] md:text-[10px] font-black z-[100] relative px-4 uppercase tracking-wider">
-        🔥 DISKON 90% BERAKHIR DALAM: <span id="countdown">00:00:00</span>
+    <div class="bg-red-600 py-3 text-center text-white text-[9px] md:text-[10px] font-black z-[100] relative px-4 uppercase tracking-wider">
+        🔥 DISKON 90% BERAKHIR DALAM: <span id="countdown">02:15:30</span>
     </div>
 
     <!-- 🚩 NAVBAR -->
     <nav class="sticky top-0 z-[90] bg-[#020617]/80 backdrop-blur-xl border-b border-white/5 px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <div class="flex items-center gap-3 cursor-pointer" onclick="trackEvent('Click_Logo', 'Logo LCC'); window.scrollTo({top:0, behavior:'smooth'})">
             <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/30">
                 <i class="fas fa-bolt text-white text-xl"></i>
             </div>
@@ -105,10 +161,10 @@
                 LCC <span class="text-indigo-500 font-normal not-italic">Intelligence</span>
             </span>
         </div>
-        <button onclick="location.href='/login'" class="px-6 py-2 text-[10px] font-black uppercase text-slate-300 border border-white/10 rounded-xl hover:bg-white/5 transition-all">Login</button>
+        <button onclick="trackEvent('Click_Login', 'Navbar Login'); window.location.href='/login'" class="px-6 py-2 text-[10px] font-black uppercase text-slate-300 border border-white/10 rounded-xl hover:bg-white/5 transition-all">Login</button>
     </nav>
 
-    <!-- 🚩 SECTION 1: HERO -->
+    <!-- 🚩 SECTION 1: THE BIG PAIN -->
     <header class="relative pt-20 pb-20 px-6 text-center overflow-hidden">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-indigo-600/10 blur-[120px] -z-10 rounded-full"></div>
         
@@ -119,26 +175,26 @@
         </div>
 
         <h1 class="reveal font-extrabold text-4xl md:text-7xl mb-8 uppercase text-white leading-[1.1]">
-            <span class="gradient-text">Iklan Rame Klik</span> <br/>
-            <span class="text-white opacity-40">Tapi Chat WA</span> <br/>
-            <span class="text-red-500 italic underline decoration-wavy decoration-red-500/30 underline-offset-8">Sepi Kuburan?</span>
+            <span class="gradient-text">Banyak Klik Tapi</span> <br/>
+            <span class="text-white opacity-40">Gak Tau Buyer</span> <br/>
+            <span class="text-red-500 italic underline decoration-wavy decoration-red-500/30 underline-offset-8">Kabur di Mana?</span>
         </h1>
 
         <p class="reveal text-base md:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-12">
-            Gini lho bos, percuma iklanmu murah kalau Landing Page-mu "Bocor". LCC bantu kamu bikin Landing Page yang gak cuma cantik, tapi beneran <strong>nge-hook</strong> orang buat beli.
+            Gini lho bos, iklan rame tapi gak closing itu biasanya karena Landing Page-mu "Bocor" tapi kamu gak tau di mana. LCC kasih kamu <strong>Mata Intelijen</strong> buat liat persis perilaku buyer-mu.
         </p>
 
         <div class="reveal flex flex-col items-center gap-6">
-            <button onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="cta-shine px-12 py-6 bg-indigo-600 text-white rounded-2xl font-black text-xl uppercase shadow-[0_20px_50px_rgba(99,102,241,0.4)] hover:-translate-y-1 transition-transform">
+            <button onclick="trackEvent('Click_CTA_Hero', 'Stop Boncos Sekarang'); document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="cta-shine px-12 py-6 bg-indigo-600 text-white rounded-2xl font-black text-xl uppercase shadow-[0_20px_50px_rgba(99,102,241,0.4)] hover:-translate-y-1 transition-transform">
                 STOP BONCOS SEKARANG
             </button>
             
             <div class="flex flex-col items-center gap-3">
                 <div class="flex -space-x-2">
-                    <img src="https://i.pravatar.cc/100?u=1" class="w-8 h-8 rounded-full border-2 border-[#020617]" alt="user">
-                    <img src="https://i.pravatar.cc/100?u=2" class="w-8 h-8 rounded-full border-2 border-[#020617]" alt="user">
-                    <img src="https://i.pravatar.cc/100?u=3" class="w-8 h-8 rounded-full border-2 border-[#020617]" alt="user">
-                    <img src="https://i.pravatar.cc/100?u=4" class="w-8 h-8 rounded-full border-2 border-[#020617]" alt="user">
+                    <img src="https://i.pravatar.cc/100?u=1" class="w-8 h-8 rounded-full border-2 border-[#020617]" alt="user" />
+                    <img src="https://i.pravatar.cc/100?u=2" class="w-8 h-8 rounded-full border-2 border-[#020617]" alt="user" />
+                    <img src="https://i.pravatar.cc/100?u=3" class="w-8 h-8 rounded-full border-2 border-[#020617]" alt="user" />
+                    <img src="https://i.pravatar.cc/100?u=4" class="w-8 h-8 rounded-full border-2 border-[#020617]" alt="user" />
                 </div>
                 <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Bergabung dengan 1.240+ Advertiser Pro</p>
             </div>
@@ -151,7 +207,7 @@
         </div>
     </header>
 
-    <!-- 🚩 SECTION 2: PROBLEMS -->
+    <!-- 🚩 SECTION 2: THE AGITATOR -->
     <section class="py-24 px-6 bg-[#020617] border-y border-white/5">
         <div class="max-w-6xl mx-auto text-center">
             <h2 class="reveal text-3xl md:text-6xl font-black uppercase text-white mb-16 italic">
@@ -178,8 +234,9 @@
         </div>
     </section>
 
-    <!-- 🚩 SECTION 3: ECOSYSTEM -->
+    <!-- 🚩 SECTION 3: THE REVEAL (THE HULU-HILIR ECOSYSTEM) -->
     <section class="py-24 px-6 bg-indigo-600/[0.02] relative overflow-hidden">
+        <div class="absolute top-1/2 left-0 w-[400px] h-[400px] bg-indigo-600/5 blur-[100px] -z-10 rounded-full"></div>
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-20">
                 <span class="text-indigo-500 font-black tracking-[0.3em] uppercase text-[10px] mb-4 block">Solusi Lengkap Hulu ke Hilir</span>
@@ -187,6 +244,7 @@
                     EKOSISTEM <br />
                     <span class="text-indigo-600 italic">ANTI-BONCOS.</span>
                 </h2>
+                <p class="reveal text-slate-500 mt-6 max-w-2xl mx-auto font-medium">LCC itu satu tempat buat ngurus semua: Riset, Landing Page, Pantau Pengunjung, sampe Monitor Untung Iklan.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -196,7 +254,7 @@
                     </div>
                     <div>
                         <h3 class="text-xl font-black italic text-white mb-3 uppercase tracking-tight">01. Riset & Strategy AI</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">AI kita bakal riset kompetitor & buatin headline persuasif yang bikin orang 'gatel' mau beli.</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Gak usah pusing mikir copy-writing. AI (Hulu) kita bakal riset kompetitor & buatin headline persuasif yang bikin orang 'gatel' mau beli.</p>
                     </div>
                 </div>
                 <div class="reveal glass-card p-12 rounded-[48px] flex gap-8 group hover:bg-indigo-600/5 transition-all">
@@ -205,14 +263,56 @@
                     </div>
                     <div>
                         <h3 class="text-xl font-black italic text-white mb-3 uppercase tracking-tight">02. CCTV Monitor</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">Kamu bisa liat rekaman pengunjungmu. Mereka beneran baca gak? Semua keliatan jelas.</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Kamu bisa liat rekaman (Tengah) pengunjungmu. Mereka beneran baca gak? Atau berhenti pas liat harga? Semua keliatan jelas.</p>
+                    </div>
+                </div>
+                <div class="reveal glass-card p-12 rounded-[48px] flex gap-8 group hover:bg-indigo-600/5 transition-all">
+                    <div class="w-16 h-16 bg-indigo-600/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-indigo-600 transition-colors">
+                        <i class="fas fa-robot text-indigo-500 group-hover:text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-black italic text-white mb-3 uppercase tracking-tight">03. Sales Agent AI</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Kayak punya admin yang gak pernah tidur. Siap jawab pertanyaan buyer di Landing Page-mu kapan aja, 24/7 (Closer).</p>
+                    </div>
+                </div>
+                <div class="reveal glass-card p-12 rounded-[48px] flex gap-8 group hover:bg-indigo-600/5 transition-all">
+                    <div class="w-16 h-16 bg-indigo-600/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-indigo-600 transition-colors">
+                        <i class="fas fa-chart-line text-indigo-500 group-hover:text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-black italic text-white mb-3 uppercase tracking-tight">04. ROI Dash Control</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Langsung ketauan iklan mana yang profit (Hilir). Gak perlu buka Ads Manager yang ribet itu, semua laporannya ada di satu dashboard.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 🚩 SECTION 5: DEMO -->
+    <!-- 🚩 SECTION 4: THE INTEL -->
+    <section class="py-24 px-6 bg-indigo-600/5 text-left relative overflow-hidden">
+        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 md:gap-24">
+            <div class="reveal flex-1 px-6">
+                <span class="text-red-500 font-black tracking-[0.3em] uppercase text-[9px] mb-6 block italic">Intelijen Tracking</span>
+                <h2 class="font-heading text-3xl md:text-7xl italic leading-[1.1] mb-8 uppercase text-white font-black">PASANG <span class="text-red-500">CCTV</span> DI <br />LANDING PAGE.</h2>
+                <p class="text-slate-400 text-lg leading-relaxed mb-10">Berhenti menebak-nebak. LCC otomatis merekam layar pengunjung Anda. Tonton ulang gerakannya untuk melihat persis di mana mereka bingung atau kenapa mereka langsung nutup tab tanpa beli.</p>
+                <div class="flex gap-4 p-6 bg-white/5 rounded-3xl border border-white/5 italic text-sm text-indigo-300">
+                    <i class="fas fa-search mt-1"></i>"Bos, orang kabur di bagian testimoni. AI sarankan ganti dengan testimoni video biar lebih kredibel."
+                </div>
+            </div>
+            <div class="reveal flex-1 w-full max-w-lg glass-card aspect-video rounded-[32px] overflow-hidden border-white/10 relative shadow-2xl">
+                <div class="absolute inset-0 bg-red-600/10 animate-pulse"></div>
+                <div class="absolute top-4 left-4 bg-red-600 px-3 py-1 rounded-full text-[9px] font-black text-white flex items-center gap-2">
+                    <span class="w-2 h-2 bg-white rounded-full animate-ping"></span> LIVE REPLAY RECORDING
+                </div>
+                <img src="https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&fit=crop&q=80&w=2070" class="w-full h-full object-cover opacity-30" alt="CCTV Replay" />
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <i class="fas fa-play-circle text-6xl text-white/20"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🚩 SECTION 5: THE DEMO -->
     <section id="demo" class="py-24 px-6 bg-[#020617]">
         <div class="max-w-6xl mx-auto text-center">
             <h2 class="reveal text-3xl md:text-6xl font-black uppercase text-white mb-16 italic leading-none">
@@ -221,31 +321,147 @@
             </h2>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12" id="niche-selectors">
-                <!-- Niche buttons akan di-render via JS -->
+                <div class="reveal cursor-pointer glass-card p-6 rounded-3xl border border-white/5 transition-all" onclick="selectNiche(0, this)">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style="background-color: rgba(16,185,129,0.2)">
+                        <i class="fas fa-home" style="color: #10b981; font-size: 1.2rem;"></i>
+                    </div>
+                    <span class="text-[10px] font-black uppercase text-white tracking-widest">Properti</span>
+                </div>
+                <div class="reveal cursor-pointer glass-card p-6 rounded-3xl border border-white/5 transition-all" onclick="selectNiche(1, this)">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style="background-color: rgba(59,130,246,0.2)">
+                        <i class="fas fa-kaaba" style="color: #3b82f6; font-size: 1.2rem;"></i>
+                    </div>
+                    <span class="text-[10px] font-black uppercase text-white tracking-widest">Travel</span>
+                </div>
+                <div class="reveal cursor-pointer glass-card p-6 rounded-3xl border border-white/5 transition-all" onclick="selectNiche(2, this)">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style="background-color: rgba(168,85,247,0.2)">
+                        <i class="fas fa-moon" style="color: #a855f7; font-size: 1.2rem;"></i>
+                    </div>
+                    <span class="text-[10px] font-black uppercase text-white tracking-widest">Digital</span>
+                </div>
+                <div class="reveal cursor-pointer glass-card p-6 rounded-3xl border border-white/5 transition-all" onclick="selectNiche(3, this)">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style="background-color: rgba(236,72,153,0.2)">
+                        <i class="fas fa-palette" style="color: #ec4899; font-size: 1.2rem;"></i>
+                    </div>
+                    <span class="text-[10px] font-black uppercase text-white tracking-widest">Workshop</span>
+                </div>
             </div>
 
-            <div class="reveal glass-card rounded-[48px] overflow-hidden border-white/10 p-2 relative h-[450px] md:h-[600px] shadow-2xl" id="preview-container">
-                <div id="preview-placeholder" class="absolute inset-0 flex flex-col items-center justify-center text-slate-600 p-8 text-center bg-[#0f172a]/30">
+            <div id="demo-container" class="reveal glass-card rounded-[48px] overflow-hidden border-white/10 p-2 relative h-[450px] md:h-[600px] shadow-2xl">
+                <div id="demo-placeholder" class="absolute inset-0 flex flex-col items-center justify-center text-slate-600 p-8 text-center bg-[#0f172a]/30">
                     <i class="fas fa-mouse-pointer text-5xl mb-6 floating text-indigo-600/30"></i>
                     <p class="font-black uppercase text-xs tracking-[0.4em] opacity-40">Klik salah satu niche buat liat contoh landing page-nya</p>
                 </div>
-                <div id="preview-loading" class="hidden absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#020617]/95 text-white font-black uppercase tracking-[0.3em]">
+                <div id="demo-loading" class="hidden absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#020617]/95 text-white font-black uppercase tracking-[0.3em]">
                     <i class="fas fa-cog fa-spin text-5xl mb-6 text-indigo-500"></i>
                     AI SEDANG BEKERJA...
                 </div>
-                <div id="preview-content" class="hidden h-full w-full relative group">
+                <div id="demo-preview" class="hidden h-full w-full relative group">
                     <div class="h-full w-full overflow-y-auto custom-scroll">
-                        <img id="preview-img" src="" alt="Preview" class="w-full block">
+                        <img id="preview-img" src="" alt="Preview" class="w-full block" />
                     </div>
                     <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 transition-transform group-hover:scale-110">
-                        <a id="preview-link" href="#" target="_blank" class="px-10 py-5 bg-indigo-600 text-white rounded-full font-black text-xs uppercase shadow-xl whitespace-nowrap tracking-wider">BUKA PREVIEW LIVE</a>
+                        <a id="preview-link" href="#" target="_blank" rel="noreferrer" class="px-10 py-5 bg-indigo-600 text-white rounded-full font-black text-xs uppercase shadow-xl whitespace-nowrap tracking-wider">BUKA PREVIEW LIVE</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 🚩 SECTION 9: PRICING -->
+    <!-- 🚩 SECTION 6: THE BRAIN -->
+    <section class="py-24 px-6 bg-indigo-600/5 text-left relative overflow-hidden border-y border-white/5">
+        <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 md:gap-24">
+            <div class="reveal flex-1 px-6">
+                <h2 class="font-heading text-3xl md:text-7xl italic leading-[1.1] mb-8 uppercase text-white font-black">OTAK <span class="gradient-text">INTELLIGENCE</span> <br />INSIGHT FUNNEL.</h2>
+                <p class="text-slate-400 text-lg leading-relaxed mb-10">Bukan sekadar dashboard angka yang bikin pusing. Master AI LCC membaca seluruh data ekosistem Anda dan memberikan rekomendasi strategis layaknya konsultan marketing pribadi pro.</p>
+                <div class="space-y-6">
+                    <div class="flex gap-4 p-6 bg-white/5 rounded-3xl border border-indigo-500/20 italic text-sm text-indigo-300 shadow-lg shadow-indigo-500/5">
+                        <i class="fas fa-comment-dots mt-1"></i>"Bos, pengunjung Landing Page Properti kabur di bagian harga. AI sarankan ubah headline ke penekanan Cicilan Ringan."
+                    </div>
+                </div>
+            </div>
+            <div class="reveal flex-1 w-full max-w-lg px-2 text-center">
+                <div class="glass-card p-12 rounded-[56px] border-indigo-500/30 bg-[#020617]/50 relative">
+                    <div class="absolute -top-6 -right-6 w-20 h-20 bg-indigo-600 rounded-full blur-[40px] opacity-20"></div>
+                    <i class="fas fa-brain text-7xl text-indigo-500 mb-8 floating shadow-indigo-500/50"></i>
+                    <div class="text-2xl font-black text-white italic uppercase tracking-tighter">AI MASTER ASSISTANT</div>
+                    <p class="text-slate-500 text-[10px] font-bold uppercase mt-4 tracking-widest">Powered by Gemini & Kimi K2</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🚩 SECTION 7: THE COMPARISON -->
+    <section class="py-24 px-6 bg-[#020617]">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="reveal text-center text-3xl md:text-6xl font-black uppercase text-white mb-16 italic">
+                Pilihan <span class="text-indigo-600">Logis</span> Pengusaha.
+            </h2>
+            <div class="reveal glass-card rounded-[40px] overflow-hidden border border-white/10 shadow-2xl">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-indigo-600/10 border-b border-white/10 font-black uppercase text-[10px] tracking-widest text-slate-500">
+                            <th class="p-8">Fitur</th>
+                            <th class="p-8">Cara Manual</th>
+                            <th class="p-8 text-white">LCC Intelligence</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm font-medium">
+                        <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                            <td class="p-8 text-white font-bold">Biaya</td>
+                            <td class="p-8 text-slate-500">Rp 1.5jt+ / Halaman</td>
+                            <td class="p-8 text-indigo-400 font-black italic">Rp 149rb (LIFETIME)</td>
+                        </tr>
+                        <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                            <td class="p-8 text-white font-bold">Waktu Kerja</td>
+                            <td class="p-8 text-slate-500">3 - 7 Hari (Drama)</td>
+                            <td class="p-8 text-indigo-400 font-black italic">3 Menit (Gak Pake Lama)</td>
+                        </tr>
+                        <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                            <td class="p-8 text-white font-bold">Monitor Bocor</td>
+                            <td class="p-8 text-slate-500">Buta (Cuma nebak)</td>
+                            <td class="p-8 text-indigo-400 font-black italic">CCTV Replay (Keliatan)</td>
+                        </tr>
+                        <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                            <td class="p-8 text-white font-bold">Strategi Copy</td>
+                            <td class="p-8 text-slate-500">Asal Tulis</td>
+                            <td class="p-8 text-indigo-400 font-black italic">AI Psychological Hook</td>
+                        </tr>
+                        <tr class="last:border-0 hover:bg-white/[0.02] transition-colors">
+                            <td class="p-8 text-white font-bold">Dashboard</td>
+                            <td class="p-8 text-slate-500">Banyak Tab (Ribet)</td>
+                            <td class="p-8 text-indigo-400 font-black italic">Single Hulu-Hilir</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🚩 SECTION 8: THE BUNDLING -->
+    <section class="py-24 px-6 relative overflow-hidden border-t border-white/5">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-green-500/5 blur-[150px] -z-10 rounded-full"></div>
+        <div class="max-w-6xl mx-auto glass-card p-12 md:p-20 rounded-[64px] border-green-500/20 bg-green-500/[0.02] flex flex-col lg:flex-row items-center gap-16">
+            <div class="reveal flex-1 text-left">
+                <div class="flex gap-3 mb-8">
+                    <span class="bg-indigo-600 text-white px-5 py-2 rounded-full text-[10px] font-black italic uppercase tracking-widest">Exclusive Bonus</span>
+                    <span class="bg-green-500 text-[#020617] px-5 py-2 rounded-full text-[10px] font-black animate-pulse uppercase tracking-widest">🎁 GRATIS 1 BULAN</span>
+                </div>
+                <h2 class="text-3xl md:text-6xl font-black italic leading-none mb-8 uppercase text-white">PAKET BUNDLING <br /><span class="text-green-500">CS WHATSAPP AI.</span></h2>
+                <p class="text-slate-400 text-lg mb-10 leading-relaxed">Landing Page sudah convert, tapi CS Anda lama balas chat? Ambil paket <strong>Bundling WhatsApp</strong>, asisten AI bakal stand-by 24/7 di nomor WA-mu buat bantu follow up dan closing otomatis saat kamu lagi tidur.</p>
+                <button onclick="trackEvent('Click_Bundling_CTA', 'Ambil Paket Bundling'); document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="px-10 py-5 bg-green-600 text-[#020617] rounded-2xl font-black text-sm uppercase shadow-xl hover:-translate-y-1 transition-all">AMBIL PAKET BUNDLING</button>
+            </div>
+            <div class="reveal flex-1 w-full max-w-md text-center">
+                <div class="glass-card p-12 rounded-[56px] bg-[#020617]/50 border-white/5 relative group shadow-2xl">
+                    <i class="fab fa-whatsapp text-6xl text-green-500 mb-8 block floating"></i>
+                    <h4 class="text-white font-black italic text-2xl uppercase mb-4">CS PREMIUM AI</h4>
+                    <p class="text-slate-500 text-xs uppercase tracking-[0.3em] font-bold">Auto-Closing 24/7</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🚩 SECTION 9: THE PRICING -->
     <section id="pricing" class="py-24 px-6 bg-indigo-600/5">
         <div class="max-w-6xl mx-auto text-center">
             <h2 class="reveal text-4xl md:text-8xl font-black uppercase text-white mb-16 italic leading-none">INVESTASI <br/><span class="text-indigo-600">ANTI-BONCOS.</span></h2>
@@ -262,10 +478,58 @@
                 <div class="space-y-4 mb-14 text-left max-w-sm mx-auto">
                     <div class="flex items-start gap-4 text-slate-300 text-sm font-medium"><i class="fas fa-check-circle text-green-500 mt-1"></i><span class="text-white font-bold">Unlimited AI Landing Pages</span></div>
                     <div class="flex items-start gap-4 text-slate-300 text-sm font-medium"><i class="fas fa-check-circle text-green-500 mt-1"></i><span class="text-white font-bold">Full Session Replay & CCTV Monitor</span></div>
+                    <div class="flex items-start gap-4 text-slate-300 text-sm font-medium"><i class="fas fa-check-circle text-green-500 mt-1"></i><span class="text-white font-bold">Individual Sales AI Chatbots</span></div>
                     <div class="flex items-start gap-4 text-slate-300 text-sm font-medium"><i class="fas fa-check-circle text-green-500 mt-1"></i><span class="text-white font-bold">Meta & TikTok Ads ROI Control</span></div>
+                    <div class="flex items-start gap-4 text-slate-300 text-sm font-medium"><i class="fas fa-check-circle text-green-500 mt-1"></i><span class="text-white font-bold">AI Strategy & Copywriter (Gemini)</span></div>
                     <div class="flex items-start gap-4 text-slate-300 text-sm font-medium"><i class="fas fa-check-circle text-green-500 mt-1"></i><span class="text-white font-bold">Hosting Super Cepat (Lifetime)</span></div>
                 </div>
-                <button onclick="handleJoin()" class="cta-shine w-full py-8 bg-indigo-600 text-white rounded-[32px] font-black text-2xl italic uppercase shadow-xl hover:-translate-y-1 transition-all">GABUNG SEKARANG</button>
+                <button onclick="trackEvent('Click_Purchase', 'Gabung Sekarang - Rp149rb'); handleJoin()" class="cta-shine w-full py-8 bg-indigo-600 text-white rounded-[32px] font-black text-2xl italic uppercase shadow-xl hover:-translate-y-1 transition-all">GABUNG SEKARANG</button>
+                <p class="mt-8 text-slate-500 text-[10px] uppercase font-bold tracking-widest">🔒 Aman • Instan • Lifetime Access</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🚩 SECTION 10: FAQ -->
+    <section id="faq" class="py-24 px-6 bg-[#020617]">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="reveal text-3xl md:text-7xl font-black uppercase text-white mb-20 text-center italic">INFO <span class="text-indigo-600">PENTING.</span></h2>
+            <div class="space-y-4">
+                <div class="reveal glass-card rounded-3xl overflow-hidden border-white/5">
+                    <button onclick="toggleFaq(0, this)" class="w-full p-8 text-left flex justify-between items-center group transition-colors hover:bg-white/5">
+                        <span class="text-white font-black text-sm md:text-lg italic uppercase tracking-tight">Apa itu Ekosistem Hulu ke Hilir?</span>
+                        <i class="fas fa-chevron-down text-indigo-600 chevron-icon"></i>
+                    </button>
+                    <div class="faq-content px-8">
+                        <div class="text-slate-400 text-sm md:text-base leading-relaxed">Sederhananya, LCC ngurusin semua alur jualanmu: mulai dari riset copy-writing (Hulu), bikin Landing Page & pasang CCTV (Tengah), sampe pantau untung-rugi iklanmu (Hilir) di satu tempat.</div>
+                    </div>
+                </div>
+                <div class="reveal glass-card rounded-3xl overflow-hidden border-white/5">
+                    <button onclick="toggleFaq(1, this)" class="w-full p-8 text-left flex justify-between items-center group transition-colors hover:bg-white/5">
+                        <span class="text-white font-black text-sm md:text-lg italic uppercase tracking-tight">Beneran Lifetime Access?</span>
+                        <i class="fas fa-chevron-down text-indigo-600 chevron-icon"></i>
+                    </button>
+                    <div class="faq-content px-8">
+                        <div class="text-slate-400 text-sm md:text-base leading-relaxed">Beneran bos. Khusus promo peluncuran ini, kamu cukup bayar sekali dan bisa pakai selamanya tanpa biaya bulanan.</div>
+                    </div>
+                </div>
+                <div class="reveal glass-card rounded-3xl overflow-hidden border-white/5">
+                    <button onclick="toggleFaq(2, this)" class="w-full p-8 text-left flex justify-between items-center group transition-colors hover:bg-white/5">
+                        <span class="text-white font-black text-sm md:text-lg italic uppercase tracking-tight">Bisa buat berapa produk?</span>
+                        <i class="fas fa-chevron-down text-indigo-600 chevron-icon"></i>
+                    </button>
+                    <div class="faq-content px-8">
+                        <div class="text-slate-400 text-sm md:text-base leading-relaxed">Gak ada batasannya. Kamu bisa bikin ratusan Landing Page buat ngetes berbagai macam produk atau angle iklan tanpa biaya tambahan.</div>
+                    </div>
+                </div>
+                <div class="reveal glass-card rounded-3xl overflow-hidden border-white/5">
+                    <button onclick="toggleFaq(3, this)" class="w-full p-8 text-left flex justify-between items-center group transition-colors hover:bg-white/5">
+                        <span class="text-white font-black text-sm md:text-lg italic uppercase tracking-tight">Gimana cara liat CCTV Replay-nya?</span>
+                        <i class="fas fa-chevron-down text-indigo-600 chevron-icon"></i>
+                    </button>
+                    <div class="faq-content px-8">
+                        <div class="text-slate-400 text-sm md:text-base leading-relaxed">Di dashboard LCC nanti ada menu 'Tracker'. Kamu tinggal klik 'Play' di setiap sesi kunjungan buat liat beneran rekaman layar mereka.</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -280,146 +544,199 @@
     </footer>
 
     <script>
-        /**
-         * 🛡️ PERBAIKAN SCRIPT ERROR & LOAD FAILED
-         * Menambahkan wrapper pengaman untuk semua fungsi pihak ketiga dan inisialisasi aman.
-         */
-
-        // 1. Inisialisasi Mock/Wrapper untuk FB Pixel guna mencegah "Script Error" jika file tidak terjangkau (CORS/AdBlock)
-        window.fbq = window.fbq || function() { (window.fbq.q = window.fbq.q || []).push(arguments); };
-        window.fbq.l = +new Date();
-        
-        // ─── Countdown Logic ─────────────────────────────────────────────────
-        let secs = 8130;
-        const countdownEl = document.getElementById('countdown');
-        if (countdownEl) {
-            const timerInterval = setInterval(() => {
-                if (secs > 0) {
-                    secs--;
-                    const h = String(Math.floor(secs / 3600)).padStart(2, "0");
-                    const m = String(Math.floor((secs % 3600) / 60)).padStart(2, "0");
-                    const s = String(secs % 60).padStart(2, "0");
-                    countdownEl.innerText = `${h}:${m}:${s}`;
-                } else {
-                    clearInterval(timerInterval);
-                }
-            }, 1000);
+        // ─── Meta Pixel Tracking Helper ──────────────────────────────────────────
+        function trackEvent(eventName, buttonName, params = {}) {
+            if (typeof fbq !== 'undefined') {
+                fbq('trackCustom', eventName, {
+                    button_name: buttonName,
+                    page_location: window.location.href,
+                    ...params
+                });
+                console.log(`🔵 Meta Pixel Tracked: ${eventName} - ${buttonName}`);
+            } else {
+                console.warn('⚠️ Meta Pixel not loaded yet');
+            }
         }
 
-        // ─── Scroll Reveal Logic ─────────────────────────────────────────────
-        const setupReveal = () => {
-            if (!('IntersectionObserver' in window)) return;
-            const obs = new IntersectionObserver((entries) => {
-                entries.forEach(e => {
-                    if (e.isIntersecting) e.target.classList.add('active');
-                });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+        // ─── Scroll Reveal Logic ────────────────────────────────────
+        const reveal = () => {
+            const els = document.querySelectorAll(".reveal");
+            const obs = new IntersectionObserver(
+                (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("active")),
+                { threshold: 0.1 }
+            );
+            els.forEach((el) => obs.observe(el));
         };
 
-        // ─── Niche Preview Logic ─────────────────────────────────────────────
+        // ─── Countdown Logic ────────────────────────────────────────
+        const startCountdown = (initialSeconds = 8130) => {
+            let secs = initialSeconds;
+            const timerEl = document.getElementById('countdown');
+            
+            setInterval(() => {
+                if (secs > 0) secs--;
+                const h = String(Math.floor(secs / 3600)).padStart(2, "0");
+                const m = String(Math.floor((secs % 3600) / 60)).padStart(2, "0");
+                const s = String(secs % 60).padStart(2, "0");
+                timerEl.textContent = `${h}:${m}:${s}`;
+            }, 1000);
+        };
+
+        // ─── Niche Selection Logic ──────────────────────────────────
         const niches = [
-            { icon: "fa-home", color: "#10b981", bg: "rgba(16,185,129,0.2)", label: "Properti", url: "https://preneurmastery.github.io/perum/", screenshot: "https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551769/IMG_20260303_222749_pbenek.jpg" },
-            { icon: "fa-kaaba", color: "#3b82f6", bg: "rgba(59,130,246,0.2)", label: "Travel", url: "https://preneurmastery.github.io/umroh/", screenshot: "https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551768/IMG_20260303_222730_oly5ci.jpg" },
-            { icon: "fa-moon", color: "#a855f7", bg: "rgba(168,85,247,0.2)", label: "Digital", url: "https://preneurmastery.github.io/builder/", screenshot: "https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551765/IMG_20260303_222805_hyjl3u.jpg" },
-            { icon: "fa-palette", color: "#ec4899", bg: "rgba(236,72,153,0.2)", label: "Workshop", url: "https://preneurmastery.github.io/builder2/", screenshot: "https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551767/IMG_20260303_222835_fwwxjy.jpg" },
+            { label: "Properti", url: "https://preneurmastery.github.io/perum/", screenshot: "https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551769/IMG_20260303_222749_pbenek.jpg" },
+            { label: "Travel", url: "https://preneurmastery.github.io/umroh/", screenshot: "https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551768/IMG_20260303_222730_oly5ci.jpg" },
+            { label: "Digital", url: "https://preneurmastery.github.io/builder/", screenshot: "https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551765/IMG_20260303_222805_hyjl3u.jpg" },
+            { label: "Workshop", url: "https://preneurmastery.github.io/builder2/", screenshot: "https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551767/IMG_20260303_222835_fwwxjy.jpg" },
         ];
 
-        const setupNiches = () => {
-            const selectorsContainer = document.getElementById('niche-selectors');
-            if (!selectorsContainer) return;
-            
-            selectorsContainer.innerHTML = ''; 
-            niches.forEach((n) => {
-                const div = document.createElement('div');
-                div.className = `reveal cursor-pointer glass-card p-6 rounded-3xl border border-white/5 transition-all hover:border-indigo-600`;
-                div.innerHTML = `
-                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style="background-color: ${n.bg}">
-                        <i class="fas ${n.icon}" style="color: ${n.color}; font-size: 1.2rem;"></i>
-                    </div>
-                    <span class="text-[10px] font-black uppercase text-white tracking-widest">${n.label}</span>
-                `;
-                div.onclick = () => selectNiche(n, div);
-                selectorsContainer.appendChild(div);
+        function selectNiche(index, el) {
+            const niche = niches[index];
+            const placeholder = document.getElementById('demo-placeholder');
+            const loading = document.getElementById('demo-loading');
+            const preview = document.getElementById('demo-preview');
+            const previewImg = document.getElementById('preview-img');
+            const previewLink = document.getElementById('preview-link');
+
+            // Tracking Meta Pixel
+            trackEvent('View_Niche', niche.label, { niche_category: niche.label });
+            fbq('track', 'ViewContent', { content_name: niche.label, content_category: 'Niche Demo' });
+
+            // UI feedback for buttons
+            document.querySelectorAll('#niche-selectors > div').forEach(div => {
+                div.classList.remove('border-indigo-600', 'bg-indigo-600/20');
+                div.classList.add('border-white/5');
             });
-        };
+            el.classList.remove('border-white/5');
+            el.classList.add('border-indigo-600', 'bg-indigo-600/20');
 
-        function selectNiche(n, element) {
-            document.querySelectorAll('#niche-selectors > div').forEach(el => el.classList.remove('border-indigo-600', 'bg-indigo-600/20'));
-            element.classList.add('border-indigo-600', 'bg-indigo-600/20');
-            
-            const placeholder = document.getElementById('preview-placeholder');
-            const loader = document.getElementById('preview-loading');
-            const content = document.getElementById('preview-content');
-            const img = document.getElementById('preview-img');
-            const link = document.getElementById('preview-link');
-
-            if (placeholder) placeholder.classList.add('hidden');
-            if (content) content.classList.add('hidden');
-            if (loader) loader.classList.remove('hidden');
-
-            // Tracking aman dengan try-catch
-            try {
-                if (typeof window.fbq === 'function') {
-                    window.fbq("track", "ViewContent", { content_name: n.label });
-                }
-            } catch(e) { console.warn("FB Tracking failed", e); }
+            placeholder.classList.add('hidden');
+            preview.classList.add('hidden');
+            loading.classList.remove('hidden');
 
             setTimeout(() => {
-                if (loader) loader.classList.add('hidden');
-                if (content) content.classList.remove('hidden');
-                if (img) img.src = n.screenshot;
-                if (link) link.href = n.url;
+                loading.classList.add('hidden');
+                preview.classList.remove('hidden');
+                previewImg.src = niche.screenshot;
+                previewLink.href = niche.url;
+                
+                // Track preview link view
+                previewLink.onclick = () => {
+                    trackEvent('Click_Preview_Live', niche.label);
+                    fbq('track', 'StartTrial', { content_name: niche.label });
+                };
             }, 800);
         }
 
+        // ─── FAQ Logic ──────────────────────────────────────────────
+        function toggleFaq(index, btn) {
+            const allContents = document.querySelectorAll('.faq-content');
+            const allChevrons = document.querySelectorAll('.chevron-icon');
+            const currentContent = btn.nextElementSibling;
+            const currentChevron = btn.querySelector('.chevron-icon');
+
+            const isOpen = currentContent.classList.contains('open');
+            
+            // Track FAQ click
+            const faqQuestions = ['Ekosistem Hulu-Hilir', 'Lifetime Access', 'Batasan Produk', 'CCTV Replay'];
+            trackEvent('Click_FAQ', faqQuestions[index]);
+
+            allContents.forEach(c => c.classList.remove('open'));
+            allChevrons.forEach(ch => ch.classList.remove('rotate'));
+
+            if (!isOpen) {
+                currentContent.classList.add('open');
+                currentChevron.classList.add('rotate');
+            }
+        }
+
+        // ─── Scroll Tracking ────────────────────────────────────────
+        let hasTrackedScroll25 = false;
+        let hasTrackedScroll50 = false;
+        let hasTrackedScroll75 = false;
+        
+        function trackScrollDepth() {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            
+            if (scrollPercent >= 25 && !hasTrackedScroll25) {
+                hasTrackedScroll25 = true;
+                trackEvent('Scroll_25', 'Scroll Depth 25%');
+                fbq('track', 'ScrollDepth', { depth: 25 });
+            }
+            if (scrollPercent >= 50 && !hasTrackedScroll50) {
+                hasTrackedScroll50 = true;
+                trackEvent('Scroll_50', 'Scroll Depth 50%');
+                fbq('track', 'ScrollDepth', { depth: 50 });
+            }
+            if (scrollPercent >= 75 && !hasTrackedScroll75) {
+                hasTrackedScroll75 = true;
+                trackEvent('Scroll_75', 'Scroll Depth 75%');
+                fbq('track', 'ScrollDepth', { depth: 75 });
+            }
+        }
+
+        // ─── Initiation Logic ───────────────────────────────────────
         function handleJoin() {
-            try {
-                if (typeof window.fbq === 'function') {
-                    window.fbq("track", "InitiateCheckout", { value: 149000, currency: "IDR" });
-                }
-            } catch(e) { console.warn("FB Tracking failed", e); }
+            trackEvent('Initiate_Checkout', 'Gabung Sekarang - Rp149rb', { value: 149000, currency: "IDR" });
+            fbq('track', 'InitiateCheckout', { 
+                content_name: 'LCC Intelligence Lifetime',
+                value: 149000, 
+                currency: 'IDR',
+                num_items: 1
+            });
             window.location.href = "https://app.midtrans.com/payment-links/18a1d04f-5a9d-426b-a1f2-706318f0cf22";
         }
 
-        // ─── External Scripts Loading with Protection ───────────────────────
-        const loadExternalScripts = () => {
-            // FB Pixel Script Tag
-            const fbScript = document.createElement('script');
-            fbScript.async = true;
-            fbScript.src = 'https://connect.facebook.net/en_US/fbevents.js';
-            fbScript.onerror = () => console.warn("Meta Pixel failed to load (blocked or network error). Page functionality is preserved.");
-            document.head.appendChild(fbScript);
-            
-            // Inisialisasi awal
-            window.fbq('init', '612806087911246');
-            window.fbq('track', 'PageView');
-
-            // Chatbot dengan try-catch & error handling eksplisit
-            const chatbotScript = document.createElement('script');
-            chatbotScript.async = true;
-            chatbotScript.src = 'https://preneurmastery.com/chatbot/widget.js';
-            chatbotScript.setAttribute('data-project-id', '69cebe31315e9463e702d1ed');
-            chatbotScript.onload = () => console.log("Chatbot loaded.");
-            chatbotScript.onerror = () => {
-                // Menangani error "Load failed" agar tidak membocorkan error ke global scope
-                console.warn("Chatbot widget failed to load. This may be due to browser security settings or domain restrictions.");
-            };
-            
-            // Memasukkan skrip ke body
-            try {
-                document.body.appendChild(chatbotScript);
-            } catch (e) {
-                console.error("Failed to append chatbot script", e);
+        // Track time on page
+        let startTime = Date.now();
+        setInterval(() => {
+            const timeOnPage = Math.floor((Date.now() - startTime) / 1000);
+            if (timeOnPage === 30) {
+                trackEvent('Time_On_Page_30s', '30 seconds engaged');
             }
-        };
+            if (timeOnPage === 60) {
+                trackEvent('Time_On_Page_60s', '1 minute engaged');
+            }
+        }, 1000);
 
-        // Inisialisasi Utama
-        window.addEventListener('load', () => {
-            setupNiches();
-            setupReveal();
-            loadExternalScripts();
-        });
+        window.onload = () => {
+            reveal();
+            startCountdown();
+            
+            // Track PageView sudah otomatis dari Meta Pixel
+            trackEvent('Page_Load_Complete', 'Landing Page Fully Loaded');
+            
+            // Scroll tracking
+            window.addEventListener('scroll', trackScrollDepth);
+            
+            // Track any outbound clicks
+            document.querySelectorAll('a[href^="http"]').forEach(link => {
+                if (!link.href.includes(window.location.hostname)) {
+                    link.addEventListener('click', () => {
+                        trackEvent('Outbound_Click', link.href);
+                    });
+                }
+            });
+
+            // Tracker Configs for LCC Tracker
+            window.__TRACKER_CONFIG__ = {
+                projectKey: 'f70xm5t1gygsjhq1jqkbx',
+                apiBase: 'https://preneurmastery.com/tracker/api'
+            };
+
+            // External Scripts Injection (LCC Tracker & Chatbot)
+            const s = document.createElement('script'); 
+            s.id = 'lcc-tracker-script'; 
+            s.async = true; 
+            s.src = 'https://preneurmastery.com/tracker/tracker.js'; 
+            document.head.appendChild(s);
+            
+            const c = document.createElement('script'); 
+            c.id = 'lcc-chatbot-script'; 
+            c.src = 'https://preneurmastery.com/chatbot/widget.js'; 
+            c.setAttribute('data-project-id', '69cebe31315e9463e702d1ed'); 
+            document.body.appendChild(c);
+        };
     </script>
 </body>
 </html>
