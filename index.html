@@ -386,14 +386,18 @@
                 </div>
             </div>
             <div class="reveal flex-1 w-full max-w-lg glass-card aspect-video rounded-[32px] overflow-hidden border-white/10 relative shadow-2xl">
-                <div class="absolute inset-0 bg-red-600/10 animate-pulse"></div>
-                <div class="absolute top-4 left-4 bg-red-600 px-3 py-1 rounded-full text-[9px] font-black text-white flex items-center gap-2">
+                <div class="absolute inset-0 bg-red-600/5 z-10 pointer-events-none"></div>
+                <div class="absolute top-4 left-4 bg-red-600 px-3 py-1 rounded-full text-[9px] font-black text-white flex items-center gap-2 z-20">
                     <span class="w-2 h-2 bg-white rounded-full animate-ping"></span> LIVE REPLAY RECORDING
                 </div>
-                <img src="https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&fit=crop&q=80&w=2070" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-30" alt="CCTV Replay" />
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <i class="fas fa-play-circle text-6xl text-white/20"></i>
-                </div>
+                <video 
+                    src="https://res.cloudinary.com/dn5ppjuf3/video/upload/v1775294383/lv_0_20260404161524_ilwxjw.mp4" 
+                    class="w-full h-full object-cover opacity-60" 
+                    autoplay 
+                    muted 
+                    loop 
+                    playsinline>
+                </video>
             </div>
         </div>
     </section>
