@@ -37,29 +37,6 @@
         <img height="1" width="1" style="display:none" 
              src="https://www.facebook.com/tr?id=612806087911246&ev=PageView&noscript=1"/>
     </noscript>
-    
-    <script src="https://preneurmastery.com/chatbot/widget.js" data-project-id="69cf7f9835617a87c8eff4bb"></script>
-
-    
-      <script>
-       (function(){
-         window.__TRACKER_CONFIG__ = window.__TRACKER_CONFIG__ || {};
-         window.__TRACKER_CONFIG__.projectKey = '9th6g4suxigbpi7sg6j31';
-         window.__TRACKER_CONFIG__.apiBase = 'https://preneurmastery.com/tracker/api';
-    
-         // TAMBAHKAN KODE JEMBATAN INI:
-         window.trackEvent = function(type, name) {
-             if(window.tracker && window.tracker.track) {
-                window.tracker.track(type, { text: name });
-            }
-        };
-   
-        var s = document.createElement('script');
-        s.async = true;
-        s.src = 'https://preneurmastery.com/tracker/tracker.js';
-        document.head.appendChild(s);
-      })();
-   </script>
   
 
     <style>
@@ -79,6 +56,7 @@
             background-color: var(--dark);
             color: #f8fafc;
             overflow-x: hidden;
+            opacity: 1 !important; /* Pastikan terlihat */
         }
 
         .gradient-text {
@@ -95,8 +73,8 @@
         }
 
         .reveal {
-            opacity: 0;
-            transform: translateY(30px);
+            opacity: 1; /* Diubah dari 0 ke 1 agar konten tetap muncul meskipun JS gagal */
+            transform: translateY(0px); /* Diubah dari 30px ke 0px */
             transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .reveal.active {
@@ -225,19 +203,20 @@
         </div>
 
         <h1 class="reveal font-extrabold text-4xl md:text-7xl mb-8 uppercase text-white leading-[1.1]">
-            <span class="gradient-text">Banyak Klik Tapi</span> <br/>
-            <span class="text-white opacity-40">Gak Tau Buyer</span> <br/>
-            <span class="text-red-500 italic underline decoration-wavy decoration-red-500/30 underline-offset-8">Kabur di Mana?</span>
+            <span class="gradient-text">Stop Jadi "Donatur"</span> <br/>
+            <span class="text-white opacity-40">Meta Ads!</span> <br/>
+            <span class="text-red-500 italic underline decoration-wavy decoration-red-500/30 underline-offset-8">Bukan LP Builder Biasa.</span>
         </h1>
 
-        <p class="reveal text-base md:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-12">
-            <span class="text-white font-bold italic">Gak Perlu Jago Nulis!</span> Bikin Landing Page High-Convert & Pasang CCTV Monitor dalam <span class="text-indigo-400 font-bold">3 Menit</span>. Biarkan <span class="text-indigo-400 font-bold italic">AI Gemini</span> yang mengatur strategi Copywriting-nya untuk Anda.
+        <p class="reveal text-base md:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-12 font-medium">
+            Saat kompetitor cuma bisa "tebak-tebakan" kenapa iklan mereka sepi, kamu punya <span class="text-white font-bold italic">CCTV Tracking</span> & <span class="text-indigo-400 font-bold">Otak AI Gemini</span> yang kasih tau persis di mana buyer kabur—lalu otomatis optimasi strateginya buat kamu.
         </p>
 
         <div class="reveal flex flex-col items-center gap-6">
             <button onclick="trackEvent('Click_CTA_Hero', 'Stop Boncos Sekarang - Rp111rb'); document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="cta-shine px-12 py-6 bg-indigo-600 text-white rounded-2xl font-black text-xl uppercase shadow-[0_20px_50px_rgba(99,102,241,0.4)] hover:-translate-y-1 transition-transform">
                 STOP BONCOS SEKARANG — RP 111RB
             </button>
+            <span class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] -mt-4 italic">Instan Setup dalam 3 Menit • No Tech Drama</span>
             
             <div class="flex flex-col items-center gap-3">
                 <div class="flex -space-x-2">
@@ -616,6 +595,29 @@
         </div>
         <p class="text-slate-600 text-[10px] uppercase font-black tracking-[0.4em]">© 2026 PRENEUR MASTERY • THE 1% ELITE HULU-HILIR ECOSYSTEM</p>
     </footer>
+
+    <!-- 🚩 EXTERNAL SCRIPTS (SAFE LOADING) -->
+    <!-- Chatbot & Tracker diletakkan di bawah agar tidak memblokir render jika server mati -->
+    <script async src="https://preneurmastery.com/chatbot/widget.js" data-project-id="69cf7f9835617a87c8eff4bb"></script>
+
+    <script>
+       (function(){
+         window.__TRACKER_CONFIG__ = window.__TRACKER_CONFIG__ || {};
+         window.__TRACKER_CONFIG__.projectKey = '9th6g4suxigbpi7sg6j31';
+         window.__TRACKER_CONFIG__.apiBase = 'https://preneurmastery.com/tracker/api';
+    
+         window.trackEvent = function(type, name) {
+             if(window.tracker && window.tracker.track) {
+                window.tracker.track(type, { text: name });
+            }
+        };
+   
+        var s = document.createElement('script');
+        s.async = true; // Sangat penting agar tidak blocking
+        s.src = 'https://preneurmastery.com/tracker/tracker.js';
+        document.head.appendChild(s);
+      })();
+    </script>
 
     <script>
         // ─── Meta Pixel Tracking Helper ──────────────────────────────────────────
