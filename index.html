@@ -301,40 +301,76 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="reveal glass-card p-12 rounded-[48px] flex gap-8 group hover:bg-indigo-600/5 transition-all">
-                    <div class="w-16 h-16 bg-indigo-600/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-indigo-600 transition-colors">
-                        <i class="fas fa-brain text-indigo-500 group-hover:text-white text-2xl"></i>
-                    </div>
-                    <div>
+                <div class="reveal glass-card p-12 rounded-[48px] flex flex-col lg:flex-row gap-8 group hover:bg-indigo-600/5 transition-all">
+                    <div class="flex-1">
+                        <div class="w-16 h-16 bg-indigo-600/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-indigo-600 transition-colors">
+                            <i class="fas fa-brain text-indigo-500 group-hover:text-white text-2xl"></i>
+                        </div>
                         <h3 class="text-xl font-black italic text-white mb-3 uppercase tracking-tight">01. Riset & Strategy AI</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">Gak usah pusing mikir copy-writing. AI (Hulu) kita bakal riset kompetitor & buatin headline persuasif yang bikin orang 'gatel' mau beli.</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Gak usah pusing mikir copy-writing. AI (Hulu) kita bakal riset kompetitor & buatin headline persuasif secara otomatis.</p>
+                    </div>
+                    <!-- CSS Illustration: Dashboard Mini -->
+                    <div class="w-full lg:w-48 h-32 bg-indigo-950/30 rounded-2xl border border-white/5 relative overflow-hidden shrink-0 mt-4 lg:mt-0">
+                        <div class="absolute top-2 left-2 w-full h-1 bg-white/5 rounded-full"></div>
+                        <div class="absolute top-6 left-2 w-1/2 h-2 bg-indigo-500/40 rounded-full"></div>
+                        <div class="absolute top-12 left-2 w-3/4 h-2 bg-white/10 rounded-full"></div>
+                        <div class="absolute top-18 left-2 w-2/3 h-2 bg-white/10 rounded-full"></div>
+                        <div class="absolute -right-4 -bottom-4 w-20 h-20 bg-indigo-600/20 blur-xl rounded-full"></div>
                     </div>
                 </div>
-                <div class="reveal glass-card p-12 rounded-[48px] flex gap-8 group hover:bg-indigo-600/5 transition-all">
-                    <div class="w-16 h-16 bg-indigo-600/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-indigo-600 transition-colors">
-                        <i class="fas fa-video text-indigo-500 group-hover:text-white text-2xl"></i>
-                    </div>
-                    <div>
+
+                <div class="reveal glass-card p-12 rounded-[48px] flex flex-col lg:flex-row gap-8 group hover:bg-indigo-600/5 transition-all">
+                    <div class="flex-1">
+                        <div class="w-16 h-16 bg-indigo-600/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-indigo-600 transition-colors">
+                            <i class="fas fa-video text-indigo-500 group-hover:text-white text-2xl"></i>
+                        </div>
                         <h3 class="text-xl font-black italic text-white mb-3 uppercase tracking-tight">02. CCTV Monitor</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">Kamu bisa liat rekaman (Tengah) pengunjungmu. Mereka beneran baca gak? Atau berhenti pas liat harga? Semua keliatan jelas.</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Lihat rekaman (Tengah) pengunjungmu secara real-time. Tonton gerakannya untuk melihat persis di mana mereka bingung.</p>
+                    </div>
+                    <!-- CSS Illustration: Video Grid -->
+                    <div class="w-full lg:w-48 h-32 bg-slate-900/50 rounded-2xl border border-white/5 relative overflow-hidden flex items-center justify-center mt-4 lg:mt-0">
+                        <div class="grid grid-cols-2 gap-1 w-full h-full p-2 opacity-30">
+                            <div class="bg-indigo-500/20 rounded-sm"></div>
+                            <div class="bg-indigo-500/20 rounded-sm"></div>
+                            <div class="bg-indigo-500/20 rounded-sm"></div>
+                            <div class="bg-indigo-500/20 rounded-sm"></div>
+                        </div>
+                        <div class="absolute w-8 h-8 bg-red-600/80 rounded-full flex items-center justify-center shadow-lg shadow-red-500/50 animate-pulse">
+                            <i class="fas fa-play text-[10px] text-white ml-0.5"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="reveal glass-card p-12 rounded-[48px] flex gap-8 group hover:bg-indigo-600/5 transition-all">
-                    <div class="w-16 h-16 bg-indigo-600/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-indigo-600 transition-colors">
-                        <i class="fas fa-robot text-indigo-500 group-hover:text-white text-2xl"></i>
-                    </div>
-                    <div>
+
+                <div class="reveal glass-card p-12 rounded-[48px] flex flex-col lg:flex-row gap-8 group hover:bg-indigo-600/5 transition-all">
+                    <div class="flex-1">
+                        <div class="w-16 h-16 bg-indigo-600/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-indigo-600 transition-colors">
+                            <i class="fas fa-robot text-indigo-500 group-hover:text-white text-2xl"></i>
+                        </div>
                         <h3 class="text-xl font-black italic text-white mb-3 uppercase tracking-tight">03. Sales Agent AI</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">Kayak punya admin yang gak pernah tidur. Siap jawab pertanyaan buyer di Landing Page-mu kapan aja, 24/7 (Closer).</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Asisten AI (Closer) yang stand-by 24/7 jawab pertanyaan buyer di Landing Page-mu kapanpun mereka mau.</p>
+                    </div>
+                    <!-- CSS Illustration: Chat Bubble -->
+                    <div class="w-full lg:w-48 h-32 bg-indigo-950/20 rounded-2xl border border-white/5 relative overflow-hidden mt-4 lg:mt-0">
+                        <div class="absolute top-4 right-4 w-2/3 h-4 bg-indigo-600 rounded-lg rounded-tr-none"></div>
+                        <div class="absolute top-12 left-4 w-3/4 h-4 bg-white/10 rounded-lg rounded-tl-none"></div>
+                        <div class="absolute top-20 right-4 w-1/2 h-4 bg-indigo-600 rounded-lg rounded-tr-none"></div>
                     </div>
                 </div>
-                <div class="reveal glass-card p-12 rounded-[48px] flex gap-8 group hover:bg-indigo-600/5 transition-all">
-                    <div class="w-16 h-16 bg-indigo-600/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-indigo-600 transition-colors">
-                        <i class="fas fa-chart-line text-indigo-500 group-hover:text-white text-2xl"></i>
-                    </div>
-                    <div>
+
+                <div class="reveal glass-card p-12 rounded-[48px] flex flex-col lg:flex-row gap-8 group hover:bg-indigo-600/5 transition-all">
+                    <div class="flex-1">
+                        <div class="w-16 h-16 bg-indigo-600/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-indigo-600 transition-colors">
+                            <i class="fas fa-chart-line text-indigo-500 group-hover:text-white text-2xl"></i>
+                        </div>
                         <h3 class="text-xl font-black italic text-white mb-3 uppercase tracking-tight">04. ROI Dash Control</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">Langsung ketauan iklan mana yang profit (Hilir). Gak perlu buka Ads Manager yang ribet itu, semua laporannya ada di satu dashboard.</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Langsung ketauan iklan mana yang profit (Hilir). Laporan ringkas dalam satu dashboard yang mudah dipahami.</p>
+                    </div>
+                    <!-- CSS Illustration: Chart Mini -->
+                    <div class="w-full lg:w-48 h-32 bg-indigo-950/20 rounded-2xl border border-white/5 relative overflow-hidden flex items-end p-4 gap-2 mt-4 lg:mt-0">
+                        <div class="w-1/4 h-1/2 bg-white/5 rounded-t-md"></div>
+                        <div class="w-1/4 h-3/4 bg-white/5 rounded-t-md"></div>
+                        <div class="w-1/4 h-full bg-green-500/40 rounded-t-md animate-bounce" style="animation-duration: 3s"></div>
+                        <div class="w-1/4 h-2/3 bg-white/5 rounded-t-md"></div>
                     </div>
                 </div>
             </div>
