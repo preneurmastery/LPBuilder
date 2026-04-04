@@ -165,6 +165,25 @@
             transform: rotate(180deg);
         }
         
+        /* Running Text / Marquee */
+        .marquee-container {
+            overflow: hidden;
+            width: 100%;
+            background: rgba(99, 102, 241, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1.5rem 0;
+        }
+        .marquee-wrapper {
+            display: flex;
+            width: fit-content;
+            animation: marquee 40s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
         /* Highlight untuk tracking */
         .trackable {
             cursor: pointer;
@@ -237,6 +256,30 @@
             </div>
         </div>
     </header>
+
+    <!-- 🚩 RUNNING TEXT -->
+    <div class="marquee-container mt-12 bg-indigo-600/5 py-8">
+        <div class="marquee-wrapper">
+            <!-- Group 1 -->
+            <div class="flex items-center gap-12 pr-12">
+                <span class="flex items-center gap-3 text-white/40 font-black italic uppercase text-[10px] tracking-[0.3em] whitespace-nowrap"><i class="fas fa-bolt text-indigo-500"></i> NO MONTHLY FEES</span>
+                <span class="flex items-center gap-3 text-white/40 font-black italic uppercase text-[10px] tracking-[0.3em] whitespace-nowrap"><i class="fas fa-check-circle text-indigo-500"></i> AI-POWERED COPYWRITING</span>
+                <span class="flex items-center gap-3 text-white/40 font-black italic uppercase text-[10px] tracking-[0.3em] whitespace-nowrap"><i class="fas fa-video text-indigo-500"></i> REAL-TIME CCTV MONITOR</span>
+                <span class="flex items-center gap-3 text-white/40 font-black italic uppercase text-[10px] tracking-[0.3em] whitespace-nowrap"><i class="fas fa-rocket text-indigo-500"></i> INSTANT SETUP IN 3 MINS</span>
+                <span class="flex items-center gap-3 text-white/40 font-black italic uppercase text-[10px] tracking-[0.3em] whitespace-nowrap"><i class="fas fa-shield-alt text-indigo-500"></i> ANTI-BONCOS GUARANTEE</span>
+                <span class="flex items-center gap-3 text-white/40 font-black italic uppercase text-[10px] tracking-[0.3em] whitespace-nowrap"><i class="fas fa-brain text-indigo-500"></i> POWERED BY GEMINI AI</span>
+            </div>
+            <!-- Group 2 (Duplicate for infinite loop) -->
+            <div class="flex items-center gap-12 pr-12">
+                <span class="flex items-center gap-3 text-white/40 font-black italic uppercase text-[10px] tracking-[0.3em] whitespace-nowrap"><i class="fas fa-bolt text-indigo-500"></i> NO MONTHLY FEES</span>
+                <span class="flex items-center gap-3 text-white/40 font-black italic uppercase text-[10px] tracking-[0.3em] whitespace-nowrap"><i class="fas fa-check-circle text-indigo-500"></i> AI-POWERED COPYWRITING</span>
+                <span class="flex items-center gap-3 text-white/40 font-black italic uppercase text-[10px] tracking-[0.3em] whitespace-nowrap"><i class="fas fa-video text-indigo-500"></i> REAL-TIME CCTV MONITOR</span>
+                <span class="flex items-center gap-3 text-white/40 font-black italic uppercase text-[10px] tracking-[0.3em] whitespace-nowrap"><i class="fas fa-rocket text-indigo-500"></i> INSTANT SETUP IN 3 MINS</span>
+                <span class="flex items-center gap-3 text-white/40 font-black italic uppercase text-[10px] tracking-[0.3em] whitespace-nowrap"><i class="fas fa-shield-alt text-indigo-500"></i> ANTI-BONCOS GUARANTEE</span>
+                <span class="flex items-center gap-3 text-white/40 font-black italic uppercase text-[10px] tracking-[0.3em] whitespace-nowrap"><i class="fas fa-brain text-indigo-500"></i> POWERED BY GEMINI AI</span>
+            </div>
+        </div>
+    </div>
 
     <!-- 🚩 SECTION 2: THE AGITATOR -->
     <section class="py-24 px-6 bg-[#020617] border-y border-white/5">
