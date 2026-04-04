@@ -205,12 +205,12 @@
         </h1>
 
         <p class="reveal text-base md:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-12">
-            Gini lho bos, iklan rame tapi gak closing itu biasanya karena Landing Page-mu "Bocor" tapi kamu gak tau di mana. LCC kasih kamu <strong>Mata Intelijen</strong> buat liat persis perilaku buyer-mu.
+            <span class="text-white font-bold italic">Gak Perlu Jago Nulis!</span> Bikin Landing Page High-Convert & Pasang CCTV Monitor dalam <span class="text-indigo-400 font-bold">3 Menit</span>. Biarkan <span class="text-indigo-400 font-bold italic">AI Gemini</span> yang mengatur strategi Copywriting-nya untuk Anda.
         </p>
 
         <div class="reveal flex flex-col items-center gap-6">
-            <button onclick="trackEvent('Click_CTA_Hero', 'Stop Boncos Sekarang'); document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="cta-shine px-12 py-6 bg-indigo-600 text-white rounded-2xl font-black text-xl uppercase shadow-[0_20px_50px_rgba(99,102,241,0.4)] hover:-translate-y-1 transition-transform">
-                STOP BONCOS SEKARANG
+            <button onclick="trackEvent('Click_CTA_Hero', 'Stop Boncos Sekarang - Rp111rb'); document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="cta-shine px-12 py-6 bg-indigo-600 text-white rounded-2xl font-black text-xl uppercase shadow-[0_20px_50px_rgba(99,102,241,0.4)] hover:-translate-y-1 transition-transform">
+                STOP BONCOS SEKARANG — RP 111RB
             </button>
             
             <div class="flex flex-col items-center gap-3">
@@ -496,7 +496,7 @@
                     <span class="text-slate-600 text-2xl font-bold line-through">Rp 1.499rb</span>
                     <div class="flex items-start gap-2">
                         <span class="text-2xl font-black mt-3 text-white">Rp</span>
-                        <span class="text-6xl md:text-9xl font-black italic text-white leading-none">149rb</span>
+                        <span class="text-6xl md:text-9xl font-black italic text-white leading-none">111rb</span>
                     </div>
                 </div>
                 <div class="space-y-4 mb-14 text-left max-w-sm mx-auto">
@@ -701,10 +701,10 @@
 
         // ─── Initiation Logic ───────────────────────────────────────
         function handleJoin() {
-            trackEvent('Initiate_Checkout', 'Gabung Sekarang - Rp149rb', { value: 149000, currency: "IDR" });
+            trackEvent('Initiate_Checkout', 'Gabung Sekarang - Rp111rb', { value: 111000, currency: "IDR" });
             fbq('track', 'InitiateCheckout', { 
                 content_name: 'LCC Intelligence Lifetime',
-                value: 149000, 
+                value: 111000, 
                 currency: 'IDR',
                 num_items: 1
             });
