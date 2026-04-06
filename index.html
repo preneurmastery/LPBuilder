@@ -30,12 +30,12 @@
         t.src=v;s=b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '612806089711246');
+        fbq('init', '612806087911246');
         fbq('track', 'PageView');
     </script>
     <noscript>
         <img height="1" width="1" style="display:none" 
-             src="https://www.facebook.com/tr?id=612806089711246&ev=PageView&noscript=1"/>
+             src="https://www.facebook.com/tr?id=612806087911246&ev=PageView&noscript=1"/>
     </noscript>
   
 
@@ -170,6 +170,14 @@
         .trackable:active {
             transform: scale(0.98);
         }
+
+        /* Carousel Styles */
+        .carousel-image {
+            transition: opacity 1000ms ease-in-out;
+        }
+        .top-fade-overlay {
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 1) 0%, rgba(10, 10, 10, 0.8) 10%, rgba(10, 10, 10, 0) 40%);
+        }
     </style>
 </head>
 <body class="selection:bg-indigo-500 selection:text-white">
@@ -241,8 +249,15 @@
         </div>
 
         <div class="reveal mt-20 max-w-5xl mx-auto glass-card p-3 rounded-[32px] border-white/5 shadow-2xl">
-            <div class="aspect-video rounded-[24px] overflow-hidden bg-[#0f172a]">
-                <iframe class="w-full h-full border-none" src="https://www.youtube.com/embed/gYClkN0HHDU?rel=0&modestbranding=1" title="LCC Demo" allowFullScreen></iframe>
+            <div class="aspect-video rounded-[24px] overflow-hidden bg-[#0f172a] relative cursor-pointer group" onclick="this.innerHTML='<iframe class=\'w-full h-full border-none\' src=\'https://www.youtube.com/embed/gYClkN0HHDU?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3\' allow=\'autoplay; encrypted-media\' allowfullscreen></iframe>'">
+                <!-- Custom Thumbnail Overlay -->
+                <img src="https://img.youtube.com/vi/gYClkN0HHDU/maxresdefault.jpg" class="w-full h-full object-cover opacity-40 transition-opacity group-hover:opacity-60" alt="LCC Demo Thumbnail" />
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-20 h-20 md:w-28 md:h-28 bg-indigo-600 rounded-full flex items-center justify-center text-white shadow-[0_0_50px_rgba(99,102,241,0.5)] transition-transform group-hover:scale-110">
+                        <i class="fas fa-play text-3xl md:text-5xl ml-2"></i>
+                    </div>
+                </div>
+                <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/40 text-[10px] font-black uppercase tracking-[0.4em]">Klik untuk Menonton Demo</div>
             </div>
         </div>
     </header>
@@ -390,9 +405,10 @@
                 <div class="absolute top-4 left-4 bg-red-600 px-3 py-1 rounded-full text-[9px] font-black text-white flex items-center gap-2 z-20">
                     <span class="w-2 h-2 bg-white rounded-full animate-ping"></span> LIVE REPLAY RECORDING
                 </div>
+                <!-- YouTube CCTV: No Controls & Pointer Events None for pure "Live" effect -->
                 <iframe 
-                    class="w-full h-full border-none" 
-                    src="https://www.youtube.com/embed/X4YAyxiMyuA?rel=0&modestbranding=1&autoplay=1&mute=1&loop=1&playlist=X4YAyxiMyuA" 
+                    class="w-full h-full border-none pointer-events-none" 
+                    src="https://www.youtube.com/embed/X4YAyxiMyuA?rel=0&modestbranding=1&autoplay=1&mute=1&loop=1&playlist=X4YAyxiMyuA&controls=0&showinfo=0&iv_load_policy=3" 
                     title="CCTV Replay Demo" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen>
@@ -401,7 +417,7 @@
         </div>
     </section>
 
-    <!-- 🚩 SECTION 5: THE DEMO -->
+    <!-- 🚩 SECTION 5: THE CAROUSEL DEMO -->
     <section id="demo" class="py-24 px-6 bg-[#080c1d]">
         <div class="max-w-6xl mx-auto text-center">
             <h2 class="reveal text-3xl md:text-6xl font-black uppercase text-white mb-16 italic leading-none">
@@ -409,50 +425,21 @@
                 <span class="text-indigo-600">LIHAT MAGIC-NYA.</span>
             </h2>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12" id="niche-selectors">
-                <div class="reveal cursor-pointer glass-card p-6 rounded-3xl border border-white/5 transition-all" onclick="selectNiche(0, this)">
-                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style="background-color: rgba(16,185,129,0.2)">
-                        <i class="fas fa-home" style="color: #10b981; font-size: 1.2rem;"></i>
-                    </div>
-                    <span class="text-[10px] font-black uppercase text-white tracking-widest">Properti</span>
-                </div>
-                <div class="reveal cursor-pointer glass-card p-6 rounded-3xl border border-white/5 transition-all" onclick="selectNiche(1, this)">
-                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style="background-color: rgba(59,130,246,0.2)">
-                        <i class="fas fa-kaaba" style="color: #3b82f6; font-size: 1.2rem;"></i>
-                    </div>
-                    <span class="text-[10px] font-black uppercase text-white tracking-widest">Travel</span>
-                </div>
-                <div class="reveal cursor-pointer glass-card p-6 rounded-3xl border border-white/5 transition-all" onclick="selectNiche(2, this)">
-                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style="background-color: rgba(168,85,247,0.2)">
-                        <i class="fas fa-moon" style="color: #a855f7; font-size: 1.2rem;"></i>
-                    </div>
-                    <span class="text-[10px] font-black uppercase text-white tracking-widest">Digital</span>
-                </div>
-                <div class="reveal cursor-pointer glass-card p-6 rounded-3xl border border-white/5 transition-all" onclick="selectNiche(3, this)">
-                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style="background-color: rgba(236,72,153,0.2)">
-                        <i class="fas fa-palette" style="color: #ec4899; font-size: 1.2rem;"></i>
-                    </div>
-                    <span class="text-[10px] font-black uppercase text-white tracking-widest">Workshop</span>
-                </div>
-            </div>
+            <div class="w-full max-w-sm mx-auto relative group reveal">
+              <!-- Kontainer Utama Kartu (Aspek Rasio 9:16) -->
+              <div id="carousel-container" class="relative aspect-[9/16] overflow-hidden rounded-[40px] bg-neutral-900 shadow-2xl border border-white/10">
+                <!-- Gambar akan dimasukkan di sini oleh JavaScript -->
+                <div id="image-wrapper" class="absolute inset-0"></div>
+                
+                <!-- Overlay Pudar Atas -->
+                <div class="absolute inset-0 top-fade-overlay pointer-events-none z-10"></div>
+                
+                <!-- Vignette Halus di Bagian Bawah -->
+                <div class="absolute inset-0 pointer-events-none z-10" style="background: linear-gradient(to top, rgba(10, 10, 10, 0.4) 0%, transparent 20%)"></div>
+              </div>
 
-            <div id="demo-container" class="reveal glass-card rounded-[48px] overflow-hidden border-white/10 p-2 relative h-[450px] md:h-[600px] shadow-2xl">
-                <div id="demo-placeholder" class="absolute inset-0 flex flex-col items-center justify-center text-slate-600 p-8 text-center bg-[#0f172a]/30">
-                    <i class="fas fa-mouse-pointer text-5xl mb-6 floating text-indigo-600/30"></i>
-                    <p class="font-black uppercase text-xs tracking-[0.4em] opacity-40">Klik salah satu niche buat liat contoh landing page-nya</p>
-                </div>
-                <div id="demo-loading" class="hidden absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#080c1d]/95 text-white font-black uppercase tracking-[0.3em]">
-                    <i class="fas fa-cog fa-spin text-5xl mb-6 text-indigo-500"></i>
-                    AI SEDANG BEKERJA...
-                </div>
-                <div id="demo-preview" class="hidden h-full w-full relative group">
-                    <div class="h-full w-full overflow-y-auto custom-scroll">
-                        <img id="preview-img" src="" alt="Preview" class="w-full block" />
-                    </div>
-                    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 transition-transform group-hover:scale-110">
-                        <a id="preview-link" href="#" target="_blank" rel="noreferrer" class="px-10 py-5 bg-indigo-600 text-white rounded-full font-black text-xs uppercase shadow-xl whitespace-nowrap tracking-wider">BUKA PREVIEW LIVE</a>
-                    </div>
-                </div>
+              <!-- Efek Cahaya Dekoratif di Latar Belakang -->
+              <div class="absolute -inset-4 bg-white/5 blur-3xl -z-10 rounded-full opacity-50"></div>
             </div>
         </div>
     </section>
@@ -530,7 +517,7 @@
     <!-- 🚩 SECTION 8: THE BUNDLING -->
     <section class="py-24 px-6 relative overflow-hidden border-t border-white/5">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-green-500/5 blur-[150px] -z-10 rounded-full"></div>
-        <div class="max-w-6xl mx-auto glass-card p-12 md:p-20 rounded-[64px] border-green-500/20 bg-green-500/[0.02] flex flex-col lg:flex-row items-center gap-16">
+        <div class="max-w-6xl mx-auto glass-card p-8 md:p-20 rounded-[48px] md:rounded-[64px] bg-green-500/[0.02] flex flex-col lg:flex-row items-center gap-16">
             <div class="reveal flex-1 text-left">
                 <div class="flex gap-3 mb-8">
                     <span class="bg-indigo-600 text-white px-5 py-2 rounded-full text-[10px] font-black italic uppercase tracking-widest">Exclusive Bonus</span>
@@ -540,12 +527,13 @@
                 <p class="text-slate-400 text-lg mb-10 leading-relaxed">Landing Page sudah convert, tapi CS Anda lama balas chat? Ambil paket <strong>Bundling WhatsApp</strong>, asisten AI bakal stand-by 24/7 di nomor WA-mu buat bantu follow up dan closing otomatis saat kamu lagi tidur.</p>
                 <button onclick="trackEvent('Click_Bundling_CTA', 'Ambil Paket Bundling'); document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="px-10 py-5 bg-green-600 text-[#020617] rounded-2xl font-black text-sm uppercase shadow-xl hover:-translate-y-1 transition-all">AMBIL PAKET BUNDLING</button>
             </div>
-            <div class="reveal flex-1 w-full max-w-md text-center">
-                <div class="glass-card p-12 rounded-[56px] bg-[#080c1d]/50 border-white/5 relative group shadow-2xl">
-                    <i class="fab fa-whatsapp text-6xl text-green-500 mb-8 block floating"></i>
-                    <h4 class="text-white font-black italic text-2xl uppercase mb-4">CS PREMIUM AI</h4>
-                    <p class="text-slate-500 text-xs uppercase tracking-[0.3em] font-bold">Auto-Closing 24/7</p>
-                </div>
+            <div class="reveal flex-1 w-full max-w-2xl text-center">
+                <a href="https://preneurmastery.com" target="_blank" class="block group">
+                    <div class="glass-card p-2 md:p-4 rounded-3xl md:rounded-[56px] bg-[#080c1d]/50 border-white/5 relative group shadow-2xl overflow-hidden transition-transform hover:scale-[1.02]">
+                        <img src="https://res.cloudinary.com/dn5ppjuf3/image/upload/q_auto/f_auto/v1756627138/IMG_20250831_145844_pjt3vb.jpg" alt="CS WhatsApp AI Dashboard" class="w-full rounded-2xl md:rounded-[40px] shadow-2xl" />
+                        <div class="absolute inset-0 bg-green-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -663,41 +651,38 @@
 
     <!-- 🚩 EXTERNAL SCRIPTS (SAFE LOADING) -->
     <!-- Chatbot & Tracker diletakkan di bawah agar tidak memblokir render jika server mati -->
-    <script async src="https://preneurmastery.com/chatbot/widget.js" data-project-id="69cf7f9835617a87c8eff4bb"></script>
+    <script src="https://preneurmastery.com/chatbot/widget.js" data-project-id="69d361e910d8922efc2a7796"></script>
 
     <script>
-       (function(){
-         window.__TRACKER_CONFIG__ = window.__TRACKER_CONFIG__ || {};
-         window.__TRACKER_CONFIG__.projectKey = '9th6g4suxigbpi7sg6j31';
-         window.__TRACKER_CONFIG__.apiBase = 'https://preneurmastery.com/tracker/api';
+      (function(){
+        window.__TRACKER_CONFIG__ = window.__TRACKER_CONFIG__ || {};
+        window.__TRACKER_CONFIG__.projectKey = 's9qxgfl9vus23mumhxtnnh';
+        window.__TRACKER_CONFIG__.apiBase = 'https://preneurmastery.com/tracker/api';
     
-         window.trackEvent = function(type, name) {
-             if(window.tracker && window.tracker.track) {
-                window.tracker.track(type, { text: name });
-            }
-        };
-   
         var s = document.createElement('script');
-        s.async = true; // Sangat penting agar tidak blocking
+        s.async = true;
         s.src = 'https://preneurmastery.com/tracker/tracker.js';
         document.head.appendChild(s);
       })();
     </script>
 
     <script>
-        // ─── Meta Pixel Tracking Helper ──────────────────────────────────────────
-        function trackEvent(eventName, buttonName, params = {}) {
+        // ─── Unified Tracking Helper ──────────────────────────────────────────
+        window.trackEvent = function(eventName, buttonName, params = {}) {
+            if (window.tracker && window.tracker.track) {
+                window.tracker.track(eventName, { text: buttonName, ...params });
+            }
             if (typeof fbq !== 'undefined') {
                 fbq('trackCustom', eventName, {
                     button_name: buttonName,
                     page_location: window.location.href,
                     ...params
                 });
-                console.log(`🔵 Meta Pixel Tracked: ${eventName} - ${buttonName}`);
+                console.log(`🔵 Unified Tracked: ${eventName} - ${buttonName}`);
             } else {
                 console.warn('⚠️ Meta Pixel not loaded yet');
             }
-        }
+        };
 
         // ─── Scroll Reveal Logic ────────────────────────────────────
         const reveal = () => {
@@ -723,50 +708,66 @@
             }, 1000);
         };
 
-        // ─── Niche Selection Logic ──────────────────────────────────
-        const niches = [
-            { label: "Properti", url: "https://preneurmastery.github.io/perum/", screenshot: "https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551769/IMG_20260303_222749_pbenek.jpg" },
-            { label: "Travel", url: "https://preneurmastery.github.io/umroh/", screenshot: "https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551768/IMG_20260303_222730_oly5ci.jpg" },
-            { label: "Digital", url: "https://preneurmastery.github.io/builder/", screenshot: "https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551765/IMG_20260303_222805_hyjl3u.jpg" },
-            { label: "Workshop", url: "https://preneurmastery.github.io/builder2/", screenshot: "https://res.cloudinary.com/dn5ppjuf3/image/upload/v1772551767/IMG_20260303_222835_fwwxjy.jpg" },
+        // ─── Carousel Logic ────────────────────────────────────────
+        const IMAGES = [
+            "https://res.cloudinary.com/dn5ppjuf3/image/upload/q_auto/f_auto/v1775448489/IMG_0392_td26sm.jpg",
+            "https://res.cloudinary.com/dn5ppjuf3/image/upload/q_auto/f_auto/v1775448488/IMG_0374_pz9jtj.jpg",
+            "https://res.cloudinary.com/dn5ppjuf3/image/upload/q_auto/f_auto/v1775448489/IMG_0393_utsmte.jpg",
+            "https://res.cloudinary.com/dn5ppjuf3/image/upload/q_auto/f_auto/v1775448488/IMG_0375_h2zm4k.jpg",
+            "https://res.cloudinary.com/dn5ppjuf3/image/upload/q_auto/f_auto/v1775448488/IMG_0373_svpajq.jpg",
+            "https://res.cloudinary.com/dn5ppjuf3/image/upload/q_auto/f_auto/v1775448488/IMG_0394_q6bnjh.jpg",
+            "https://res.cloudinary.com/dn5ppjuf3/image/upload/q_auto/f_auto/v1775448487/IMG_0376_dldaed.jpg"
         ];
 
-        function selectNiche(index, el) {
-            const niche = niches[index];
-            const placeholder = document.getElementById('demo-placeholder');
-            const loading = document.getElementById('demo-loading');
-            const preview = document.getElementById('demo-preview');
-            const previewImg = document.getElementById('preview-img');
-            const previewLink = document.getElementById('preview-link');
+        let currentIndex = 0;
+        let carouselInterval;
 
-            // Tracking Meta Pixel
-            trackEvent('View_Niche', niche.label, { niche_category: niche.label });
-            fbq('track', 'ViewContent', { content_name: niche.label, content_category: 'Niche Demo' });
+        function initCarousel() {
+            const wrapper = document.getElementById('image-wrapper');
+            if (!wrapper) return;
 
-            // UI feedback for buttons
-            document.querySelectorAll('#niche-selectors > div').forEach(div => {
-                div.classList.remove('border-indigo-600', 'bg-indigo-600/20');
-                div.classList.add('border-white/5');
+            // Inisialisasi gambar
+            IMAGES.forEach((src, idx) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.className = `carousel-image absolute inset-0 w-full h-full object-cover ${idx === 0 ? 'opacity-100' : 'opacity-0'}`;
+                img.setAttribute('referrerpolicy', 'no-referrer');
+                wrapper.appendChild(img);
             });
-            el.classList.remove('border-white/5');
-            el.classList.add('border-indigo-600', 'bg-indigo-600/20');
 
-            placeholder.classList.add('hidden');
-            preview.classList.add('hidden');
-            loading.classList.remove('hidden');
+            // Mulai putar otomatis
+            carouselInterval = setInterval(nextImage, 1500);
+        }
 
-            setTimeout(() => {
-                loading.classList.add('hidden');
-                preview.classList.remove('hidden');
-                previewImg.src = niche.screenshot;
-                previewLink.href = niche.url;
-                
-                // Track preview link view
-                previewLink.onclick = () => {
-                    trackEvent('Click_Preview_Live', niche.label);
-                    fbq('track', 'StartTrial', { content_name: niche.label });
-                };
-            }, 800);
+        function updateDisplay() {
+            const images = document.querySelectorAll('.carousel-image');
+            
+            images.forEach((img, idx) => {
+                img.style.opacity = idx === currentIndex ? '1' : '0';
+            });
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % IMAGES.length;
+            updateDisplay();
+            resetInterval();
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + IMAGES.length) % IMAGES.length;
+            updateDisplay();
+            resetInterval();
+        }
+
+        function goToImage(idx) {
+            currentIndex = idx;
+            updateDisplay();
+            resetInterval();
+        }
+
+        function resetInterval() {
+            clearInterval(carouselInterval);
+            carouselInterval = setInterval(nextImage, 1500);
         }
 
         // ─── FAQ Logic ──────────────────────────────────────────────
@@ -802,30 +803,35 @@
             if (scrollPercent >= 25 && !hasTrackedScroll25) {
                 hasTrackedScroll25 = true;
                 trackEvent('Scroll_25', 'Scroll Depth 25%');
-                fbq('track', 'ScrollDepth', { depth: 25 });
+                fbq('trackCustom', 'ScrollDepth', { depth: 25 });
             }
             if (scrollPercent >= 50 && !hasTrackedScroll50) {
                 hasTrackedScroll50 = true;
                 trackEvent('Scroll_50', 'Scroll Depth 50%');
-                fbq('track', 'ScrollDepth', { depth: 50 });
+                fbq('trackCustom', 'ScrollDepth', { depth: 50 });
             }
             if (scrollPercent >= 75 && !hasTrackedScroll75) {
                 hasTrackedScroll75 = true;
                 trackEvent('Scroll_75', 'Scroll Depth 75%');
-                fbq('track', 'ScrollDepth', { depth: 75 });
+                fbq('trackCustom', 'ScrollDepth', { depth: 75 });
             }
         }
 
         // ─── Initiation Logic ───────────────────────────────────────
         function handleJoin() {
             trackEvent('Initiate_Checkout', 'Gabung Sekarang - Rp111rb', { value: 111000, currency: "IDR" });
-            fbq('track', 'InitiateCheckout', { 
-                content_name: 'LCC Intelligence Lifetime',
-                value: 111000, 
-                currency: 'IDR',
-                num_items: 1
-            });
-            window.location.href = "https://app.midtrans.com/payment-links/703a2031-2a64-422d-b3fd-f253889bf8d7";
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'InitiateCheckout', { 
+                    content_name: 'LCC Intelligence Lifetime',
+                    value: 111000, 
+                    currency: 'IDR',
+                    num_items: 1
+                });
+            }
+            // Delay redirect so Meta Pixel has time to fire
+            setTimeout(() => {
+                window.location.href = "https://app.midtrans.com/payment-links/703a2031-2a64-422d-b3fd-f253889bf8d7";
+            }, 500);
         }
 
         // Track time on page
@@ -843,6 +849,7 @@
         window.onload = () => {
             reveal();
             startCountdown();
+            initCarousel();
             
             // Track PageView sudah otomatis dari Meta Pixel
             trackEvent('Page_Load_Complete', 'Landing Page Fully Loaded');
