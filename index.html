@@ -249,7 +249,7 @@
         </div>
 
         <div class="reveal mt-20 max-w-5xl mx-auto glass-card p-3 rounded-[32px] border-white/5 shadow-2xl">
-            <div class="aspect-video rounded-[24px] overflow-hidden bg-[#0f172a] relative cursor-pointer group" onclick="this.innerHTML='<iframe class=\'w-full h-full border-none\' src=\'https://www.youtube.com/embed/gYClkN0HHDU?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3\' allow=\'autoplay; encrypted-media\' allowfullscreen></iframe>'">
+            <div class="aspect-video rounded-[24px] overflow-hidden bg-[#0f172a] relative cursor-pointer group" onclick="this.innerHTML='<iframe class=\'w-full h-full border-none\' src=\'https://www.youtube.com/embed/gYClkN0HHDU?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3&controls=0\' allow=\'autoplay; encrypted-media\' allowfullscreen></iframe>'">
                 <!-- Custom Thumbnail Overlay -->
                 <img src="https://img.youtube.com/vi/gYClkN0HHDU/maxresdefault.jpg" class="w-full h-full object-cover opacity-40 transition-opacity group-hover:opacity-60" alt="LCC Demo Thumbnail" />
                 <div class="absolute inset-0 flex items-center justify-center">
@@ -405,9 +405,9 @@
                 <div class="absolute top-4 left-4 bg-red-600 px-3 py-1 rounded-full text-[9px] font-black text-white flex items-center gap-2 z-20">
                     <span class="w-2 h-2 bg-white rounded-full animate-ping"></span> LIVE REPLAY RECORDING
                 </div>
-                <!-- YouTube CCTV: No Controls & Pointer Events None for pure "Live" effect -->
+                <!-- YouTube CCTV: Minimal Controls -->
                 <iframe 
-                    class="w-full h-full border-none pointer-events-none" 
+                    class="w-full h-full border-none" 
                     src="https://www.youtube.com/embed/X4YAyxiMyuA?rel=0&modestbranding=1&autoplay=1&mute=1&loop=1&playlist=X4YAyxiMyuA&controls=0&showinfo=0&iv_load_policy=3" 
                     title="CCTV Replay Demo" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
