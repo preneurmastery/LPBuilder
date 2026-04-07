@@ -642,7 +642,13 @@
                     <p class="text-slate-300 text-xs font-bold">Terjual kepada 1.240+ Advertiser. Rating 4.9/5</p>
                 </div>
 
-                <button onclick="trackEvent('Click_Purchase', 'Gabung Sekarang - Rp111rb'); handleJoin()" class="cta-shine w-full py-8 bg-indigo-600 text-white rounded-[32px] font-black text-2xl italic uppercase shadow-xl hover:-translate-y-1 transition-all">GABUNG SEKARANG</button>
+                <div id="midtrans-iframe-container" class="w-full rounded-[32px] overflow-hidden border border-white/10 bg-[#f8fafc] relative shadow-2xl transition-all" style="height: 650px;">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-slate-800 z-0 bg-[#f8fafc]">
+                        <i class="fas fa-circle-notch fa-spin text-3xl mb-3 text-indigo-600"></i>
+                        <span class="text-xs uppercase font-bold tracking-widest text-slate-500">Memuat Sistem Pembayaran Aman...</span>
+                    </div>
+                    <iframe id="payment-frame" class="w-full h-full border-none relative z-10" src="https://app.midtrans.com/payment-links/703a2031-2a64-422d-b3fd-f253889bf8d7" allow="payment"></iframe>
+                </div>
                 
                 <!-- Trust Badges & Risk Reversal -->
                 <div class="mt-6 flex flex-col items-center gap-4">
@@ -930,6 +936,26 @@
                     });
                 }
             });
+            
+            // ─── Payment Form Observer ──────────────────────────────────────────
+            let paymentTracked = false;
+            const paymentObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting && !paymentTracked) {
+                    paymentTracked = true;
+                    trackEvent('Initiate_Checkout', 'Melihat Form Midtrans Embedded', { value: 111000, currency: "IDR" });
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'InitiateCheckout', { 
+                            content_name: 'LCC Intelligence Lifetime',
+                            value: 111000, 
+                            currency: 'IDR',
+                            num_items: 1
+                        });
+                    }
+                }
+            }, { threshold: 0.1 });
+            
+            const iframeContainer = document.getElementById('midtrans-iframe-container');
+            if (iframeContainer) paymentObserver.observe(iframeContainer);
         };
     </script>
 </body>
