@@ -39,6 +39,7 @@
     </noscript>
   
 
+
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -178,6 +179,42 @@
         .top-fade-overlay {
             background: linear-gradient(to bottom, rgba(10, 10, 10, 1) 0%, rgba(10, 10, 10, 0.8) 10%, rgba(10, 10, 10, 0) 40%);
         }
+
+        /* Pricing Add-on Styles */
+        .pricing-option {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            transform-origin: center;
+        }
+        .pricing-option:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        }
+        .pricing-option.selected {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: rgba(99, 102, 241, 0.8);
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.4);
+            transform: scale(1.05);
+            z-index: 10;
+        }
+        .checkbox-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .pricing-option.selected .checkbox-custom {
+            background: var(--primary);
+            border-color: var(--primary);
+            border-width: 2px;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+        }
     </style>
 </head>
 <body class="selection:bg-indigo-500 selection:text-white">
@@ -232,7 +269,7 @@
                 <span class="bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 px-4 py-2 rounded-full text-[9px] font-black tracking-widest uppercase shadow-lg shadow-indigo-500/20">🤖 AI POWERED</span>
             </div>
 
-            <button onclick="trackEvent('Click_CTA_Hero', 'Stop Boncos Sekarang - Rp111rb'); document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="cta-shine px-12 py-6 bg-indigo-600 text-white rounded-2xl font-black text-xl uppercase shadow-[0_20px_50px_rgba(99,102,241,0.4)] hover:-translate-y-1 transition-transform">
+            <button onclick="trackEvent('Click_CTA_Hero', 'Stop Boncos Sekarang'); document.getElementById('pricing').scrollIntoView({behavior:'smooth'})" class="cta-shine px-12 py-6 bg-indigo-600 text-white rounded-2xl font-black text-xl uppercase shadow-[0_20px_50px_rgba(99,102,241,0.4)] hover:-translate-y-1 transition-transform">
                 STOP BONCOS SEKARANG
             </button>
             <span class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] -mt-4 italic">Instan Setup dalam 3 Menit • No Tech Drama</span>
@@ -249,7 +286,7 @@
         </div>
 
         <div class="reveal mt-20 max-w-5xl mx-auto glass-card p-3 rounded-[32px] border-white/5 shadow-2xl">
-            <div class="aspect-video rounded-[24px] overflow-hidden bg-[#0f172a] relative cursor-pointer group" onclick="this.innerHTML='<iframe class=\'w-full h-full border-none\' src=\'https://www.youtube.com/embed/gYClkN0HHDU?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3&controls=0\' allow=\'autoplay; encrypted-media\' allowfullscreen></iframe>'">
+            <div class="aspect-video rounded-[24px] overflow-hidden bg-[#0f172a] relative cursor-pointer group" onclick="this.innerHTML='<iframe class=\'w-full h-full border-none\' src=\'https://www.youtube-nocookie.com/embed/gYClkN0HHDU?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3&controls=0&origin=https://preneurmastery.com\' title=\'LCC Demo Video\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\' allowfullscreen></iframe>'">
                 <!-- Custom Thumbnail Overlay -->
                 <img src="https://img.youtube.com/vi/gYClkN0HHDU/maxresdefault.jpg" class="w-full h-full object-cover opacity-40 transition-opacity group-hover:opacity-60" alt="LCC Demo Thumbnail" />
                 <div class="absolute inset-0 flex items-center justify-center">
@@ -408,7 +445,7 @@
                 <!-- YouTube CCTV: Minimal Controls -->
                 <iframe 
                     class="w-full h-full border-none" 
-                    src="https://www.youtube.com/embed/X4YAyxiMyuA?rel=0&modestbranding=1&autoplay=1&mute=1&loop=1&playlist=X4YAyxiMyuA&controls=0&showinfo=0&iv_load_policy=3" 
+                    src="https://www.youtube-nocookie.com/embed/X4YAyxiMyuA?rel=0&modestbranding=1&autoplay=1&mute=1&loop=1&playlist=X4YAyxiMyuA&controls=0&showinfo=0&iv_load_policy=3&origin=https://preneurmastery.com" 
                     title="CCTV Replay Demo" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen>
@@ -486,7 +523,7 @@
                         <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
                             <td class="p-8 text-white font-bold">Biaya</td>
                             <td class="p-8 text-slate-500">Rp 1.5jt+ / Halaman</td>
-                            <td class="p-8 text-indigo-400 font-black italic">Rp 149rb (LIFETIME)</td>
+                            <td class="p-8 text-indigo-400 font-black italic">Rp 111rb (ENTRY)</td>
                         </tr>
                         <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
                             <td class="p-8 text-white font-bold">Waktu Kerja</td>
@@ -567,7 +604,7 @@
         </div>
     </section>
 
-    <!-- 🚩 SECTION 9: THE PRICING -->
+    <!-- 🚩 SECTION 9: THE PRICING (OPTIMIZED) -->
     <section id="pricing" class="py-24 px-6 bg-indigo-600/5">
         <div class="max-w-6xl mx-auto text-center">
             <h2 class="reveal text-4xl md:text-8xl font-black uppercase text-white mb-16 italic leading-none">INVESTASI <br/><span class="text-indigo-600">ANTI-BONCOS.</span></h2>
@@ -577,7 +614,37 @@
                 
                 <!-- Micro-Urgency -->
                 <div class="inline-block bg-red-500/20 border border-red-500/50 text-red-400 px-4 py-2 rounded-full text-xs font-bold mb-8 animate-pulse">
-                    🔥 Sisa 5 Slot untuk Harga Promo Rp 111.000 hari ini!
+                    🔥 Sisa 5 Slot untuk Harga Promo hari ini!
+                </div>
+
+                <!-- NEW: What's Included Section -->
+                <div class="space-y-4 mb-10 text-left max-w-md mx-auto">
+                    <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-4 text-center">APA YANG ANDA DAPATKAN:</p>
+                    <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/5">
+                        <div class="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center shrink-0">
+                            <i class="fas fa-check text-green-500 text-[10px]"></i>
+                        </div>
+                        <div>
+                            <span class="text-white font-black block text-sm uppercase italic">Unlimited AI Landing Pages</span>
+                            <span class="text-slate-500 text-[10px]">Senilai Rp 1.500.000/thn</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/5">
+                        <div class="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center shrink-0">
+                            <i class="fas fa-check text-green-500 text-[10px]"></i>
+                        </div>
+                        <div>
+                            <span class="text-white font-black block text-sm uppercase italic">AI Strategy & Copywriter (Gemini)</span>
+                            <span class="text-slate-500 text-[10px]">Riset market & headline maut otomatis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulir Data Diri -->
+                <div class="mb-6 space-y-4 text-left w-full">
+                    <input type="text" id="user-name" placeholder="Nama Lengkap" class="w-full px-6 py-4 bg-black/20 border border-white/10 rounded-2xl text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors">
+                    <input type="email" id="user-email" placeholder="Alamat Email" class="w-full px-6 py-4 bg-black/20 border border-white/10 rounded-2xl text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors">
+                    <input type="tel" id="user-phone" placeholder="Nomor WhatsApp" class="w-full px-6 py-4 bg-black/20 border border-white/10 rounded-2xl text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors">
                 </div>
 
                 <div class="flex flex-col items-center justify-center gap-2 mb-10">
@@ -586,63 +653,42 @@
                     </div>
                     <div class="flex items-start gap-2">
                         <span class="text-2xl font-black mt-3 text-white">Rp</span>
-                        <span class="text-6xl md:text-9xl font-black italic text-white leading-none">111rb</span>
+                        <span id="display-price" class="text-6xl md:text-9xl font-black italic text-white leading-none">111rb</span>
                     </div>
                 </div>
 
-                <!-- Value Stacking -->
-                <div class="space-y-5 mb-12 text-left max-w-md mx-auto bg-black/20 p-6 md:p-8 rounded-[32px] border border-white/5">
-                    <div class="flex items-start gap-4">
-                        <i class="fas fa-check-circle text-green-500 mt-1 text-xl"></i>
-                        <div>
-                            <span class="text-white font-black block text-base">Unlimited AI Landing Pages</span>
-                            <span class="text-slate-400 text-xs italic">Senilai Rp 1.500.000/thn</span>
+                <!-- ADD-ONS (CHECKBOX STYLE) MOVED HERE -->
+                <div class="space-y-3 mb-10 text-left w-full">
+                    <p class="text-[10px] font-black text-indigo-500 uppercase tracking-[0.2em] mb-4 text-center">AKTIFKAN FITUR ELITE (CHECK):</p>
+                    
+                    <div class="pricing-option p-5 rounded-2xl flex items-center justify-between group" onclick="toggleOption('tracking')">
+                        <div class="flex items-center gap-4">
+                            <div id="check-tracking" class="checkbox-custom">
+                                <i class="fas fa-check text-[10px] text-white hidden"></i>
+                            </div>
+                            <div>
+                                <span class="text-white font-black block text-sm uppercase italic">Full Session Replay & CCTV</span>
+                                <span class="text-slate-500 text-[10px]">Senilai Rp 450.000/bln</span>
+                            </div>
                         </div>
+                        <span class="text-indigo-400 font-bold text-sm">+Rp 17rb</span>
                     </div>
-                    <div class="flex items-start gap-4">
-                        <i class="fas fa-check-circle text-green-500 mt-1 text-xl"></i>
-                        <div>
-                            <span class="text-white font-black block text-base">Full Session Replay & CCTV</span>
-                            <span class="text-slate-400 text-xs italic">Senilai Rp 450.000/bln</span>
+
+                    <div class="pricing-option p-5 rounded-2xl flex items-center justify-between group" onclick="toggleOption('wabot')">
+                        <div class="flex items-center gap-4">
+                            <div id="check-wabot" class="checkbox-custom">
+                                <i class="fas fa-check text-[10px] text-white hidden"></i>
+                            </div>
+                            <div>
+                                <span class="text-white font-black block text-sm uppercase italic">Individual Sales AI Chatbots</span>
+                                <span class="text-slate-500 text-[10px]">Senilai Rp 300.000/bln</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <i class="fas fa-check-circle text-green-500 mt-1 text-xl"></i>
-                        <div>
-                            <span class="text-white font-black block text-base">Individual Sales AI Chatbots</span>
-                            <span class="text-slate-400 text-xs italic">Senilai Rp 300.000/bln</span>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <i class="fas fa-check-circle text-green-500 mt-1 text-xl"></i>
-                        <div>
-                            <span class="text-white font-black block text-base">AI Strategy & Copywriter (Gemini)</span>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <i class="fas fa-check-circle text-green-500 mt-1 text-xl"></i>
-                        <div>
-                            <span class="text-white font-black block text-base">Meta & TikTok Ads ROI Control</span>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <i class="fas fa-gift text-yellow-500 mt-1 text-xl animate-pulse"></i>
-                        <div>
-                            <span class="text-yellow-400 font-black block text-base">BONUS: Akses CS WA AI 1 Bulan</span>
-                            <span class="text-slate-400 text-xs italic">Auto-Closing 24/7 Tanpa Admin</span>
-                        </div>
+                        <span class="text-indigo-400 font-bold text-sm">+Rp 17rb</span>
                     </div>
                 </div>
 
-                <!-- Social Proof -->
-                <div class="mb-6 flex flex-col items-center justify-center gap-2">
-                    <div class="flex text-yellow-400 text-sm gap-1">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="text-slate-300 text-xs font-bold">Terjual kepada 1.240+ Advertiser. Rating 4.9/5</p>
-                </div>
-
-                <button onclick="trackEvent('Click_Purchase', 'Gabung Sekarang - Rp111rb'); handleJoin()" class="cta-shine w-full py-8 bg-indigo-600 text-white rounded-[32px] font-black text-2xl italic uppercase shadow-xl hover:-translate-y-1 transition-all">GABUNG SEKARANG</button>
+                <button id="checkout-button-v2" class="cta-shine w-full py-8 bg-indigo-600 text-white rounded-[32px] font-black text-2xl italic uppercase shadow-xl hover:-translate-y-1 transition-all">BAYAR SEKARANG</button>
                 
                 <!-- Trust Badges & Risk Reversal -->
                 <div class="mt-6 flex flex-col items-center gap-4">
@@ -652,8 +698,8 @@
                         <i class="fas fa-money-bill-wave text-2xl"></i>
                         <i class="fas fa-qrcode text-2xl"></i>
                     </div>
-                    <div class="bg-green-500/10 border border-green-500/20 text-green-400 px-4 py-3 rounded-2xl text-xs font-bold w-full max-w-sm">
-                        <i class="fas fa-shield-alt mr-2"></i> Garansi 7 Hari Uang Kembali 100%. Tidak puas? Uang kembali utuh, tanpa ditanya!
+                    <div class="bg-green-500/10 border border-green-500/20 text-green-400 px-4 py-3 rounded-2xl text-xs font-bold w-full max-sm:text-[10px]">
+                        <i class="fas fa-shield-alt mr-2"></i> Garansi 7 Hari Uang Kembali 100%. Aman & Terpercaya.
                     </div>
                 </div>
             </div>
@@ -718,6 +764,7 @@
     <!-- Chatbot & Tracker diletakkan di bawah agar tidak memblokir render jika server mati -->
     <script src="https://preneurmastery.com/chatbot/widget.js" data-project-id="69d361e910d8922efc2a7796"></script>
 
+
     <script>
       (function(){
         window.__TRACKER_CONFIG__ = window.__TRACKER_CONFIG__ || {};
@@ -732,9 +779,47 @@
     </script>
 
     <script>
+        // ─── Pricing Logic ──────────────────────────────────────────
+        let basePrice = 111000;
+        let selectedOptions = {
+            tracking: false,
+            wabot: false
+        };
+
+        function toggleOption(option) {
+            selectedOptions[option] = !selectedOptions[option];
+            
+            // UI Update
+            const card = event.currentTarget;
+            const check = card.querySelector('.checkbox-custom i');
+            
+            if (selectedOptions[option]) {
+                card.classList.add('selected');
+                check.classList.remove('hidden');
+                trackEvent('Select_Pricing_Addon', option);
+            } else {
+                card.classList.remove('selected');
+                check.classList.add('hidden');
+            }
+            
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            let total = basePrice;
+            if (selectedOptions.tracking) total += 17000;
+            if (selectedOptions.wabot) total += 17000;
+            
+            const displayEl = document.getElementById('display-price');
+            displayEl.innerText = (total / 1000) + 'rb';
+            
+            return total;
+        }
+
         // ─── Unified Tracking Helper ──────────────────────────────────────────
         window.trackEvent = function(eventName, buttonName, params = {}) {
             if (window.tracker && window.tracker.track) {
+
                 window.tracker.track(eventName, { text: buttonName, ...params });
             }
             if (typeof fbq !== 'undefined') {
@@ -883,20 +968,65 @@
         }
 
         // ─── Initiation Logic ───────────────────────────────────────
-        function handleJoin() {
-            trackEvent('Initiate_Checkout', 'Gabung Sekarang - Rp111rb', { value: 111000, currency: "IDR" });
+                async function handleJoin() {
+            const name = document.getElementById('user-name').value.trim();
+            const email = document.getElementById('user-email').value.trim();
+            const phone = document.getElementById('user-phone').value.trim();
+
+            if (!name || !email || !phone) {
+                alert('Mohon lengkapi semua data: Nama, Email, dan Nomor WhatsApp.');
+                return;
+            }
+
+            const currentTotal = calculateTotal();
+            const btn = document.getElementById('checkout-button-v2');
+            if (!btn) return;
+            const originalText = btn.innerText;
+            btn.innerText = 'PROSES...';
+            btn.disabled = true;
+
             if (typeof fbq !== 'undefined') {
                 fbq('track', 'InitiateCheckout', { 
-                    content_name: 'LCC Intelligence Lifetime',
-                    value: 111000, 
+                    content_name: 'LCC Intelligence Bundle',
+                    content_category: JSON.stringify(selectedOptions),
+                    value: currentTotal, 
                     currency: 'IDR',
                     num_items: 1
                 });
             }
-            // Delay redirect so Meta Pixel has time to fire
-            setTimeout(() => {
-                window.location.href = "https://app.midtrans.com/payment-links/703a2031-2a64-422d-b3fd-f253889bf8d7";
-            }, 500);
+
+            try {
+                // Using the centralized service on port 3001
+                const response = await fetch('/midtrans-callback-api/get-snap-token', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        name: name, 
+                        email: email, 
+                        phone: phone, 
+                        amount: currentTotal,
+                        metadata: {
+                            bundle_options: selectedOptions
+                        }
+                    })
+                });
+                
+                if (!response.ok) throw new Error('Gagal menghubungi server pembayaran');
+                const data = await response.json();
+                
+                if (data.redirect_url) {
+                    console.log('Redirecting to Midtrans:', data.redirect_url);
+                    window.location.href = data.redirect_url;
+                } else {
+                    alert('Gagal mendapatkan link pembayaran.');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Terjadi kesalahan: ' + err.message);
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
         }
 
         // Track time on page
@@ -930,6 +1060,10 @@
                     });
                 }
             });
+
+            // Set up button listener
+            const btnV2 = document.getElementById('checkout-button-v2');
+            if(btnV2) btnV2.onclick = handleJoin;
         };
     </script>
 </body>
