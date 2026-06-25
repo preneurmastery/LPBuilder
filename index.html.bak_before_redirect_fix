@@ -38,10 +38,7 @@
              src="https://www.facebook.com/tr?id=612806087911246&ev=PageView&noscript=1"/>
     </noscript>
   
-    <!-- Midtrans Snap JS -->
-    <script type="text/javascript"
-            src="https://app.sandbox.midtrans.com/snap/snap.js"
-            data-client-key="SB-Mid-client-OuY-q5EIAle9uBvK"></script>
+
 
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1009,7 +1006,6 @@
                         phone: phone, 
                         amount: currentTotal,
                         metadata: {
-                            email: email, // Fail-safe for callback
                             bundle_options: selectedOptions
                         }
                     })
@@ -1018,30 +1014,8 @@
                 if (!response.ok) throw new Error('Gagal menghubungi server pembayaran');
                 const data = await response.json();
                 
-                if (data.token) {
-                    // Use Snap Popup for better control over redirects
-                    window.snap.pay(data.token, {
-                        onSuccess: function(result) {
-                            console.log('Payment success:', result);
-                            // Redirect to registration page with auto-fill parameters
-                            const regUrl = `https://preneurmastery.com/lcc/register?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`;
-                            window.location.href = regUrl;
-                        },
-                        onPending: function(result) {
-                            console.log('Payment pending:', result);
-                            alert('Pembayaran tertunda. Silakan selesaikan pembayaran Anda.');
-                        },
-                        onError: function(result) {
-                            console.error('Payment error:', result);
-                            alert('Pembayaran gagal. Silakan coba lagi.');
-                        },
-                        onClose: function() {
-                            console.log('Customer closed the popup without finishing the payment');
-                        }
-                    });
-                } else if (data.redirect_url) {
-                    // Fallback to direct redirect if token is missing but redirect_url exists
-                    console.log('Redirecting to Midtrans (Fallback):', data.redirect_url);
+                if (data.redirect_url) {
+                    console.log('Redirecting to Midtrans:', data.redirect_url);
                     window.location.href = data.redirect_url;
                 } else {
                     alert('Gagal mendapatkan link pembayaran.');
